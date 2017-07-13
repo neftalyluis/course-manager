@@ -1,7 +1,8 @@
 package course.manager
 
 class Lesson {
-    
+
+    static hasMany = [lessonFiles: LessonFile]
     String name
     String body
     String headerPhoto

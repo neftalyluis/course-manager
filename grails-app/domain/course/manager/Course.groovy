@@ -1,7 +1,8 @@
 package course.manager
 
 class Course {
-    
+
+    static hasMany = [lessons: Lesson]
     String name
     String description
     String banner
@@ -23,7 +24,7 @@ class Course {
         coursePhoto blank: false
         lessonPhoto blank: false
         theory blank: false
-        theoryTitle: false
+        theoryTitle blank: false
       
     }
 }
