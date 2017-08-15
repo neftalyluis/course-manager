@@ -1,9 +1,16 @@
 package course.manager
 
+/**
+ * Controlador que maneja
+ */
 class FirebaseMigrationController {
 
+    static allowedMethods = [index: "GET", processJSON: "POST"]
+
     def index() {
-        def firebaseObject = request.JSON
-        return []
+    }
+
+    def processJSON() {
+
     }
 }
