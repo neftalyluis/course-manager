@@ -4,15 +4,14 @@
     <meta name="layout" content="main"/>
     <title>Firebase</title>
 </head>
-
 <body>
 <div class="container">
     <g:form name="sendJSON" url="[action: 'processJSON', controller: 'firebaseMigration']">
         <div class="form-group">
             <label for="json">Inserta aquí el JSON de Firebase</label>
-            <textarea class="form-control" id="json"></textarea>
+            <input type="textarea" name="payload" class="form-control" id="json" />
         </div>
-        <g:submitButton name="Subir" class="btn btn-primary" value="processJSON"/>
+        <g:submitButton name="processJSON" class="btn btn-primary" value="Subir"/>
     </g:form>
 </div>
 </body>

@@ -6,21 +6,27 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def userRole = new Authority(authority: "admin").save()
+        def adminRole = new Authority(authority: "admin").save()
         def admin = new Person(username: "admin", password: "test").save()
-        def roleandUser = PersonAuthority.create(admin, userRole, true)
+        def adminWithRole = PersonAuthority.create(admin, adminRole, true)
+
+
+        def userRole = new Authority(authority: "student").save()
+        def user = new Person(username: "student", password: "test").save()
+        def userWithRole = PersonAuthority.create(user, userRole, true)
 
         for (String url in [
                 '/', '/error', '/index', '/index.gsp', '/**/favicon.ico',
                 '/**/js/**', '/**/css/**', '/**/images/**',
                 '/login', '/login.*', '/login/*',
-                '/logout', '/logout.*', '/logout/*', '/firebaseMigration/*']) {
+                '/logout', '/logout.*', '/logout/*', '/firebaseMigration/*', '/cursos/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll').save(failOnError: true)
         }
 
         springSecurityService.clearCachedRequestmaps()
 
     }
+
     def destroy = {
     }
 }

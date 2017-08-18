@@ -1,6 +1,6 @@
 package course.manager
 
-class StudentPermissionsController {
+class CourseManagerController {
 
     def index() { }
 }
