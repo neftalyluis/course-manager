@@ -23,7 +23,7 @@
 <aside class="bg-dark">
     <div class="container text-center">
         <div class="call-to-action">
-            <img src="${assetPath(src: 'images/coach.jpg')}" class="paola">
+            <img src="${assetPath(src: 'coach.jpg')}" class="paola">
 
             <h2>
                 <quote><i
@@ -43,7 +43,7 @@
         <div class="row no-gutter popup-gallery">
             <div class="col-lg-3 col-sm-6">
                 <div class="portfolio-box cursor">
-                    <img src="${assetPath(src: 'images/portfolio/thumbnails/2-2.jpg')}" class="img-responsive" alt="">
+                    <img src="${assetPath(src: 'portfolio/thumbnails/2-2.jpg')}" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -67,7 +67,7 @@
 
             <div class="col-lg-3 col-sm-6">
                 <div class="portfolio-box cursor">
-                    <img src="${assetPath(src: 'images/portfolio/thumbnails/1-1.jpg')}" class="img-responsive" alt="">
+                    <img src="${assetPath(src: 'portfolio/thumbnails/1-1.jpg')}" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -91,7 +91,7 @@
 
             <div class="col-lg-3 col-sm-6">
                 <div class="portfolio-box cursor">
-                    <img src="${assetPath(src: 'images/portfolio/thumbnails/3-3.jpg')}" class="img-responsive" alt="">
+                    <img src="${assetPath(src: 'portfolio/thumbnails/3-3.jpg')}" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
@@ -115,7 +115,7 @@
 
             <div class="col-lg-3 col-sm-6">
                 <div class="portfolio-box pointer">
-                    <img src="${assetPath(src: 'images/portfolio/thumbnails/4-4.jpg')}" class="img-responsive" alt="">
+                    <img src="${assetPath(src: 'portfolio/thumbnails/4-4.jpg')}" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">

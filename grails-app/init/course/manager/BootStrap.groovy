@@ -6,12 +6,12 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def adminRole = new Authority(authority: "admin").save()
+        def adminRole = new Authority(authority: "ROLE_ADMIN").save()
         def admin = new Person(username: "admin", password: "test").save()
         def adminWithRole = PersonAuthority.create(admin, adminRole, true)
 
 
-        def userRole = new Authority(authority: "student").save()
+        def userRole = new Authority(authority: "ROLE_STUDENT").save()
         def user = new Person(username: "student", password: "test").save()
         def userWithRole = PersonAuthority.create(user, userRole, true)
 

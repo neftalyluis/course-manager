@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Page Not Found</title>
-        <meta name="layout" content="main">
+        <meta name="layout" content="main2">
     </head>
     <body>
         <ul class="errors">

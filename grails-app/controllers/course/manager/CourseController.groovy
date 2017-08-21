@@ -1,10 +1,13 @@
 package course.manager
 
+import course.manager.Authority
+
 class CourseController {
 
     def springSecurityService
 
     def courses() {
+        println Authority.findAll()
     }
 
     def lessons(String idCurso) {

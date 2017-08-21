@@ -29,22 +29,31 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="#!">
-                <img src="images/logo.jpg" class="logo-menu">
+                <img src="${assetPath(src: 'logo.jpg')}" class="logo-menu">
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="margin-top: 20px;">
-                <li>
-                    <div style="margin: 15px; width: 35px; height: 35px;"><img style="width: 35px; height: 35px;"/>
-                    </div>
-                </li>
-                <li class="" style="margin-top: 10px;"><a href="#">Perfil</a></li>
-                <li class="" style="margin-top: 10px;"><a href="#">Mis Programas</a></li>
-                <li class="" style="margin-top: 10px;"><a href="#">{{courseName}}</a></li>
-                <li class="" style="margin-top: 10px;"><a href="#">Iniciar Sesion</a></li>
-                <li class="" style="margin-top: 10px;"><a href="#">Cerrar Sesion</a></li>
+                <sec:ifLoggedIn>
+                    <li>
+                        <div style="margin: 15px; width: 35px; height: 35px;">
+                            <img style="width: 35px; height: 35px;"/>
+                        </div>
+                    </li>
+                </sec:ifLoggedIn>
+                <sec:ifAllGranted roles='ROLE_STUDENT'>
+                    <li style="margin-top: 10px;"><a href="#">Perfil</a></li>
+                    <li style="margin-top: 10px;"><a href="#">Mis Programas</a></li>
+                </sec:ifAllGranted>
+                <sec:ifLoggedIn>
+                    <li style="margin-top: 10px;"><a href="#">Cerrar Sesion</a></li>
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    <li style="margin-top: 10px;"><a href="#">Iniciar Sesion</a></li>
+                </sec:ifNotLoggedIn>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
