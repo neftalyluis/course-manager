@@ -68,7 +68,7 @@ canvas{
 }
 .carta{
     padding: 20px 30px;
-    background-image: url(../images/bienvenida.jpg);
+    background-image: url(../assets/bienvenida.jpg);
     margin: 100px 40px;
     margin-top: 200px;
     text-align: justify;
