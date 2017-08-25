@@ -6,12 +6,12 @@ class Lesson {
     String name
     String body
     String headerPhoto
-    Long order
+    Long numeration
 
     static constraints = {
         name blank: false
         body blank: false
         headerPhoto blank: false
-        order blank: false
+        numeration blank: false
     }
 }

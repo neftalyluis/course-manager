@@ -6,6 +6,7 @@
     <title>Coach Paola Vega - Amor a mi</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+
     <asset:stylesheet src="application.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">

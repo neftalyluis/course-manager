@@ -1,37 +1,51 @@
 package course.manager
 
-import course.manager.Authority
 
 class CourseController {
 
     def springSecurityService
+    def courseService
 
     def courses() {
-        println Authority.findAll()
+        def username = springSecurityService.currentUser?.username
+        def courses = courseService.getCoursesForUser(username)
+
+        [courses: courses]
     }
 
     def lessons(String idCurso) {
-        println idCurso
+        def username = springSecurityService.currentUser?.username
+        def lessons = courseService.getAllLessonsForCourse(username, idCurso)
+
+        [lessons: lessons]
     }
 
     def info(String idCurso) {
-        println "info $idCurso"
+        def username = springSecurityService.currentUser?.username
+        def course = courseService.getCourse(username, idCurso)
 
+        [info: course.info]
     }
 
     def theory(String idCurso) {
-        println idCurso
+        def username = springSecurityService.currentUser?.username
+        def course = courseService.getCourse(username, idCurso)
 
+        [theory: course.theory]
     }
 
     def welcome(String idCurso) {
-        println idCurso
+        def username = springSecurityService.currentUser?.username
+        def course = courseService.getCourse(username, idCurso)
 
+        [welcome: course.welcome]
     }
 
     def getLesson(String idCurso, String idLeccion) {
-        println idCurso
-        println idLeccion
+        def username = springSecurityService.currentUser?.username
+        def lesson = courseService.getLessonForCourse(username, idCurso, idLeccion)
+
+        [lesson: lesson]
     }
 
 }
