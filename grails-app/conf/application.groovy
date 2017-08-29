@@ -4,6 +4,7 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'course.manager
 grails.plugin.springsecurity.authority.className = 'course.manager.Authority'
 grails.plugin.springsecurity.requestMap.className = 'course.manager.Requestmap'
 grails.plugin.springsecurity.securityConfigType = 'Requestmap'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

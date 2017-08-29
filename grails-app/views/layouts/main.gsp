@@ -1,53 +1,73 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html class="no-js">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>
-        <g:layoutTitle default="Grails"/>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8">
+    <title>Coach Paola Vega - Amor a mi</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
 
     <asset:stylesheet src="application.css"/>
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Parisienne" rel="stylesheet">
     <g:layoutHead/>
+
 </head>
 
-<body>
-
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
+<body id="page-top">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid pink-bar">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="/#">
-                <i class="fa grails-icon">
-                    <asset:image src="grails-cupsonly-logo-white.svg"/>
-                </i> Grails
+            <a class="navbar-brand page-scroll" href="#!">
+                <img src="${assetPath(src: 'logo.jpg')}" class="logo-menu">
             </a>
         </div>
 
-        <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-            <ul class="nav navbar-nav navbar-right">
-                <g:pageProperty name="page.nav"/>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="margin-top: 20px;">
+                <sec:ifLoggedIn>
+                    <li>
+                        <div style="margin: 15px; width: 35px; height: 35px;">
+                            <img style="width: 35px; height: 35px;"/>
+                        </div>
+                    </li>
+                </sec:ifLoggedIn>
+                <sec:ifAllGranted roles='ROLE_STUDENT'>
+                    <li style="margin-top: 10px;"><a href="#">Perfil</a></li>
+                    <li style="margin-top: 10px;"><a href="#">Mis Programas</a></li>
+                </sec:ifAllGranted>
+                <sec:ifLoggedIn>
+                    <li style="margin-top: 10px;"><g:link controller="logout">Cerrar Sesion</g:link></li>
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    <li style="margin-top: 10px;"><g:link controller="login">Iniciar Sesion</g:link></li>
+                </sec:ifNotLoggedIn>
+
             </ul>
         </div>
+        <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<div class="memeo">
+    <g:layoutBody/>
 </div>
 
-<g:layoutBody/>
-
-<div class="footer" role="contentinfo"></div>
-
-<div id="spinner" class="spinner" style="display:none;">
-    <g:message code="spinner.alt" default="Loading&hellip;"/>
-</div>
-
-<asset:javascript src="application.js"/>
-
+<footer>Derechos de autor <i class="fa fa-copyright"></i> 2017 Paola Vega</footer>
 </body>
+
 </html>

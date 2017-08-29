@@ -19,7 +19,7 @@ class BootStrap {
                 '/', '/error', '/index', '/index.gsp', '/**/favicon.ico',
                 '/**/js/**', '/**/css/**', '/**/images/**',
                 '/login', '/login.*', '/login/*',
-                '/logout', '/logout.*', '/logout/*', '/firebaseMigration/*', '/cursos/**']) {
+                '/logout', '/logout.*', '/logout/*', '/firebaseMigration/*', '/cursos/**', '/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll').save(failOnError: true)
         }
 
