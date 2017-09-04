@@ -48,6 +48,10 @@
                     <li style="margin-top: 10px;"><a href="#">Perfil</a></li>
                     <li style="margin-top: 10px;"><a href="#">Mis Programas</a></li>
                 </sec:ifAllGranted>
+                <sec:ifAllGranted roles='ROLE_ADMIN'>
+                    <li style="margin-top: 10px;"><g:link controller="courseManager">Gestionar Cursos</g:link></li>
+                    <li style="margin-top: 10px;"><a href="#">Gestionar Usuarios</a></li>
+                </sec:ifAllGranted>
                 <sec:ifLoggedIn>
                     <li style="margin-top: 10px;"><g:link controller="logout">Cerrar Sesion</g:link></li>
                 </sec:ifLoggedIn>
