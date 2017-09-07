@@ -5,12 +5,13 @@
 </head>
 
 <body>
+    //TODO Arreglar la inyeccion de las imagenes
 <div class="header" style="min-height: 400px; height: 400px;" ng-style="{'background-image':headerImage}">
     <div class="header-op">
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">{{leccion.nombre}}</h1>
+                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">${lesson.name}</h1>
                 <hr>
             </div>
         </div>
@@ -20,7 +21,7 @@
 <div class="container" style="padding-top: 100px; padding-bottom: 100px;">
     <div class="row">
         <div class="col-md-9">
-            <p ta-bind="text" ng-model="leccion.cuerpo"></p>
+            <p ta-bind="text">${lesson.body.encodeAsHTML()}</p>
         </div>
 
         <div class="col-md-3">

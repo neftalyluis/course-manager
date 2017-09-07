@@ -18,16 +18,19 @@
 </div>
 
 <div class="container" style="padding-bottom: 100px; padding-top: 100px;">
+    <g:each var="course" in="courses">
     <div class="row" ng-repeat="curso in cursos">
         <div class="col-sm-4">
             <div>
-                <h3 class="text-center" style="color: #da2d7d;">{{curso.nombre}}</h3>
+                <h3 class="text-center" style="color: #da2d7d;">${course.name}</h3>
                 <img src="images/portfolio/thumbnails/2-2.jpg" style="max-width: 100%; height: auto;">
+                //TODO Arreglar los links
                 <button class="btn btn-primary" ng-click="verCurso(curso.$id)"
                         style="margin-left: 120px; margin-top: 20px;"><a
                         style="color: #fff; text-decoration: none;">Iniciar</a></button>
             </div>
         </div>
     </div>
+    </g:each>
 </body>
 </html>
