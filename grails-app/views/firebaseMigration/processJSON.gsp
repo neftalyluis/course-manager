@@ -7,7 +7,7 @@
 
 <body>
 <div class="container">
-    <label>LOLOK</label>
+    <label>${json}</label>
 </div>
 </body>
 </html>

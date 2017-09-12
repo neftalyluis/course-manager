@@ -1,7 +1,9 @@
 package course.manager
 
 class LessonFile {
-    
+
+    //Cascading
+    static belongsTo = [lesson: Lesson]
     String fileURL
     String name
 
