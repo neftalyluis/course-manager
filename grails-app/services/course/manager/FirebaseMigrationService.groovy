@@ -36,7 +36,7 @@ class FirebaseMigrationService {
         course.lessons = lessons
         if (!course.save()) {
             course.errors.allErrors.each {
-                println it
+                log.error("error = ${it.getField()},  ${it.getDefaultMessage()}")
             }
         }
         log.info("Created Course ${course.name} with ${course.lessons.size()} Lessons")
