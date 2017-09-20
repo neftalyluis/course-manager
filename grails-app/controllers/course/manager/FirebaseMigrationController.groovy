@@ -22,7 +22,11 @@ class FirebaseMigrationController {
         }
 
         def result = firebaseMigrationService.process(jsonfile.inputStream)
+        [json: result]
+    }
 
+    def migrateFirebaseUsers() {
+        def result = firebaseMigrationService.recoverUsersFromCLI()
         [json: result]
     }
 }

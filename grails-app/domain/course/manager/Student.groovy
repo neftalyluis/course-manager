@@ -7,6 +7,10 @@ class Student {
     String urlAvatar
     String description
 
+    static belongsTo = [person: Person]
+
     static constraints = {
+        username blank: false, unique: true
+
     }
 }

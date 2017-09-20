@@ -62,3 +62,7 @@ assets {
     minifyJs = true
     minifyCss = true
 }
+
+springBoot {
+    executable = true
+}

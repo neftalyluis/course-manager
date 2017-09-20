@@ -7,7 +7,7 @@
 
 <body>
 
-<div class="header" style="min-height: 400px; height: 400px;" ng-style="{'background-image':headerImage}">
+<div class="header" style="min-height: 400px; height: 400px;">
     <div class="header-op">
         <div class="header-content">
             <div class="header-content-inner">
