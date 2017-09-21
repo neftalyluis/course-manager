@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Parisienne" rel="stylesheet">
     <link rel="icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon"/>
+    <asset:javascript src="application.js"/>
     <g:layoutHead/>
 
 </head>
@@ -71,7 +72,6 @@
 </div>
 
 <footer>Derechos de autor <i class="fa fa-copyright"></i> 2017 Paola Vega</footer>
-<asset:javascript src="application.js"/>
 </body>
 
 </html>
