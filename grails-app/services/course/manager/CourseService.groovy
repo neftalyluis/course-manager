@@ -6,27 +6,35 @@ import grails.transaction.Transactional
 class CourseService {
 
     def getCoursesForUser(String username) {
-        def student = Student.findByUsername(username)
-        return student.courses
+        def courses = Course.withCriteria {
+            students {
+                eq("username", username)
+            }
+        }
+        return courses
     }
 
-    def getAllLessonsForCourse(String username, String courseName) {
-        def student = Student.findByUsername(username)
-        def course = Course.findByNameAndStudents(courseName, [student] as Set)
-        return course.lessons
+    def getCourse(String username, String courseURL) {
+        def course = Course.withCriteria(uniqueResult: true) {
+            students {
+                eq("username", username)
+            }
+            eq("url", courseURL)
+        }
+        return course
     }
 
     def getLessonForCourse(String username, String courseName, String lessonName) {
-        def student = Student.findByUsername(username)
-        def course = Course.findByNameAndStudents(courseName, [student] as Set)
-        def lesson = Lesson.findByNameAndCourse(lessonName, course)
+        def lesson = Lesson.withCriteria(uniqueResult: true) {
+            course {
+                students {
+                    eq("username", username)
+                }
+                eq("url", courseName)
+            }
+            eq("url", lessonName)
+        }
         return lesson
-    }
-
-    def getCourse(String username, String courseName) {
-        def student = Student.findByUsername(username)
-        def course = Course.findByNameAndStudents(courseName, [student] as Set)
-        return course
     }
 
 

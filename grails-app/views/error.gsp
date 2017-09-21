@@ -1,16 +1,30 @@
 <!doctype html>
 <html>
-    <head>
-        <title><g:if env="development">Grails Runtime Exception</g:if><g:else>Error</g:else></title>
-        <meta name="layout" content="main">
-    </head>
-    <body>
+<head>
+    <title><g:if env="development">Grails Runtime Exception</g:if><g:else>Error</g:else></title>
+    <meta name="layout" content="main">
+</head>
+
+<body>
+<div class="header" style="min-height: 400px; height: 400px;">
+    <div class="header-op">
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading"
+                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">CURSOS</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container">
         <g:if env="development">
             <g:if test="${Throwable.isInstance(exception)}">
-                <g:renderException exception="${exception}" />
+                <g:renderException exception="${exception}"/>
             </g:if>
             <g:elseif test="${request.getAttribute('javax.servlet.error.exception')}">
-                <g:renderException exception="${request.getAttribute('javax.servlet.error.exception')}" />
+                <g:renderException exception="${request.getAttribute('javax.servlet.error.exception')}"/>
             </g:elseif>
             <g:else>
                 <ul class="errors">
@@ -26,5 +40,7 @@
                 <li>An error has occurred</li>
             </ul>
         </g:else>
-    </body>
+    </div>
+</section>
+</body>
 </html>

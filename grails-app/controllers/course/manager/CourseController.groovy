@@ -7,17 +7,15 @@ class CourseController {
     def courseService
 
     def courses() {
-        def username = springSecurityService.currentUser?.username
+        def username = springSecurityService.currentUser.username
         def courses = courseService.getCoursesForUser(username)
-
         [courses: courses]
     }
 
     def lessons(String idCurso) {
         def username = springSecurityService.currentUser?.username
-        def lessons = courseService.getAllLessonsForCourse(username, idCurso)
-
-        [lessons: lessons]
+        def course = courseService.getCourse(username, idCurso)
+        [course: course]
     }
 
     def info(String idCurso) {

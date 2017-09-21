@@ -6,7 +6,7 @@ class Course {
     String name
     //Texto de descripcion del curso
     String description
-    //Ni idea, lol ni idea
+    //Texto de Curso Finalizado
     String banner
     //Texto de bienvenida
     String welcome
