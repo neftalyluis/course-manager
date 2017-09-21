@@ -9,3 +9,4 @@
 - [ ] Pruebas Unitarias (no me peguen)
 - [ ] CRUD simple para Estudiantes y Cursos
 - [ ] Flujo para Olvidé Password
+- [ ] Permisos Curso/Estudiante
