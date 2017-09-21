@@ -41,6 +41,7 @@ class BootStrap {
                 log.error("error = ${it.getField()},  ${it.getDefaultMessage()}")
             }
         }
+        def adminWithStudentRole = PersonAuthority.create(admin, userRole, true)
 
         def listStudents = [adminStudentMock, userStudentMock]
         for (def course in Course.list()) {
@@ -52,8 +53,16 @@ class BootStrap {
                 '/', '/error', '/index', '/index.gsp', '/**/favicon.ico',
                 '/**/js/**', '/**/css/**', '/**/images/**',
                 '/login', '/login.*', '/login/*',
-                '/logout', '/logout.*', '/logout/*', '/firebaseMigration/*', '/cursos/**', '/**']) {
+                '/logout', '/logout.*', '/logout/*']) {
             new Requestmap(url: url, configAttribute: 'permitAll').save(failOnError: true)
+        }
+
+        for (String url in ['/course/**', '/cursos/**']) {
+            new Requestmap(url: url, configAttribute: 'ROLE_STUDENT').save(failOnError: true)
+        }
+
+        for (String url in ['/courseManager/**', '/firebaseMigration/**', '/student/**']) {
+            new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save(failOnError: true)
         }
 
         springSecurityService.clearCachedRequestmaps()

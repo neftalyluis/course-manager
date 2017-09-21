@@ -46,7 +46,7 @@
                         </div>
                     </li>
                     <li style="margin-top: 10px;"><a href="#">Perfil</a></li>
-                    <li style="margin-top: 10px;"><a href="#">Mis Programas</a></li>
+                    <li style="margin-top: 10px;"><a href="/cursos">Mis Programas</a></li>
                 </sec:ifLoggedIn>
                 <sec:ifAllGranted roles='ROLE_ADMIN'>
                     <li style="margin-top: 10px;"><g:link controller="courseManager">Gestionar Cursos</g:link></li>

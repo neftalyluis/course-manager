@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
+    <title>Page Not Found</title>
+    <meta name="layout" content="main">
 </head>
 
 <body>
@@ -10,15 +11,18 @@
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">Amor a mi</h1>
+                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">404</h1>
                 <hr>
             </div>
         </div>
     </div>
 </div>
-<section class="bg-primary" id="about">
+<section>
     <div class="container">
-        MAL MEME
+        <ul class="errors">
+            <li>Error: Page Not Found (404)</li>
+            <li>Path: ${request.forwardURI}</li>
+        </ul>
     </div>
 </section>
 </body>

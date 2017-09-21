@@ -24,6 +24,19 @@ class CourseService {
         return course
     }
 
+    def hasUserCourse(String username, String courseURL) {
+        def course = Course.withCriteria(uniqueResult: true) {
+            projections {
+                property('url')
+            }
+            students {
+                eq("username", username)
+            }
+            eq("url", courseURL)
+        }
+        return course
+    }
+
     def getLessonForCourse(String username, String courseName, String lessonName) {
         def lesson = Lesson.withCriteria(uniqueResult: true) {
             course {
