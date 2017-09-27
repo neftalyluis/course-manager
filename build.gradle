@@ -42,6 +42,7 @@ dependencies {
     compile 'org.grails.plugins:grails-mailgun:2.0.3-b'
     compile 'org.webjars:bootstrap:3.3.7'
     compile 'org.webjars:jquery:3.2.1'
+    compile 'com.google.cloud:google-cloud-storage:1.6.0'
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.1"
