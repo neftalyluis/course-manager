@@ -52,10 +52,7 @@ class FirebaseMigrationService {
                 body: lessonNode.value.cuerpo, numberLesson: lessonNode.value.id, lessonFiles: files, course: courseEntity)
     }
 
-    def recoverUsersFromCLI() {
-        def firebaseProjectId = "amor-a-mi-d48eb"
-        def outputFileRoute = "/Users/macmini-vinco/auth.json"
-        def firebaseBinaryRoute = "/Users/macmini-vinco/.nvm/versions/node/v6.11.3/bin/firebase"
+    def recoverUsersFromCLI(String firebaseProjectId, String outputFileRoute, String firebaseBinaryRoute) {
         def stdOutput = new StringBuilder(), stdError = new StringBuilder()
         def proc = ["/bin/sh", "-c", "${firebaseBinaryRoute} auth:export ${outputFileRoute} --project ${firebaseProjectId}"].execute()
         proc.consumeProcessOutput(stdOutput, stdError)

@@ -17,9 +17,18 @@ class BootStrap {
         }
 
         if (!Student.count() && !Person.count()) {
-            log.info("No Student and Persons found, making request to Firebase")
-            def result = firebaseMigrationService.recoverUsersFromCLI()
-            log.info("Persisted ${result.size()} new Students From Firebase API")
+            try {
+                def firebaseProjectId = grailsApplication.config.getRequiredProperty('firebase.projectId')
+                def outputFileRoute = grailsApplication.config.getRequiredProperty('firebase.outputFile')
+                def firebaseBinaryRoute = grailsApplication.config.getRequiredProperty('firebase.binaryRoute')
+
+                log.info("No Student and Persons found, making request to Firebase")
+                def result = firebaseMigrationService.recoverUsersFromCLI(firebaseProjectId, outputFileRoute, firebaseBinaryRoute)
+                log.info("Persisted ${result.size()} new Students From Firebase API")
+            } catch (all) {
+                log.warn("Error when trying to call Firebase CLI: $all")
+            }
+
         }
 
         def adminRole = new Authority(authority: "ROLE_ADMIN").save()

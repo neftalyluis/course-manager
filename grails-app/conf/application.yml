@@ -137,3 +137,8 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+---
+firebase:
+  projectId: 'amor-a-mi-d48eb'
+  outputFile: '/Users/macmini-vinco/auth.json'
+  binaryRoute: '/Users/macmini-vinco/.nvm/versions/node/v6.11.3/bin/firebase'
