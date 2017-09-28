@@ -1,12 +1,20 @@
 language: groovy
+sudo: false
 jdk:
-- oraclejdk8
+ - oraclejdk8
 before_script:
-- chmod +x grailsw
-script: ./grailsw clean && ./grailsw test-app && ./grailsw war dev
+ - chmod +x grailsw
+script:
+ - ./grailsw test-app
+ - ./grailsw war dev
+before_install:
+  - pip install --user codecov
+after_success:
+  - codecov
 before_cache:
- - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+ - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+ - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
  directories:
- - $HOME/.gradle/caches/
- - $HOME/.gradle/wrapper/
+   - $HOME/.gradle/caches/
+   - $HOME/.gradle/wrapper/

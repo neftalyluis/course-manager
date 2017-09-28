@@ -1,5 +1,7 @@
 # course-manager
 
+[![Build Status](https://travis-ci.org/neftalyluis/deployment.svg?branch=master)](https://travis-ci.org/neftalyluis/deployment)
+
 ### Pendientes
 
 - [ ] Variables para migracion de Firebase
