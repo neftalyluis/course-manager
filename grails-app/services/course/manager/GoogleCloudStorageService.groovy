@@ -1,17 +1,38 @@
 package course.manager
 
+import com.google.auth.oauth2.ServiceAccountCredentials
+import com.google.cloud.storage.Blob
+import com.google.cloud.storage.Bucket
+import com.google.cloud.storage.Storage
+import com.google.cloud.storage.StorageOptions
 import grails.transaction.Transactional
 import org.springframework.beans.factory.InitializingBean
 
 @Transactional
 class GoogleCloudStorageService implements InitializingBean {
 
-    def test() {
-        log.info "test"
+    def grailsApplication
+    Storage storage
+
+    def listBucketsAndObjects() {
+        System.out.println("My buckets:")
+        for (Bucket bucket : storage.list().iterateAll()) {
+            System.out.println(bucket)
+
+            // List all blobs in the bucket
+            System.out.println("Blobs in the bucket:")
+            for (Blob blob : bucket.list().iterateAll()) {
+                System.out.println(blob)
+            }
+        }
     }
 
     void afterPropertiesSet() throws Exception {
-
-        log.info "memazo"
+        storage = StorageOptions.newBuilder()
+                .setProjectId(grailsApplication.config.getRequiredProperty('google.cloud.storage.projectId'))
+                .setCredentials(ServiceAccountCredentials.fromStream(
+                new FileInputStream(grailsApplication.config.getRequiredProperty('google.cloud.storage.credentialsFile'))))
+                .build()
+                .getService()
     }
 }

@@ -9,7 +9,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        googleCloudStorageService.test()
+        googleCloudStorageService.listBucketsAndObjects()
 
         if (!Course.count()) {
             log.info("No Courses Found, making bootstrapping from 18/09/17 backups")
@@ -18,8 +18,6 @@ class BootStrap {
             firebaseMigrationService.process(streamJson)
 
         }
-
-        googleCloudStorageService.test()
 
         if (!Student.count() && !Person.count()) {
             try {

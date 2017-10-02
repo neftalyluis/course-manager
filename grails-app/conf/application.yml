@@ -142,3 +142,10 @@ firebase:
   projectId: 'amor-a-mi-d48eb'
   outputFile: '/Users/macmini-vinco/auth.json'
   binaryRoute: '/Users/macmini-vinco/.nvm/versions/node/v6.11.3/bin/firebase'
+
+google:
+  cloud:
+    storage:
+      credentialsFile: '/Users/macmini-vinco/Downloads/amor-a-mi-a6cb89c37fbc.json'
+      projectId: 'amor-a-mi-d48eb'
+
