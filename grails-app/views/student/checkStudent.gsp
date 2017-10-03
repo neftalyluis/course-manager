@@ -12,6 +12,6 @@
         <title>Sample title</title>
     </head>
     <body>
-        <h1>Sample line</h1>
+        <h1>${params.id}</h1>
     </body>
 </html>

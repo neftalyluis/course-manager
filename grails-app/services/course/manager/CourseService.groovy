@@ -5,6 +5,16 @@ import grails.transaction.Transactional
 @Transactional
 class CourseService {
 
+    def getAllProjectedCourses() {
+        def courses = Course.createCriteria().list {
+            projections {
+                property('id')
+                property('name')
+            }
+        }
+        return courses
+    }
+
     def getCoursesForUser(String username) {
         def courses = Course.withCriteria {
             students {

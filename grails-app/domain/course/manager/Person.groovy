@@ -1,8 +1,8 @@
 package course.manager
 
+import grails.compiler.GrailsCompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-import grails.compiler.GrailsCompileStatic
 
 @GrailsCompileStatic
 @EqualsAndHashCode(includes = 'username')
@@ -13,7 +13,7 @@ class Person implements Serializable {
 
     String username
     String password
-    Date accountCreated
+    Date accountCreated = new Date()
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
