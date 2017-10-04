@@ -9,7 +9,9 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        googleCloudStorageService.listBucketsAndObjects()
+        if(googleCloudStorageService.ready) {
+            googleCloudStorageService.listBucketsAndObjects()
+        }
 
         if (!Course.count()) {
             log.info("No Courses Found, making bootstrapping from 18/09/17 backups")

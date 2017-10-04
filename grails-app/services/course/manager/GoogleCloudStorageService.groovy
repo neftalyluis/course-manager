@@ -13,6 +13,7 @@ class GoogleCloudStorageService implements InitializingBean {
 
     def grailsApplication
     Storage storage
+    Boolean ready = false
 
     def listBucketsAndObjects() {
         System.out.println("My buckets:")
@@ -28,11 +29,15 @@ class GoogleCloudStorageService implements InitializingBean {
     }
 
     void afterPropertiesSet() throws Exception {
-        storage = StorageOptions.newBuilder()
+        try {
+            storage = StorageOptions.newBuilder()
                 .setProjectId(grailsApplication.config.getRequiredProperty('google.cloud.storage.projectId'))
-                .setCredentials(ServiceAccountCredentials.fromStream(
-                new FileInputStream(grailsApplication.config.getRequiredProperty('google.cloud.storage.credentialsFile'))))
+                .setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(grailsApplication.config.getRequiredProperty('google.cloud.storage.credentialsFile'))))
                 .build()
                 .getService()
+                ready = true
+        } catch (all) {
+            log.warn("Error when making GCS Setup: $all")
+        }
     }
 }
