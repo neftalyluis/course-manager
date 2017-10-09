@@ -22,8 +22,9 @@
         <h2>Crear nuevo Curso</h2>
 
         <form>
-            <!--String name
-    String descriptionNombre del Curso
+            <!--
+    String name
+    String description
     String banner
     String welcome
     String theoryButton
@@ -39,19 +40,46 @@
             </div>
 
             <div class="form-group">
-                <label for="description">Texto del Banner:</label>
-                <input type="text" class="form-control" id="description">
+                <label>Texto de descripcion del curso</label>
+                <textarea name="descript"></textarea>
             </div>
-
+              <div class="form-group">
+                <label>Texto de Curso Finalizado</label>
+                <textarea name="banner"></textarea>
+            </div>
             <div class="form-group">
-                <textarea name="editor1"></textarea>
+                <label>Texto de bienvenida</label>
+                <textarea name="welcome"></textarea>
+            </div>
+              <div class="form-group">
+                <label>Texto de pagina de teoria </label>
+                <textarea name="theory"></textarea>
+            </div>
+             <div class="form-group">
+                <label for="theoryButton">Texto del boton de teoria :</label>
+                <input type="text" class="form-control" id="theoryButton">
+            </div>
+             <div class="form-group">
+                <label for="coursePhoto">URL de la foto de pagina de curso :</label>
+                <input type="text" class="form-control" id="coursePhoto">
+            </div>
+             <div class="form-group">
+                <label for="theoryTitle">Titulo de pagina de teoria :</label>
+                <input type="text" class="form-control" id="theoryTitle">
+            </div>
+             <div class="form-group">
+                <label for="url">URL para uso en parametros  :</label>
+                <input type="text" class="form-control" id="url">
             </div>
         </form>
     </div>
 </section>
 
 <g:javascript>
-    CKEDITOR.replace('editor1');
+    CKEDITOR.replace('descript');
+    CKEDITOR.replace('banner');
+    CKEDITOR.replace('welcome');
+    CKEDITOR.replace('theory');
 </g:javascript>
 </body>
 </html>
