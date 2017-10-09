@@ -9,7 +9,7 @@
 - [ ] Logica para mantener track por Estudiante
 - [ ] Logica para archivos externos y assets
 - [ ] Pruebas Unitarias (no me peguen)
-- [ ] CRUD simple para Estudiantes y Cursos
+- [ ] CRUD simple para Estudiantes y Cursos - Arias
 - [ ] Flujo para Olvidé Password
 - [X] Permisos Curso/Estudiante
 - [ ] CRUD de Buckets de GCS
