@@ -18,10 +18,24 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title text-center" >¿Estás seguro de querrer borrar el usuario?</h3>
+                </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary  " data-dismiss="modal">Si, quiero borrar.</button>
+                   <button type="button" class="btn btn-primary " data-dismiss="modal" >No, quiero seguir.</button>
+               </div>
+            </div>
+        </div>
+    </div>
     <section>
         <div class="container">
             <div class="btn-group">
-                <g:link class="btn btn-primary" controller="courseManager" action="crear">Crear Nuevo Curso</g:link>
+                <g:link class="btn btn-primary" controller="courseManager" action="create">Crear Nuevo Curso</g:link>
             </div>
 
             <h2>Todos los cursos</h2>
@@ -41,7 +55,7 @@
                                     <td>
                                         <div class="btn-toolbar">
                                             <button class="btn btn-primary">Ver detalle</button>
-                                            <button class="btn btn-primary" >Borrar</button>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" " >Borrar</button>
                                         </div>
                                     </td>
                                 </tr>
