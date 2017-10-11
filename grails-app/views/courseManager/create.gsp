@@ -60,7 +60,7 @@
                 <label for="url">URL para uso en parametros  :</label>
                 <input type="text" class="form-control" id="url">
             </div>
-        </form>ss
+        </form> 
     </div>
 </section>
 
