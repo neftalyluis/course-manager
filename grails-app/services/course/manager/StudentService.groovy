@@ -51,5 +51,17 @@ class StudentService {
         return [student: newStudent]
 
     }
+
+    def updatePersonAndStudent(UpdateStudentCommand command) {
+
+        def student = Student.findByUsername(command.username)
+        if (student) {
+
+
+        } else {
+            return [message: "No se encontro Estudiante con nombre de usuario: $command.username"]
+        }
+
+    }
 }
 

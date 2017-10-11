@@ -60,5 +60,35 @@ class CourseService {
         return lesson
     }
 
+    def addStudentToCourse(String userId, String courseId) {
+        def course = Course.get(courseId)
+        def student = Student.get(userId)
+        if (course && student) {
+            course.addToStudents(student)
+            course.save()
+            log.info("Se asignó el curso ${course.url} al usuario ${student.username}")
+        } else {
+            log.info("No se encontró estudiante($userId) o curso($courseId)")
+            return [message: "No se encontró estudiante($userId) o curso($courseId)"]
+        }
+    }
+
+    def removeStudentFromCourse(String userId, String courseId) {
+        def course = Course.get(courseId)
+        def student = Student.get(userId)
+        if (course && student) {
+            course.removeFromStudents(student)
+            course.save()
+            log.info("Se removio el curso ${course.url} al usuario ${student.username}")
+        } else {
+            log.info("No se encontró estudiante($userId) o curso($courseId)")
+            return [message: "No se encontró estudiante($userId) o curso($courseId)"]
+        }
+    }
+
+    def findById(Long id) {
+        return Course.get(id)
+    }
+
 
 }
