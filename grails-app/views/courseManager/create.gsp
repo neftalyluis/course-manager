@@ -22,18 +22,7 @@
         <h2>Crear nuevo Curso</h2>
 
         <form>
-            <!--
-    String name
-    String description
-    String banner
-    String welcome
-    String theoryButton
-    String coursePhoto
-    String lessonPhoto
-    String theory
-    String theoryTitle
-    String info-->
-
+ 
             <div class="form-group">
                 <label for="name">Nombre del Curso:</label>
                 <input type="text" class="form-control" id="name">
@@ -71,7 +60,7 @@
                 <label for="url">URL para uso en parametros  :</label>
                 <input type="text" class="form-control" id="url">
             </div>
-        </form>
+        </form>ss
     </div>
 </section>
 
