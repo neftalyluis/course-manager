@@ -33,11 +33,53 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalCrearEstudiante" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+            <div class="modal-header">
+           <h1> Nuevo estudiante </h1>
+            </div>
+            <div class="modal-body">
+                <form>
+                     <div class="form-group">
+                         <label for="name">Nombre :</label>
+                         <input type="text" class="form-control" id="name">
+                     </div>
+                     <div class="form-group">
+                         <label>Nombre de usuario</label>
+                         <input type="text" class="form-control" id="name">
+                     </div>
+                       <div class="form-group">
+                         <label>Contraseña</label>
+                         <input type="text" class="form-control" id="name">
+                     </div>
+                     <div class="form-group">
+                         <label>Confirmar contraseña</label>
+                         <input type="text" class="form-control" id="name">
+                     </div>
+                       <div class="form-group">
+                         <label>URL de avatar </label>
+                         <input type="text" class="form-control" id="name">
+                     </div>
+                      <div class="form-group">
+                         <label >Descripción</label>
+                         <textarea name="theory"style="min-width: 100%" ></textarea>
+                     </div>
+                      
+                     </form>
+                </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Crear estudiante</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConfirmacionCerrar">Cerrar</button>
+            </div>
+            </div>
+        </div>
+</div>
     <section>
         <div class="container">
             <div class="btn-group">
-                <g:link class="btn btn-primary" controller="courseManager" action="crear">Crear Nuevo Estudiante</g:link>
+                 <button " class="btn btn-primary" data-toggle="modal" data-target="#modalCrearEstudiante">Crear nuevo estudiante</button>
             </div>
 
             <h2>Estudiantes</h2>
