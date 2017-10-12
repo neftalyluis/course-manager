@@ -11,6 +11,7 @@ class Lesson {
     String url
     //Orden de la leccion respecto a las otras lecciones
     Lesson afterLesson
+    Long numberLesson
     static constraints = {
         name blank: false
         body blank: false
@@ -24,5 +25,6 @@ class Lesson {
     //Agregamos este mapping para que H2 y chance MySQL no la hagan de a pedo
     static mapping = {
         body sqlType: "text"
+        headerPhoto sqlType: "text"
     }
 }

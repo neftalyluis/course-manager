@@ -33,8 +33,8 @@ class Course {
         banner blank: false
         welcome blank: false
         theoryButton blank: false
-        coursePhoto blank: false
-        lessonPhoto blank: false
+        coursePhoto blank: true
+        lessonPhoto blank: true
         theory blank: false
         theoryTitle blank: false
         info blank: false
@@ -47,5 +47,7 @@ class Course {
         welcome sqlType: "text"
         description sqlType: "text"
         theory sqlType: "text"
+        coursePhoto sqlType: "text"
+        lessonPhoto sqlType: "text"
     }
 }

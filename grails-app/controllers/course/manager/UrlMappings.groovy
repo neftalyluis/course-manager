@@ -19,6 +19,8 @@ class UrlMappings {
         "/cursos/$idCurso/lecciones/teoria/"(controller: "course", action: "theory")
         "/cursos/$idCurso/lecciones/bienvenida/"(controller: "course", action: "welcome")
         "/cursos/$idCurso/lecciones/$idLeccion/"(controller: "course", action: "getLesson")
+        "/cursos/$idCurso/lecciones/$idLeccion/marcar"(controller: "course", action: "markLesson")
+
 
     }
 }

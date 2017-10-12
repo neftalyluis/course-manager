@@ -49,8 +49,10 @@
                             <li style="cursor: pointer;">
                                 <p>${lesson.name}</p>
 
-                                <div ng-show="checked[cursoId][leccion.ruta]" class="pull-left"
-                                     style="display: inline-block;"><i class="fa fa-check-square-o fa-2x"></i></div>
+                                <g:if test="${progress.lessons.contains(lesson)}">
+                                    <div class="pull-left"
+                                         style="display: inline-block;"><i class="fa fa-check-square-o fa-2x"></i></div>
+                                </g:if>
 
                                 <div class="pull-right numero-cal"
                                      style="display: inline-block;">${lesson.numberLesson}</div>

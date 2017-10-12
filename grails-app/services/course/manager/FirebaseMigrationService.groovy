@@ -6,6 +6,8 @@ import groovy.json.JsonSlurper
 @Transactional
 class FirebaseMigrationService {
 
+    def googleCloudStorageService
+
     def process(InputStream jsonFirebase) {
         def json = null
         try {
@@ -26,12 +28,21 @@ class FirebaseMigrationService {
     }
 
     def createCourse(courseNode) {
+        def coursePhoto = googleCloudStorageService.getUrlForObject("cursos/${courseNode.key}/${courseNode.value.fotoCursos}")
+        def lessonPhoto = googleCloudStorageService.getUrlForObject("cursos/${courseNode.key}/${courseNode.value.fotoLecciones}")
         def course = new Course(name: courseNode.value.nombre, description: courseNode.value.descripcion,
                 theory: courseNode.value.teoria, theoryButton: courseNode.value.botonTeoria,
-                theoryTitle: courseNode.value.teoriaTitulo, url: courseNode.key, welcome: courseNode.value.bienvenida, info: "TEST", banner: "TEST", coursePhoto: courseNode.value.fotoCursos, lessonPhoto: courseNode.value.fotoLecciones)
+                theoryTitle: courseNode.value.teoriaTitulo, url: courseNode.key, welcome: courseNode.value.bienvenida, info: "TEST", banner: "TEST", coursePhoto: coursePhoto, lessonPhoto: lessonPhoto)
         def lessons = []
-        courseNode.value.lecciones.each {
-            lessons << createLesson(it, course)
+        courseNode.value.lecciones.sort { it.value.id }.each {
+            if (lessons.empty) {
+                lessons << createLesson(it, course, null)
+            } else {
+                lessons << createLesson(it, course, lessons.last())
+            }
+        }
+        lessons.eachWithIndex { item, index ->
+            item.numberLesson = index + 1
         }
         course.lessons = lessons
         if (!course.save()) {
@@ -43,13 +54,16 @@ class FirebaseMigrationService {
         return course
     }
 
-    def createLesson(lessonNode, courseEntity) {
+    def createLesson(lessonNode, courseEntity, previousLesson) {
         def files = []
         lessonNode.value.archivos.each {
-            files << new LessonFile(name: it, fileURL: it)
+            def bucket = "cursos/${courseEntity.url}/${lessonNode.key}/${it}"
+            def urlFromBlob = googleCloudStorageService.getUrlForObject(bucket)
+            files << new LessonFile(name: it, fileURL: urlFromBlob, bucket: bucket)
         }
-        return new Lesson(name: lessonNode.value.nombre, url: lessonNode.key, headerPhoto: lessonNode.value.header,
-                body: lessonNode.value.cuerpo, numberLesson: lessonNode.value.id, lessonFiles: files, course: courseEntity)
+        def urlHeaderPhoto = googleCloudStorageService.getUrlForObject("cursos/${courseEntity.url}/${lessonNode.key}/${lessonNode.value.header}")
+        return new Lesson(name: lessonNode.value.nombre, url: lessonNode.key, headerPhoto: urlHeaderPhoto,
+                body: lessonNode.value.cuerpo, afterLesson: previousLesson, lessonFiles: files, course: courseEntity)
     }
 
     def recoverUsersFromCLI(String firebaseProjectId, String outputFileRoute, String firebaseBinaryRoute) {

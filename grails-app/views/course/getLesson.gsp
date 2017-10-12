@@ -28,7 +28,7 @@
                 <div class="row" style="padding-left: 15px;">
                     <p>Número de ejercicios por día:</p>
                     <div style="border-radius: 100%; width: 30px; height: 30px ;margin-bottom: 20px; background: #da2d7d; color: #fff; padding: 4px 11px; font-weight: bold;">${lesson.lessonFiles.size()}</div>
-                    <button class="btn btn-primary" style="margin: 20px " href="">Marcar como completado</button>
+                    <a class="btn btn-primary" style="margin: 20px " href="/cursos/${courseUrl}/lecciones/${lesson.url}/marcar">Marcar como completado</a>
                 </div>
 
                 <div>

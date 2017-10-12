@@ -5,13 +5,8 @@ class BootStrap {
     def grailsApplication
     def springSecurityService
     def firebaseMigrationService
-    def googleCloudStorageService
 
     def init = { servletContext ->
-
-        if(googleCloudStorageService.ready) {
-            googleCloudStorageService.listBucketsAndObjects()
-        }
 
         if (!Course.count()) {
             log.info("No Courses Found, making bootstrapping from 18/09/17 backups")
@@ -75,7 +70,7 @@ class BootStrap {
             new Requestmap(url: url, configAttribute: 'ROLE_STUDENT').save(failOnError: true)
         }
 
-        for (String url in ['/courseManager/**', '/firebaseMigration/**', '/student/**']) {
+        for (String url in ['/courseManager/**', '/firebaseMigration/**', '/student/**', '/dbconsole/**']) {
             new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save(failOnError: true)
         }
 

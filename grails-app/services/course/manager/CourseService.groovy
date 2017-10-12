@@ -34,6 +34,32 @@ class CourseService {
         return course
     }
 
+    def getCourseProgress(String username, String courseUrl) {
+        def progress = StudentProgress.withCriteria(uniqueResult: true) {
+            student {
+                eq("username", username)
+            }
+            course {
+                eq("url", courseUrl)
+            }
+        }
+    }
+
+    def createCourseProgress(Person user, Course course) {
+        def student = Student.findByPerson(user)
+        def progress = new StudentProgress(course: course, student: student, lessons: []).save()
+        return progress
+    }
+
+    def markLesson(String username, String courseName, String lessonName) {
+        def lesson = getLessonForCourse(username, courseName, lessonName)
+        if (lesson) {
+            def studentProgress = getCourseProgress(username, courseName)
+            studentProgress.addToLessons(lesson)
+            studentProgress.save()
+        }
+    }
+
     def hasUserCourse(String username, String courseURL) {
         def course = Course.withCriteria(uniqueResult: true) {
             projections {
