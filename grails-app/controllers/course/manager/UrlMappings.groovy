@@ -14,10 +14,10 @@ class UrlMappings {
         "404"(view: '/notFound')
 
         "/cursos/"(controller: "course", action: "courses")
-        "/cursos/$idCurso/lecciones/"(controller: "course", action: "lessons")
         "/cursos/$idCurso/informacion/"(controller: "course", action: "info")
-        "/cursos/$idCurso/lecciones/teoria/"(controller: "course", action: "theory")
-        "/cursos/$idCurso/lecciones/bienvenida/"(controller: "course", action: "welcome")
+        "/cursos/$idCurso/bienvenida/"(controller: "course", action: "welcome")
+        "/cursos/$idCurso/lecciones/"(controller: "course", action: "lessons")
+        "/cursos/$idCurso/teoria/"(controller: "course", action: "theory")
         "/cursos/$idCurso/lecciones/$idLeccion/"(controller: "course", action: "getLesson")
         "/cursos/$idCurso/lecciones/$idLeccion/marcar"(controller: "course", action: "markLesson")
 

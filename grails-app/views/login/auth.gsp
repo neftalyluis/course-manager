@@ -45,6 +45,8 @@
                 </div>
             </form>
 
+            <g:link controller="recoverPassword" action="index" class="text-primary text-center">¿Olvidaste tu contraseña?</g:link>
+
         </div>
     </div>
 </div>

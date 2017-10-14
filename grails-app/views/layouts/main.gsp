@@ -31,7 +31,7 @@
                     data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#!">
+            <a href="/" class="navbar-brand page-scroll">
                 <img src="${assetPath(src: 'logo.jpg')}" class="logo-menu">
             </a>
         </div>

@@ -19,9 +19,10 @@ class RecoverPasswordController {
 
             flash.message = "Si el mail que especificaste existe en nuestro sistema, te enviaremos una liga para cambiar tu contraseña"
             redirect(action: 'index')
+
         } else {
-            response.status = 400
-            render([message: "BadRequest"] as JSON)
+            flash.message = "Por favor ingresa tu email"
+            redirect(action: 'index')
         }
     }
 
@@ -41,16 +42,21 @@ class RecoverPasswordController {
     }
 
     def changePassword() {
-        if (params.token && params.password && params.password.size() > 5 && recoverPasswordService.validToken(params.token)) {
-            if (recoverPasswordService.redeemToken(params.password, params.token)) {
-                flash.message = "Se ha cambiado la contraseña"
-                redirect(controller: 'login', action: 'index')
+        if (params.token && recoverPasswordService.validToken(params.token)) {
+            if (params.password && params.password.size() > 5 && params.passwordConfirmation && params.passwordConfirmation == params.password) {
+                if (recoverPasswordService.redeemToken(params.password, params.token)) {
+                    flash.message = "Se ha cambiado la contraseña"
+                    redirect(controller: 'login', action: 'auth')
+                } else {
+                    flash.error = "Ha ocurrido un error, intenta nuevamente"
+                    redirect(action: 'index')
+                }
             } else {
-                flash.message = "Ha ocurrido un error, intenta nuevamente"
-                redirect(action: 'index')
+                flash.error = "Las contraseñas no coinciden o son de una longitud menor a 5 caracteres"
+                redirect(action: 'redeem', params: [token: params.token])
             }
         } else {
-            flash.message = "El link no existe o ya no es valido, intenta nuevamente"
+            flash.error = "El link no existe o ya no es valido, intenta nuevamente"
             redirect(action: 'index')
         }
     }

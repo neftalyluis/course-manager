@@ -9,11 +9,11 @@
     <div class="container">
 
         <div class="carta">
-            ${welcome.encodeAsHTML()}
+            ${raw(welcome)}
         </div>
 
         <div class="row">
-            <a href="" class="pull-right btn btn-primary">Ir a ejercicios</a>
+            <a href="/cursos/${course}/lecciones" class="pull-right btn btn-primary">Ir a ejercicios</a>
         </div>
     </div>
 </section>
