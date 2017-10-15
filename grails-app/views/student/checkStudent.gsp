@@ -77,6 +77,79 @@
     </div>
 </div>
 
+<div id="actualizarEstudiante" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="modalRemoveTitle" class="modal-title">Actualizar datos de  ${student.name}: </h4>
+            </div>
+            <g:form name="updateStudent" action="updateStudent">
+                <div class="modal-body">
+                    
+                    <input type="hidden" name="studentId" value="${student.id}">
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" name="name" value="${student.name}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email" value="${student.username}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea class="form-control" name="description" value="${student.description}"></textarea>
+                    </div>
+                    
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Actualizar estudiante</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            data-target="#actualizarEstudiante">Cerrar</button>
+                </div>
+            </g:form>
+        </div>
+    </div>
+</div>
+
+<div id="cambiarPassword" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="modalRemoveTitle" class="modal-title">Actualizar Contraseña para ${student.name}:</h4>
+            </div>
+            <g:form name="updatePassword" action="updatePasswordForStudent">
+                <div class="modal-body">
+
+                    <input type="hidden" name="id" value="${student.id}">
+                    
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input id="password" type="password" class="form-control" name="password">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Escribe de nuevo tu contraseña</label>
+                        <input type="password" class="form-control" name="passwordConfirmation">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                    <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </g:form>
+        </div>
+    </div>
+</div>
+
 <div class="header" style="min-height: 400px; height: 400px;" ng-style="{'background-image':headerImage}">
     <div class="header-op">
         <div class="header-content">
@@ -103,6 +176,7 @@
 
                     <h2 class="text-left">${student.description}<small>Descripción</small></h2>
                 </div>
+                
             </div><!--Div row-->
         </div><!--Container-fluid-->
     <!--Este div lo hice solo para que hubiera un espacio a la hora de hacerlo responsivo, si no te convence lo quito-->
@@ -112,6 +186,10 @@
             <div class="row">
                 <button class="btn btn-primary" data-toggle="modal"
                         data-target="#agregarCurso">Asignar Nuevo Curso</button>
+                <button id="actualizarEstudianteBtn" class="btn btn-primary" data-toggle="modal"
+                        data-target="#actualizarEstudiante">Actualizar Estudiante</button>
+                <button id="actualizarPasswordBtn" class="btn btn-primary" data-toggle="modal"
+                        data-target="#cambiarPassword">Actualizar Password de Estudiante</button>
                 <table class="table ">
                     <thead>
                     <tr>
@@ -157,6 +235,55 @@
         $('#idRemoveCourse').val(courseId)
         $('#modalRemoveTitle').append(courseName)
         $('#modalRemoveLabel').append(courseName)
+    })
+    
+    $('#actualizarEstudianteBtn').click(function () {
+    
+        $("#updateStudent").validate({
+            rules: {
+                name: "required",
+                description: "required",
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                name: "Por favor ingresa un Nombre",
+                description: "Por favor ingresa una Descripcion",
+                email: "Por favor ingresa un email valido"
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });    
+    })
+    
+    $('#actualizarPasswordBtn').click(function () {
+    
+        $("#updatePassword").validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                passwordConfirmation: {
+                    equalTo: "#password"
+                }
+            },
+            messages: {
+                password: {
+                    required: "Por favor ingresa una contraseña",
+                    minlength: "La contraseña debe tener una longitud mayor a 5 caracteres"
+                },
+                passwordConfirmation: {
+                    equalTo: "Las contraseñas no son iguales"
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });    
     })
 </g:javascript>
 </body>

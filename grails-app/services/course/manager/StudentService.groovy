@@ -51,10 +51,29 @@ class StudentService {
 
     def updatePersonAndStudent(UpdateStudentCommand command) {
 
-        def student = Student.findByUsername(command.username)
+        def student = Student.get(command.studentId)
+        def person = student.person
         if (student) {
+            student.name = command.name
+            student.username = command.email
+            person.username = command.email
+            student.description = command.description
+            student.save()
+            person.save()
+        } else {
+            return [message: "No se encontro Estudiante con nombre de usuario: $command.username"]
+        }
 
+    }
+    
+    def updatePassword(PasswordCommand command) {
 
+        def student = Student.get(command.id)
+        def person = student.person
+        if (student) {
+            person.password = command.password
+            person.save()
+            log.info "Se actualiza password de estudiante ${student.username}"
         } else {
             return [message: "No se encontro Estudiante con nombre de usuario: $command.username"]
         }

@@ -20,10 +20,16 @@ class StudentController {
     }
 
     def checkStudent() {
-        def student = studentService.findById(params.long('id'))
-        def courses = courseService.getCoursesForUserId(params.long('id'))
-        def notAddedCourses = Course.list() - courses
-        [courses: courses, student: student, notAddedCourses: notAddedCourses]
+        def id = params.long('id')
+        if (id) {
+            def student = studentService.findById(params.long('id'))
+            def courses = courseService.getCoursesForUserId(params.long('id'))
+            def notAddedCourses = Course.list() - courses
+            [courses: courses, student: student, notAddedCourses: notAddedCourses]
+        } else {
+            log.info "No esta parametro Id cuando se ejecuta checkStudent"
+            redirect(action: "index")
+        }
     }
 
     def create(StudentAndPersonCommand command) {
@@ -56,7 +62,7 @@ class StudentController {
         flash.message = "Se elimino el estudiante $params.id"
         redirect action: 'index'
     }
-    //TODO
+
     def updateStudent(UpdateStudentCommand command) {
 
         if (command == null) {
@@ -66,19 +72,42 @@ class StudentController {
 
         if (command.hasErrors()) {
             flash.error = command.errors
-            render view: 'index'
+            redirect(action: 'checkStudent', params: [id: command.studentId])
             return
         }
 
+        log.info "Se actualiza estudiante con datos ${command.dump()}"
         def result = studentService.updatePersonAndStudent(command)
-
-        if (!result.message) {
+        
+        if (!result.hasProperty('message')) {
             flash.message = "Usuario Actualizado"
-            redirect(action: 'checkStudent', params: [id: newStudent.id])
+            redirect(action: 'checkStudent', params: [id: command.studentId])
         } else {
             flash.error = "Ocurrio un error, intente nuevamente"
         }
 
+    }
+    
+    def updatePasswordForStudent(PasswordCommand command) {
+        if (command == null) {
+            render status: HttpStatus.NOT_FOUND
+            return
+        }
+
+        if (command.hasErrors()) {
+            flash.error = command.errors
+            redirect(action: 'checkStudent', params: [id: command.id])
+            return
+        }
+
+        def result = studentService.updatePassword(command)
+        
+        if (!result.hasProperty('message')) {
+            flash.message = "Contraseña de Usuario Actualizada"
+            redirect(action: 'checkStudent', params: [id: command.id])
+        } else {
+            flash.error = "Ocurrio un error, intente nuevamente"
+        }
     }
 
     def addStudentToCourse() {
