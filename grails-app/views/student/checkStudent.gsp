@@ -166,7 +166,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class=" col-12 col-md-4 col-sm-6 " style="max-width: 60%" ;>
-                    <img src="/assets/kobayashi.jpg" class="img-responsive " style="max-width: 100%;">
+                    <img src="${student.urlAvatar?:"/assets/avatar.png"}" class="img-responsive " style="max-width: 100%;">
                 </div>
 
                 <div class="col-12 col-md-8 col-sm-6 ">
