@@ -29,26 +29,19 @@ class StudentService {
 
     def createPersonAndStudent(StudentAndPersonCommand command) {
 
-        def newStudent = Student(name: command.name,
-                username: command.username,
-                urlAvatar: command.urlAvatar,
+        def person = new Person(
+                password: command.password,
+                username: command.email).save()
+
+        def newStudent = new Student(name: command.name,
+                username: command.email,
+                urlAvatar: "test",
+                bucket: 'test',
                 description: command.description,
-                person: new Person(
-                        password: command.password,
-                        username: command.username).save()
-        ).save()
+                person: person
+        )
 
-        if (command.courseList) {
-            for (courseId in command.courseList) {
-                def course = Course.get(courseId)
-                if (course) {
-                    course.students << newStudent
-                    course.save()
-                }
-            }
-        }
-
-        return [student: newStudent]
+        return [student: newStudent.save(flush: true)]
 
     }
 

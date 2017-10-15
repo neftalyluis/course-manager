@@ -34,7 +34,7 @@ class BootStrap {
         def adminRole = new Authority(authority: "ROLE_ADMIN").save()
         def admin = new Person(username: "admin", password: "test", accountCreated: new Date()).save(flush: true, failOnError: true)
         def adminWithRole = PersonAuthority.create(admin, adminRole, true)
-        def adminStudentMock = new Student(username: admin.username, name: "admin", person: admin, urlAvatar: "urlavatar", description: "description")
+        def adminStudentMock = new Student(username: admin.username, name: "admin", person: admin, urlAvatar: "urlavatar", bucket: "bucket", description: "description")
         if (!adminStudentMock.save()) {
             adminStudentMock.errors.allErrors.each {
                 log.error("error = ${it.getField()},  ${it.getDefaultMessage()}")
@@ -44,7 +44,7 @@ class BootStrap {
         def userRole = new Authority(authority: "ROLE_STUDENT").save()
         def user = new Person(username: "student", password: "test", accountCreated: new Date()).save(flush: true, failOnError: true)
         def userWithRole = PersonAuthority.create(user, userRole, true)
-        def userStudentMock = new Student(username: user.username, name: "user", person: user, urlAvatar: "urlavatar", description: "description")
+        def userStudentMock = new Student(username: user.username, name: "user", person: user, urlAvatar: "urlavatar", bucket: "bucket", description: "description")
         if (!userStudentMock.save()) {
             userStudentMock.errors.allErrors.each {
                 log.error("error = ${it.getField()},  ${it.getDefaultMessage()}")
@@ -66,7 +66,7 @@ class BootStrap {
             new Requestmap(url: url, configAttribute: 'permitAll').save(failOnError: true)
         }
 
-        for (String url in ['/course/**', '/cursos/**']) {
+        for (String url in ['/course/**', '/cursos/**', '/perfil/**', '/profile/**']) {
             new Requestmap(url: url, configAttribute: 'ROLE_STUDENT').save(failOnError: true)
         }
 

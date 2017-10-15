@@ -5,17 +5,20 @@ import grails.validation.Validateable
 class StudentAndPersonCommand implements Validateable {
 
     String name
-    String username
     String password
-    String urlAvatar
+    String passwordConfirmation
+    String email
     String description
-    def courseList = []
 
 
     static constraints = {
         name blank: false
-        username blank: false
+        email blank: false
+        description blank: false
         password blank: false, minSize: 5
+        passwordConfirmation validator: {
+            val, obj -> obj.password == val
+        }
     }
 
 

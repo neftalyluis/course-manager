@@ -21,7 +21,9 @@ class StudentController {
 
     def checkStudent() {
         def student = studentService.findById(params.long('id'))
-        [courses: courseService.getAllProjectedCourses(), student: student]
+        def courses = courseService.getCoursesForUserId(params.long('id'))
+        def notAddedCourses = Course.list() - courses
+        [courses: courses, student: student, notAddedCourses: notAddedCourses]
     }
 
     def create(StudentAndPersonCommand command) {
@@ -30,20 +32,22 @@ class StudentController {
             return
         }
 
-        if (command.hasErrors()) {
-            flash.error = command.errors
-            render view: 'create'
+        if (command.hasErrors() || studentService.findByUsername(command.email)) {
+            flash.error = command.errors ?: "Ya existe un Estudiante con el mismo email"
+            log.info(command.errors ? "El command tuvo errores" : "Ya existe un Estudiante con el mismo email")
+            redirect(action: 'index')
             return
         }
 
-        def newStudent = studentService.createPersonAndStudent(command)
+        def newStudent = studentService.createPersonAndStudent(command).student
 
         if (newStudent.id) {
             flash.message = "Usuario Creado"
             redirect(action: 'checkStudent', params: [id: newStudent.id])
         } else {
-            flash.error = "Ocurrio un error, intente nuevamente"
-            return
+            log.error("Error when creating Student ${newStudent.errors}")
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
         }
     }
 
@@ -51,7 +55,7 @@ class StudentController {
         def student = studentService.findById(params.id)
         student.delete()
         flash.message = "Se elimino el estudiante $params.id"
-        forward action: 'index'
+        redirect action: 'index'
     }
     //TODO
     def updateStudent(UpdateStudentCommand command) {
@@ -63,7 +67,7 @@ class StudentController {
 
         if (command.hasErrors()) {
             flash.error = command.errors
-            render view: 'create'
+            render view: 'index'
             return
         }
 
@@ -74,7 +78,6 @@ class StudentController {
             redirect(action: 'checkStudent', params: [id: newStudent.id])
         } else {
             flash.error = "Ocurrio un error, intente nuevamente"
-            return
         }
 
     }
@@ -84,16 +87,16 @@ class StudentController {
         def courseUrl = params.long('course')
         if (student && courseUrl) {
             def result = courseService.addStudentToCourse(student, courseUrl)
-            if (result.message) {
+            if (result.hasProperty('message')) {
                 flash.error = result.message
-                forward action: 'index'
+                redirect action: 'checkStudent', params: [id: student]
             } else {
                 flash.message = "Se añadio el usuario al curso"
-                forward action: 'index'
+                redirect action: 'checkStudent', params: [id: student]
             }
         } else {
             flash.error = "Error al asignar curso: no se encontraron parametros {$student} -  {$courseUrl}"
-            forward action: 'index'
+            redirect action: 'checkStudent', params: [id: student]
         }
     }
 
@@ -102,16 +105,16 @@ class StudentController {
         def courseUrl = params.long('course')
         if (student && courseUrl) {
             def result = courseService.removeStudentFromCourse(student, courseUrl)
-            if (result.message) {
+            if (result.hasProperty('message')) {
                 flash.error = result.message
-                forward action: 'index'
+                redirect action: 'checkStudent', params: [id: student]
             } else {
                 flash.message = "Se removio el usuario del curso"
-                forward action: 'index'
+                redirect action: 'checkStudent', params: [id: student]
             }
         } else {
             flash.error = "Error al remover curso: no se encontraron parametros {$student} -  {$courseUrl}"
-            forward action: 'index'
+            redirect action: 'checkStudent', params: [id: student]
         }
     }
 }

@@ -42,10 +42,10 @@
                 <sec:ifLoggedIn>
                     <li>
                         <div style="margin: 15px; width: 35px; height: 35px;">
-                            <img style="width: 35px; height: 35px;"/>
+                            <profile:avatar/>
                         </div>
                     </li>
-                    <li style="margin-top: 10px;"><a href="#">Perfil</a></li>
+                    <li style="margin-top: 10px;"><g:link controller="profile">Perfil</g:link></li>
                     <li style="margin-top: 10px;"><a href="/cursos">Mis Programas</a></li>
                 </sec:ifLoggedIn>
                 <sec:ifAllGranted roles='ROLE_ADMIN'>

@@ -49,8 +49,8 @@ class GoogleCloudStorageService implements InitializingBean {
     }
 
     def getUrlForObject(String blobName, Long daysDuration = 3650) {
-        BlobId blobId = BlobId.of(bucket, blobName);
-        Blob blob = storage.get(blobId);
+        BlobId blobId = BlobId.of(bucket, blobName)
+        Blob blob = storage.get(blobId)
         if (blob) {
             return blob.signUrl(daysDuration, TimeUnit.DAYS).toString()
         } else {
@@ -59,17 +59,27 @@ class GoogleCloudStorageService implements InitializingBean {
         }
     }
 
-    def putObject(String object) {
-        BlobId blobId = BlobId.of(bucket, object)
+    def putObject(String objectUrl, byte[] obj, String contentType) {
+        log.info("Creating new Blob on $objectUrl")
+        BlobId blobId = BlobId.of(bucket, objectUrl)
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(contentType).build()
-        Blob blob = storage.create(blobInfo, obj)
+        return storage.create(blobInfo, obj)
     }
 
-    def removeObject(String object) {
-
+    def removeObject(String objectUrl) {
+        BlobId blobId = BlobId.of(bucket, objectUrl)
+        boolean deleted = storage.delete(blobId)
+        return deleted
     }
 
-    def replaceObject(String object, byte[] obj, String contentType) {
+    def replaceObject(String objectUrl, byte[] obj, String contentType) {
+        def deleteResult = removeObject(objectUrl)
+        log.info("Deleted $objectUrl? $deleteResult")
+
+        return putObject(objectUrl, obj, contentType)
+    }
+
+    def existsObject() {
 
     }
 

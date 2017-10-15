@@ -7,73 +7,77 @@
 </head>
 
 <body>
-    <div class="header" style="min-height: 400px; height: 400px;">
-        <div class="header-op">
-            <div class="header-content">
-                <div class="header-content-inner">
-                    <h1 id="homeHeading"
+<div class="header" style="min-height: 400px; height: 400px;">
+    <div class="header-op">
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading"
                     style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">CURSOS</h1>
-                    <hr>
-                </div>
+                <hr>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title text-center" >¿Estás seguro de querrer borrar el usuario?</h3>
-                </div>
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-primary  " data-dismiss="modal">Si, quiero borrar.</button>
-                   <button type="button" class="btn btn-primary " data-dismiss="modal" >No, quiero seguir.</button>
-               </div>
-            </div>
-        </div>
-    </div>
-    <section>
-        <div class="container">
-            <div class="btn-group">
-                <g:link class="btn btn-primary" controller="courseManager" action="create">Crear Nuevo Curso</g:link>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <h3 class="modal-title text-center">¿Estás seguro de querrer borrar el usuario?</h3>
             </div>
 
-            <h2>Todos los cursos</h2>
-            <table class="table table-striped" id="cursos">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <g:if test="${courses}">
-                            <g:each in="${courses}" var="course">
-                                <tr>
-                                    <td>${course.name}</td> 
-                                    <td>Doe</td>
-                                    <td>
-                                        <div class="btn-toolbar">
-                                            <button class="btn btn-primary">Ver detalle</button>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" " >Borrar</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </g:each>
-                        </g:if>
-                        <g:else>
-                            <tr>
-                                <td colspan="2">No hay cursos</td>
-                            </tr>
-                        </g:else>
-                </tbody>
-            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Si, quiero borrar.</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
+            </div>
         </div>
-    </section>
+    </div>
+</div>
+<section>
+    <div class="container">
+        <div class="btn-group">
+            <g:link class="btn btn-primary" controller="courseManager" action="create">Crear Nuevo Curso</g:link>
+        </div>
+
+        <h2>Todos los cursos</h2>
+        <table class="table table-striped" id="cursos">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <g:if test="${courses}">
+                <g:each in="${courses}" var="course">
+                    <tr>
+                        <td>${course.name}</td>
+                        <td>
+                            <div class="btn-toolbar">
+                                <g:link action="checkCourse" params="[id: course.id]"
+                                        class="btn btn-primary">Ver detalle</g:link>
+                                <button class="btn btn-primary" data-toggle="modal"
+                                        data-target="#myModal">Borrar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </g:each>
+            </g:if>
+            <g:else>
+                <tr>
+                    <td colspan="2">No hay cursos</td>
+                </tr>
+            </g:else>
+            </tbody>
+        </table>
+    </div>
+</section>
 <g:javascript>
-$(document).ready(function () {
-$('#cursos').DataTable();
-});
+    $(document).ready(function () {
+        $('#cursos').DataTable();
+    });
 </g:javascript>
 </body>
 </html>

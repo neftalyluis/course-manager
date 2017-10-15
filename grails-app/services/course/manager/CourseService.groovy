@@ -24,6 +24,15 @@ class CourseService {
         return courses
     }
 
+    def getCoursesForUserId(Long id) {
+        def courses = Course.withCriteria {
+            students {
+                eq("id", id)
+            }
+        }
+        return courses
+    }
+
     def getCourse(String username, String courseURL) {
         def course = Course.withCriteria(uniqueResult: true) {
             students {
@@ -86,7 +95,7 @@ class CourseService {
         return lesson
     }
 
-    def addStudentToCourse(String userId, String courseId) {
+    def addStudentToCourse(Long userId, Long courseId) {
         def course = Course.get(courseId)
         def student = Student.get(userId)
         if (course && student) {
@@ -99,7 +108,7 @@ class CourseService {
         }
     }
 
-    def removeStudentFromCourse(String userId, String courseId) {
+    def removeStudentFromCourse(Long userId, Long courseId) {
         def course = Course.get(courseId)
         def student = Student.get(userId)
         if (course && student) {
