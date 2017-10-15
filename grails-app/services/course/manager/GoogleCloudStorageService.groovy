@@ -23,14 +23,15 @@ class GoogleCloudStorageService implements InitializingBean {
     void afterPropertiesSet() throws Exception {
         try {
             storage = StorageOptions.newBuilder()
-                    .setProjectId(grailsApplication.config.getRequiredProperty('google.cloud.storage.projectId'))
-                    .setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(grailsApplication.config.getRequiredProperty('google.cloud.storage.credentialsFile'))))
-                    .build()
-                    .getService()
+            .setProjectId(grailsApplication.config.getRequiredProperty('google.cloud.storage.projectId'))
+            .setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(grailsApplication.config.getRequiredProperty('google.cloud.storage.credentialsFile'))))
+            .build()
+            .getService()
             bucket = grailsApplication.config.getRequiredProperty('google.cloud.storage.bucket')
             ready = true
         } catch (all) {
             log.warn("Error when making GCS Setup: $all")
+            ready = false
         }
     }
 
@@ -49,13 +50,18 @@ class GoogleCloudStorageService implements InitializingBean {
     }
 
     def getUrlForObject(String blobName, Long daysDuration = 3650) {
-        BlobId blobId = BlobId.of(bucket, blobName)
-        Blob blob = storage.get(blobId)
-        if (blob) {
-            return blob.signUrl(daysDuration, TimeUnit.DAYS).toString()
+
+        if(!ready) {
+            return ""   
         } else {
-            log.warn("Can't get URL for Blob: $blobName")
-            return blobName
+            BlobId blobId = BlobId.of(bucket, blobName);
+            Blob blob = storage.get(blobId);
+            if (blob) {
+                return blob.signUrl(daysDuration, TimeUnit.DAYS).toString()
+            } else {
+                log.warn("Can't get URL for Blob: $blobName")
+                return blobName
+            }   
         }
     }
 
