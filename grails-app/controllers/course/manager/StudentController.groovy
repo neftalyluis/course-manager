@@ -52,8 +52,7 @@ class StudentController {
     }
 
     def remove() {
-        def student = studentService.findById(params.id)
-        student.delete()
+        studentService.removePersonandStudent(params.long('id'))
         flash.message = "Se elimino el estudiante $params.id"
         redirect action: 'index'
     }

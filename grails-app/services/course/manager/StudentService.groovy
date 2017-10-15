@@ -30,15 +30,19 @@ class StudentService {
     def createPersonAndStudent(StudentAndPersonCommand command) {
 
         def person = new Person(
-                password: command.password,
-                username: command.email).save()
+            password: command.password,
+            username: command.email).save()
+        
+        def authority = Authority.findByAuthority("ROLE_STUDENT")
+        def personAuth = PersonAuthority.create(person, authority)
+        
 
         def newStudent = new Student(name: command.name,
-                username: command.email,
-                urlAvatar: "test",
-                bucket: 'test',
-                description: command.description,
-                person: person
+            username: command.email,
+            urlAvatar: "test",
+            bucket: 'test',
+            description: command.description,
+            person: person
         )
 
         return [student: newStudent.save(flush: true)]
@@ -55,6 +59,15 @@ class StudentService {
             return [message: "No se encontro Estudiante con nombre de usuario: $command.username"]
         }
 
+    }
+    
+    def removePersonandStudent(Long id) {
+        def student = Student.get(id)
+        def person = Person.findByUsername(student.username)
+        log.info("Se remueve Estudiante con ID: $id y usuario $student.username")
+        PersonAuthority.removeAll(person)
+        student.delete()
+        person.delete()
     }
 }
 
