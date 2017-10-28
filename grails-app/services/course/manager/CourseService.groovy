@@ -126,4 +126,33 @@ class CourseService {
     }
 
 
+    def createCourse(CreateCourseCommand command) {
+        def courseWithSameUrl = Course.findByUrl(command.url)
+        if (courseWithSameUrl) {
+            log.error("There is another course with the same URL")
+            return [error: "There is another course with the same URL"]
+        } else {
+            def newCourse = new Course(
+                    name: command.name,
+                    url: command.url,
+                    description: command.descript,
+                    banner: command.banner,
+                    welcome: command.welcome,
+                    theoryButton: command.theoryButton,
+                    theoryTitle: command.theoryTitle,
+                    theory: command.theory
+            ).save(flush: true, failOnError: true)
+
+            if (newCourse.hasProperty('id')) {
+                log.info("Course created: ${newCourse}")
+                return [course: newCourse]
+            } else {
+                log.error("Can't save new course: ${command.errors}")
+                return [error: "Can't save new course: ${command.errors}"]
+            }
+
+        }
+    }
+
+
 }

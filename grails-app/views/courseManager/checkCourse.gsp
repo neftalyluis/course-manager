@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="deleteLessonModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -103,21 +103,6 @@
 
 </div>
 
-<div class="modal fade" id="modalConfirmacionCerrar" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                ¿Estás seguro que quieres salir?
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary  " data-dismiss="modal">Si, quiero salir.</button>
-                <button type="button" class="btn btn-primary " data-dismiss="modal">No, quiero seguir.</button>
-            </div>
-        </div>
-    </div>
-</div>
 <section>
     <div class="container">
         <div class="container-fluid">

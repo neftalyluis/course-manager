@@ -15,6 +15,8 @@ import grails.transaction.Transactional
 @Transactional
 class StudentService {
 
+    def courseService
+
     def getAll() {
         return Student.list()
     }
@@ -30,19 +32,19 @@ class StudentService {
     def createPersonAndStudent(StudentAndPersonCommand command) {
 
         def person = new Person(
-            password: command.password,
-            username: command.email).save()
-        
+                password: command.password,
+                username: command.email).save()
+
         def authority = Authority.findByAuthority("ROLE_STUDENT")
         def personAuth = PersonAuthority.create(person, authority)
-        
+
 
         def newStudent = new Student(name: command.name,
-            username: command.email,
-            urlAvatar: "test",
-            bucket: 'test',
-            description: command.description,
-            person: person
+                username: command.email,
+                urlAvatar: "test",
+                bucket: 'test',
+                description: command.description,
+                person: person
         )
 
         return [student: newStudent.save(flush: true)]
@@ -65,7 +67,7 @@ class StudentService {
         }
 
     }
-    
+
     def updatePassword(PasswordCommand command) {
 
         def student = Student.get(command.id)
@@ -79,14 +81,25 @@ class StudentService {
         }
 
     }
-    
-    def removePersonandStudent(Long id) {
+
+    def removePersonAndStudent(Long id) {
         def student = Student.get(id)
-        def person = Person.findByUsername(student.username)
-        log.info("Se remueve Estudiante con ID: $id y usuario $student.username")
-        PersonAuthority.removeAll(person)
-        student.delete()
-        person.delete()
+        if (student) {
+            def courses = courseService.getCoursesForUserId(student.id)
+            courses.each {
+                it.removeFromStudents(student)
+                it.save()
+            }
+            def person = Person.findByUsername(student.username)
+            log.info("Se remueve Estudiante con ID: $id y usuario $student.username")
+            PersonAuthority.removeAll(person)
+            student.delete()
+            person.delete()
+            return [error: false]
+        } else {
+            log.error("No se puede remover estudiante: $id")
+            return [error: true]
+        }
     }
 }
 

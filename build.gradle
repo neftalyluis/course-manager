@@ -48,6 +48,7 @@ dependencies {
     compile 'org.webjars:bootstrap:3.3.7'
     compile 'org.webjars:jquery:3.2.1'
     compile 'org.webjars:jquery-validation:1.17.0'
+    compile 'org.webjars.bower:bootstrap-fileinput:4.4.5'
     compile 'com.google.cloud:google-cloud-storage:1.6.0'
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"

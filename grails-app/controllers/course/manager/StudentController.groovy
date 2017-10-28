@@ -58,9 +58,20 @@ class StudentController {
     }
 
     def remove() {
-        studentService.removePersonandStudent(params.long('id'))
-        flash.message = "Se elimino el estudiante $params.id"
-        redirect action: 'index'
+        def studentId = params.long('id')
+        if (studentId) {
+            def result = studentService.removePersonAndStudent(studentId)
+            if (!result.error) {
+                flash.message = "Se elimino el estudiante $studentId"
+                redirect action: 'index'
+            } else {
+                flash.error = "Ocurrio un error"
+                redirect action: 'index'
+            }
+        } else {
+            flash.error = "No Id en la Request"
+            redirect action: 'index'
+        }
     }
 
     def updateStudent(UpdateStudentCommand command) {
@@ -78,7 +89,7 @@ class StudentController {
 
         log.info "Se actualiza estudiante con datos ${command.dump()}"
         def result = studentService.updatePersonAndStudent(command)
-        
+
         if (!result.hasProperty('message')) {
             flash.message = "Usuario Actualizado"
             redirect(action: 'checkStudent', params: [id: command.studentId])
@@ -87,7 +98,7 @@ class StudentController {
         }
 
     }
-    
+
     def updatePasswordForStudent(PasswordCommand command) {
         if (command == null) {
             render status: HttpStatus.NOT_FOUND
@@ -101,7 +112,7 @@ class StudentController {
         }
 
         def result = studentService.updatePassword(command)
-        
+
         if (!result.hasProperty('message')) {
             flash.message = "Contraseña de Usuario Actualizada"
             redirect(action: 'checkStudent', params: [id: command.id])

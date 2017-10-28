@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <script src="https://cdn.ckeditor.com/4.7.2/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.7.2/full-all/ckeditor.js"></script>
 </head>
 
 <body>
@@ -21,46 +21,50 @@
     <div class="container">
         <h2>Crear nuevo Curso</h2>
 
-        <form>
- 
+        <g:form action="createCourse" name="createCourse">
+
             <div class="form-group">
-                <label for="name">Nombre del Curso:</label>
-                <input type="text" class="form-control" id="name">
+                <label>Nombre del Curso:</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+
+            <div class="form-group">
+                <label>URL para uso en parametros:</label>
+                <input type="text" class="form-control" name="url">
             </div>
 
             <div class="form-group">
                 <label>Texto de descripcion del curso</label>
                 <textarea name="descript"></textarea>
             </div>
-              <div class="form-group">
+
+            <div class="form-group">
                 <label>Texto de Curso Finalizado</label>
                 <textarea name="banner"></textarea>
             </div>
+
             <div class="form-group">
                 <label>Texto de bienvenida</label>
                 <textarea name="welcome"></textarea>
             </div>
-              <div class="form-group">
-                <label>Texto de pagina de teoria </label>
+
+            <div class="form-group">
+                <label>Texto del boton de teoria:</label>
+                <input type="text" class="form-control" name="theoryButton">
+            </div>
+
+            <div class="form-group">
+                <label>Titulo de pagina de teoria:</label>
+                <input type="text" class="form-control" name="theoryTitle">
+            </div>
+
+            <div class="form-group">
+                <label>Texto de pagina de teoria</label>
                 <textarea name="theory"></textarea>
             </div>
-             <div class="form-group">
-                <label for="theoryButton">Texto del boton de teoria :</label>
-                <input type="text" class="form-control" id="theoryButton">
-            </div>
-             <div class="form-group">
-                <label for="coursePhoto">URL de la foto de pagina de curso :</label>
-                <input type="text" class="form-control" id="coursePhoto">
-            </div>
-             <div class="form-group">
-                <label for="theoryTitle">Titulo de pagina de teoria :</label>
-                <input type="text" class="form-control" id="theoryTitle">
-            </div>
-             <div class="form-group">
-                <label for="url">URL para uso en parametros  :</label>
-                <input type="text" class="form-control" id="url">
-            </div>
-        </form> 
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </g:form>
     </div>
 </section>
 
@@ -69,6 +73,32 @@
     CKEDITOR.replace('banner');
     CKEDITOR.replace('welcome');
     CKEDITOR.replace('theory');
+
+    $("#createCourse").validate({
+        rules: {
+            name: "required",
+            url: "required",
+            descript: "required",
+            banner: "required",
+            welcome: "required",
+            theoryButton: "required",
+            theoryTitle: "required",
+            theory: "required"
+        },
+        messages: {
+            name: "Por favor ingresa un Nombre",
+            url: "Por favor ingresa una url",
+            descript: "Por favor ingresa una Descripcion",
+            banner: "Por favor ingresa una Descripcion",
+            welcome: "Por favor ingresa una Descripcion",
+            theoryButton: "Por favor ingresa una Descripcion",
+            theoryTitle: "Por favor ingresa una Descripcion",
+            theory: "Por favor ingresa una Descripcion"
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
 </g:javascript>
 </body>
 </html>

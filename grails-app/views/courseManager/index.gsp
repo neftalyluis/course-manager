@@ -2,8 +2,6 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
@@ -19,19 +17,22 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="deleteCourse" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <g:form action="remove">
+                <input type="hidden" name="id" id="inputRemoveCourse" value="#">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                <h3 class="modal-title text-center">¿Estás seguro de querrer borrar el usuario?</h3>
-            </div>
+                    <h3 class="modal-title text-center" id="titleRemoveCourse"></h3>
+                </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Si, quiero borrar.</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Si, quiero borrar.</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
+                </div>
+            </g:form>
         </div>
     </div>
 </div>
@@ -53,13 +54,14 @@
             <g:if test="${courses}">
                 <g:each in="${courses}" var="course">
                     <tr>
+                        <td class="hidden">${course.id}</td>
                         <td>${course.name}</td>
                         <td>
                             <div class="btn-toolbar">
                                 <g:link action="checkCourse" params="[id: course.id]"
                                         class="btn btn-primary">Ver detalle</g:link>
-                                <button class="btn btn-primary" data-toggle="modal"
-                                        data-target="#myModal">Borrar</button>
+                                <button class="btn btn-primary modalQuitarCurso" data-toggle="modal"
+                                        data-target="#deleteCourse">Borrar</button>
                             </div>
                         </td>
                     </tr>
@@ -76,7 +78,13 @@
 </section>
 <g:javascript>
     $(document).ready(function () {
-        $('#cursos').DataTable();
+
+        $('.modalQuitarCurso').click(function () {
+            var courseId = $(this).parent().parent().prev().prev().text()
+            var courseName = $(this).parent().parent().prev().text()
+            $('#inputRemoveCourse').val(courseId)
+            $('#titleRemoveCourse').text("¿Estás seguro de querer borrar el curso: " + courseName + "?")
+        })
     });
 </g:javascript>
 </body>

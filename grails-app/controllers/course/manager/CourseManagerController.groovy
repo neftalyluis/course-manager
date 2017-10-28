@@ -10,21 +10,49 @@ class CourseManagerController {
 
     def checkCourse() {
         def course = courseService.findById(params.long('id'))
-        [course: course]
+        if (course) {
+            [course: course]
+        } else {
+            redirect uri: "/notFound"
+        }
     }
 
     def create() {
 
     }
 
+    def createCourse(CreateCourseCommand command) {
+        def result = courseService.createCourse(command)
+        if (!result.error) {
+            flash.message = "Curso Creado"
+            redirect(action: 'checkCourse', params: [id: result.course.id])
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
+
+    }
+
     def remove() {
-        def course = courseService.findById(params.long('id'))
-        course.delete()
-        flash.message = "Se elimino el estudiante $params.id"
-        forward action: 'index'
+        def courseId = params.long('id')
+        if (courseId) {
+            def course = courseService.findById(courseId)
+            course.delete()
+            flash.message = "Se elimino el curso $params.id"
+            redirect action: 'index'
+        } else {
+            log.error("No Id when calling action remove")
+            flash.error = "Ocurrio un error, intenta de nuevo"
+            redirect action: 'index'
+        }
     }
 
     def updateCourse() {
+
+    }
+
+
+    def checkLesson() {
 
     }
 
@@ -34,6 +62,10 @@ class CourseManagerController {
     }
     //fffuck TODO
     def removeLessonFromCourse() {
+
+    }
+
+    def updateLesson() {
 
     }
 

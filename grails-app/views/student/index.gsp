@@ -138,7 +138,7 @@
         var studentId = $(this).parent().parent().prev().prev().prev().text()
         var studentName = $(this).parent().parent().prev().prev().text()
         $('#inputRemoveStudent').val(studentId)
-        $('#titleRemoveStudent').append(studentName)
+        $('#titleRemoveStudent').text("¿Estás seguro de querer eliminar el estudiante " + studentName + "?")
     })
 
     $('#openModalCreate').click(function () {

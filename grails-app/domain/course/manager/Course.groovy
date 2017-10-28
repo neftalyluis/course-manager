@@ -28,17 +28,17 @@ class Course {
 
     static constraints = {
 
-        name blank: false
+        name blank: false, unique: true
         description blank: false
-        banner blank: false
+        banner blank: false, nullable: true
         welcome blank: false
         theoryButton blank: false
-        coursePhoto blank: true
-        lessonPhoto blank: true
+        coursePhoto blank: true, nullable: true
+        lessonPhoto blank: true, nullable: true
         theory blank: false
         theoryTitle blank: false
-        info blank: false
-        url blank: false
+        info blank: true, nullable: true
+        url blank: false, unique: true
 
     }
 
