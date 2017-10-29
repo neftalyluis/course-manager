@@ -22,21 +22,24 @@
 <div class="modal fade" id="deleteLessonModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
+            <g:form action="removeLessonFromCourse">
+            <input type="hidden" name="idLesson" id="inputRemoveLessonId" value="#">
+            <input type="hidden" name="idCourse" id="inputRemoveLessonIdCourse" value="#">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                <h3 class="modal-title text-center">¿Estás seguro de querrer borrar el usuario?</h3>
+                <h3 class="modal-title text-center" id="titleRemoveLesson"></h3>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary  " data-dismiss="modal">Si, quiero borrar.</button>
-                <button type="button" class="btn btn-primary " data-dismiss="modal">No, quiero seguir.</button>
+                <button type="submit" class="btn btn-primary">Si, quiero borrar.</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
             </div>
+            </g:form>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="modalCrearCurso" role="dialog">
+<div class="modal fade" id="modalEditarLeccion" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -116,13 +119,8 @@
 
             <div class="row text-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Modificar nombre o URL del Curso</button>
-                    <button type="button" class="btn btn-primary">Modificar texto de descripcion</button>
-                    <button type="button" class="btn btn-primary">Modificar texto de finalizacion</button>
-                    <button type="button" class="btn btn-primary">Modificar texto de bienvenida</button>
-                    <button type="button" class="btn btn-primary">Modificar texto de la pagina de Teoria</button>
-                    <button type="button" class="btn btn-primary">Modificar texto de pagina de informacion</button>
-                    <button type="button" class="btn btn-primary">Modificar imagenes del Curso</button>
+                    <button type="button" class="btn btn-primary">Modificar textos de Curso</button>
+                    <button type="button" class="btn btn-primary">Cambiar imagen </button>
                 </div>
             </div>
 
@@ -150,9 +148,9 @@
                                     <td>
                                         <div class="btn-toolbar">
                                             <button class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#modalCrearCurso">Modificar Leccion</button>
+                                                    data-target="#modalEditarLeccion">Modificar Leccion</button>
                                             <button class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#myModal">Borrar Leccion
+                                                    data-target="#deleteLessonModal">Borrar Leccion
                                             </button>
                                         </div>
                                     </td>

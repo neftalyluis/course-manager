@@ -153,6 +153,11 @@ class CourseService {
 
         }
     }
+    
+    def removeCourseWithId(Long id) {
+        def course = findById(id)
+        course.delete(flush: true)
+    }
 
 
 }

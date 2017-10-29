@@ -36,8 +36,8 @@ class CourseManagerController {
     def remove() {
         def courseId = params.long('id')
         if (courseId) {
-            def course = courseService.findById(courseId)
-            course.delete()
+            courseService.removeCourseWithId(courseId)
+            log.info("Removing course with id $courseId")
             flash.message = "Se elimino el curso $params.id"
             redirect action: 'index'
         } else {
