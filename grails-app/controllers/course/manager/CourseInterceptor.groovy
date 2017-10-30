@@ -10,7 +10,7 @@ class CourseInterceptor {
     CourseService courseService
 
     CourseInterceptor() {
-        match(controller: "course").excludes(action: "info").excludes(action: "courses")
+        match(controller: "course").excludes(action: "info").excludes(action: "courses").excludes(action: "newLayout")
     }
 
     boolean before() {

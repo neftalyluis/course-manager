@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
+    <g:if test="${layout}">
+        <meta name="layout" content="amorami"/>
+    </g:if>
+    <g:else>
+        <meta name="layout" content="main"/>
+    </g:else>
 </head>
 
 <body>
@@ -37,10 +42,10 @@
 <div class="container less-space-top" style="padding-top: 40px;">
     <h3 style="text-transform: uppercase; color: #f391c5; text-align: center;">Recomendaciones generales</h3>
 
-    <div>${raw(course.description)}</div>
+    <div class="course-description">${raw(course.description)}</div>
 
     <div class="content-calendar">
-        <h1 style="color: #fff; background: #da2d7d; padding-top: 20px; font-weight: bold; ">MI CALENDARIO DE EJERCICIOS</h1>
+        <h1 class="calend-title" style="color: #fff; background: #da2d7d; padding-top: 20px; font-weight: bold; ">MI CALENDARIO DE EJERCICIOS</h1>
         <ol class="calendar mig-mov" start="6" style="height: 600px">
             <li id="thismonth">
                 <ul class="pointer">

@@ -19,7 +19,7 @@ class CourseController {
         if (!progress) {
             progress = courseService.createCourseProgress(springSecurityService.currentUser, course)
         }
-        [course: course, progress: progress]
+        [course: course, progress: progress, layout: course.newLayout]
     }
 
     def info(String idCurso) {
@@ -33,21 +33,22 @@ class CourseController {
         def username = springSecurityService.currentUser?.username
         def course = courseService.getCourse(username, idCurso)
 
-        [theory: course.theory]
+        [theory: course.theory, layout: course.newLayout]
     }
 
     def welcome(String idCurso) {
         def username = springSecurityService.currentUser?.username
         def course = courseService.getCourse(username, idCurso)
 
-        [welcome: course.welcome, course: idCurso]
+        [welcome: course.welcome, course: idCurso, layout: course.newLayout]
     }
 
     def getLesson(String idCurso, String idLeccion) {
         def username = springSecurityService.currentUser?.username
         def lesson = courseService.getLessonForCourse(username, idCurso, idLeccion)
+        def course = courseService.getCourse(username, idCurso)
 
-        [lesson: lesson, courseUrl: idCurso]
+        [lesson: lesson, courseUrl: idCurso, layout: course.newLayout]
     }
 
     def markLesson(String idCurso, String idLeccion) {
@@ -55,6 +56,10 @@ class CourseController {
         courseService.markLesson(username, idCurso, idLeccion)
 
         redirect(uri: "/cursos/${idCurso}/lecciones/")
+    }
+
+    def newLayout() {
+
     }
 
 }

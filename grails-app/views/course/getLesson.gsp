@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
+    <g:if test="${layout}">
+        <meta name="layout" content="amorami"/>
+    </g:if>
+    <g:else>
+        <meta name="layout" content="main"/>
+    </g:else>
 </head>
 
 <body>
@@ -23,11 +28,11 @@
             <p>${raw(lesson.body)}</p>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-12">
             <div style="margin-top: 70px; padding-left: 15px;">
-                <div class="row" style="padding-left: 15px;">
+                <div class="row exe-buttons" style="padding: 15px;">
                     <p>Número de ejercicios por día:</p>
-                    <div style="border-radius: 100%; width: 30px; height: 30px ;margin-bottom: 20px; background: #da2d7d; color: #fff; padding: 4px 11px; font-weight: bold;">${lesson.lessonFiles.size()}</div>
+                    <div style="border-radius: 100%; width: 30px; height: 30px ; margin-left: 20px;margin-bottom: 20px; background: #da2d7d; color: #fff; padding: 4px 11px; font-weight: bold;">${lesson.lessonFiles.size()}</div>
                     <a class="btn btn-primary" style="margin: 20px " href="/cursos/${courseUrl}/lecciones/${lesson.url}/marcar">Marcar como completado</a>
                 </div>
 

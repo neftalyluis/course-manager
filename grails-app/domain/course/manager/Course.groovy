@@ -24,6 +24,7 @@ class Course {
     String info
     //URL para uso en parametros
     String url
+    Boolean newLayout = false
 
 
     static constraints = {

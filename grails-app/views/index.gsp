@@ -202,6 +202,61 @@
     </div>
 </aside>
 
+<section class="testimonial">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" style="height: 400px;">
+            <div class="item active">
+                <blockquote style="padding: 20px 150px;">
+                    <img src="${assetPath(src: 'leysha.png')}" class="paola">
+                    Paola muchas gracias por tu atención, por tus consejos excelente programa lo vi como un reto , un reto de 30 días LOGRE encontrarme a mí misma mucho antes de los 30 días encontré ese amor esa paz y tranquilidad que no QUIERO SOLTAR te amo !!muchas gracias!!!
+
+                <br>-Leysha, México</blockquote>
+            </div>
+
+            <div class="item">
+               <blockquote style="padding: 20px 150px;">
+                   <img src="${assetPath(src: 'mariela.png')}" class="paola">
+                   Muy buena coach Paola apareció en el peor momento de mi vida y me lo cambio para mejor yo me estoy divorciando y ella me alentó a seguir adelante me dio fuerzas y muchas herramientas para afrontar mi vida desde una nueva perspectiva en una palabra fue mi Ángel salvador en medio de una tormenta muchas gracias Paola.
+
+               <br>-Mariela, Uruguay</blockquote>
+            </div>
+
+            <div class="item">
+                <blockquote style="padding: 20px 150px;">
+                    <img src="${assetPath(src: 'jhaky.png')}" class="paola">
+
+                    Buenas noches, excelente coach, vi la página a partir de allí empezó mi cambio, fue un programa que duro 30 días, me siento muy contenta, pues descubrí que puedo mejorar, ahora puedo decir que soy otra, muy segura, muy entusiasta, divertida y me veo hasta más bonita. Agradezco a Pao, por sus enseñanzas y paciencia, esta fue la mejor aventura de conversión en mi vida y también gane un grupo de amigas muy divertidas. Mil gracias Pao desde Ayacucho- Peru.
+
+
+                    <br>-Jhaky, Perú</blockquote>
+            </div>
+            <div class="item">
+                <blockquote style="padding: 20px 150px;">
+                    <g:link controller="landings" action="testimony" class="btn btn-primary btn-lg" style="margin: 100px 45%;"> Ver más</g:link>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div
+</section>
+
 <section id="contact">
     <div class="container">
         <div class="row">

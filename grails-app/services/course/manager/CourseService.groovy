@@ -140,7 +140,7 @@ class CourseService {
                     welcome: command.welcome,
                     theoryButton: command.theoryButton,
                     theoryTitle: command.theoryTitle,
-                    theory: command.theory
+                    theory: command.theory,
             ).save(flush: true, failOnError: true)
 
             if (newCourse.hasProperty('id')) {

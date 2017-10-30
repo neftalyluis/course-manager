@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
+    <g:if test="${layout}">
+        <meta name="layout" content="amorami"/>
+    </g:if>
+    <g:else>
+        <meta name="layout" content="main"/>
+    </g:else>
 </head>
 
 <body>

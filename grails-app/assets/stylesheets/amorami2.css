@@ -1,0 +1,61 @@
+body{
+    background-image: url(/assets/horizontal-lines.png);
+    background-repeat: repeat;
+    background-size: 20%;
+}
+.main-content{
+    background: #fff;
+    width: 80% !important;
+    margin: 50px auto !important;
+    padding: 60px 0px !important;
+    margin-top: 130px !important;
+}
+.title-2 {
+    margin-top: 0px !important;
+    color: #F3C46D !important;
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 70px !important;
+    margin-bottom: 60px;
+}
+h1 sub{
+    font-size: 30px !important;
+    color: #000 ;
+}
+.flor-top{
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 300px;
+    height: auto;
+}
+.row{
+    padding: 10px 100px !important
+}
+.navbar-default .navbar-nav>li>a{
+    color: #fff !important;
+}
+.navbar-default{
+font-family:'Raleway', sans-serif;
+}
+
+ol.calendar {
+    width: 70em !important;
+    margin: 0 !important;
+}
+
+.calend-title{
+    margin:0 !important;
+    max-width: 974px !important;
+}
+.course-description{
+    max-width: 974px !important;
+}
+
+.exe-buttons{
+    padding: 15px !important;
+}
+
+
+
+/* responsive */
+
