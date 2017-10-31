@@ -33,7 +33,7 @@ class CourseController {
         def username = springSecurityService.currentUser?.username
         def course = courseService.getCourse(username, idCurso)
 
-        [theory: course.theory, layout: course.newLayout]
+        [course: course, layout: course.newLayout]
     }
 
     def welcome(String idCurso) {

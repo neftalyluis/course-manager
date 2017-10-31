@@ -22,6 +22,8 @@ class Course {
     String theory
     //Titulo de pagina de teoria
     String theoryTitle
+    String theoryPhoto
+    String theoryPhotoBucket
     //Texto de pagina de informacion, no está en Firebase
     String info
     //URL para uso en parametros
@@ -32,7 +34,6 @@ class Course {
     static constraints = {
 
         name blank: false, unique: true
-
         description blank: false
         banner blank: false, nullable: true
         welcome blank: false
@@ -43,6 +44,8 @@ class Course {
         lessonPhotoBucket blank: true, nullable: true
         theory blank: false
         theoryTitle blank: false
+        theoryPhoto blank: true, nullable: true
+        theoryPhotoBucket blank: true, nullable: true
         info blank: true, nullable: true
         url blank: false, unique: true
 

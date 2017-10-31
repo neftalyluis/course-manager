@@ -11,10 +11,10 @@
 
 <body>
 <div class="header head-calendar head-h"
-     style="min-height: 400px; background: url(${assetPath(src: 'ejercicios-calendario.jpg')});">
+     style="min-height: 400px; background: url(${course.lessonPhoto ?: "/assets/autoestima.jpg"});">
     <div class="header-op ttl-padding" style="height: auto; padding: 173px; max-height: 400px;">
-        <button class="btn btn-primary btn-xl"
-                style="font-size: 18px; background: #da2d7d;">${course.theoryButton}</button>
+        <a href="/cursos/${course.url}/teoria" class="btn btn-primary btn-xl"
+           style="font-size: 18px; background: #da2d7d;">${course.theoryButton}</a>
         <!-- Trigger the modal with a button -->
         <button class="btn btn-primary btn-xl" data-toggle="modal" data-target="#myModal" id="bienvenidaModal"
                 style="display: none;"></button>
@@ -45,7 +45,8 @@
     <div class="course-description">${raw(course.description)}</div>
 
     <div class="content-calendar">
-        <h1 class="calend-title" style="color: #fff; background: #da2d7d; padding-top: 20px; font-weight: bold; ">MI CALENDARIO DE EJERCICIOS</h1>
+        <h1 class="calend-title"
+            style="color: #fff; background: #da2d7d; padding-top: 20px; font-weight: bold; ">MI CALENDARIO DE EJERCICIOS</h1>
         <ol class="calendar mig-mov" start="6" style="height: 600px">
             <li id="thismonth">
                 <ul class="pointer">

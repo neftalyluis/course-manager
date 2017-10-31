@@ -26,7 +26,7 @@
                     <img src="${course.coursePhoto ?: assetPath(src: '/portfolio/thumbnails/2-2.jpg')}"
                          style="max-width: 100%; height: auto;">
                     <button class="btn btn-primary"
-                            style="margin-left: 120px; margin-top: 20px;"><a href="/cursos/${course.url}/lecciones"
+                            style="margin-left: 120px; margin-top: 20px;"><a href="/cursos/${course.url}/bienvenida"
                                                                              style="color: #fff; text-decoration: none;">Iniciar</a>
                     </button>
                 </div>
