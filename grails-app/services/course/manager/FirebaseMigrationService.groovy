@@ -63,7 +63,7 @@ class FirebaseMigrationService {
         }
         def urlHeaderPhoto = googleCloudStorageService.getUrlForObject("cursos/${courseEntity.url}/${lessonNode.key}/${lessonNode.value.header}")
         return new Lesson(name: lessonNode.value.nombre, url: lessonNode.key, headerPhoto: urlHeaderPhoto,
-                body: lessonNode.value.cuerpo, afterLesson: previousLesson, lessonFiles: files, course: courseEntity)
+                body: lessonNode.value.cuerpo, lessonFiles: files, course: courseEntity)
     }
 
     def recoverUsersFromCLI(String firebaseProjectId, String outputFileRoute, String firebaseBinaryRoute) {

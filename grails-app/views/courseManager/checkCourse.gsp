@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
+    <script src="https://cdn.ckeditor.com/4.7.2/full-all/ckeditor.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
@@ -19,12 +20,12 @@
     </div>
 </div>
 
-<div class="modal fade" id="deleteLessonModal" role="dialog">
+<div class="modal fade" id="modalQuitarLeccion" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <g:form action="removeLessonFromCourse">
-                <input type="hidden" name="idLesson" id="inputRemoveLessonId" value="#">
-                <input type="hidden" name="idCourse" id="inputRemoveLessonIdCourse" value="#">
+                <input type="hidden" name="lessonId" id="inputRemoveLessonId" value="#">
+                <input type="hidden" name="courseId" id="inputRemoveLessonIdCourse" value="${course.id}">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -46,63 +47,101 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h1>Crear nuevo Curso</h1>
+                <h1 id="tituloEditarLeccion"></h1>
             </div>
 
-            <div class="modal-body">
-                <form>
+            <g:form action="updateLesson" name="addLessonForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nombre de la Lecion:</label>
+                        <input id="nombreModificarLeccion" name="name" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>URL de la leccion:</label>
+                        <input id="urlModificarLeccion" name="url" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Texto de la Leccion</label>
+                        <textarea id="textoModificarLeccion" name="body" style="min-width: 100%"></textarea>
+                    </div>
+
+                    <input type="hidden" name="courseId" value="${course.id}">
+                    <input type="hidden" id="idLeccion" name="id" value="#">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Actualizar leccion</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalEditarLeccion">Cerrar</button>
+                </div>
+            </g:form>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="modalEditarCurso" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1>Editar Curso</h1>
+            </div>
+            <g:form action="updateCourse" name="updateCourseForm">
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="${course.id}">
+
                     <div class="form-group">
                         <label for="name">Nombre del Curso:</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" name="name" class="form-control" value="${course.name}">
                     </div>
 
                     <div class="form-group">
                         <label>Texto de descripcion del curso</label>
-                        <textarea name="descript" style="min-width: 100%"></textarea>
+                        <textarea name="descript" style="min-width: 100%">${course.description}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Texto de Curso Finalizado</label>
-                        <textarea name="banner" style="min-width: 100%"></textarea>
+                        <textarea name="banner" style="min-width: 100%">${course.banner}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Texto de bienvenida</label>
-                        <textarea name="welcome" style="min-width: 100%"></textarea>
+                        <textarea name="welcome" style="min-width: 100%">${course.welcome}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Texto de pagina de teoria</label>
-                        <textarea name="theory" style="min-width: 100%"></textarea>
+                        <textarea name="theory" style="min-width: 100%">${course.theory}</textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="theoryButton">Texto del boton de teoria :</label>
-                        <input type="text" class="form-control" id="theoryButton">
+                        <label for="theoryButton">Texto del boton de teoria:</label>
+                        <input type="text" name="theoryButton" class="form-control" value="${course.theoryButton}">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="theoryTitle">Titulo de pagina de teoria:</label>
+                        <input type="text" name="theoryTitle" class="form-control" value="${course.theoryTitle}">
                     </div>
 
                     <div class="form-group">
-                        <label for="coursePhoto">URL de la foto de pagina de curso :</label>
-                        <input type="text" class="form-control" id="coursePhoto">
+                        <label for="url">URL para uso en parametros:</label>
+                        <input type="text" name="url" class="form-control" value="${course.url}">
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="theoryTitle">Titulo de pagina de teoria :</label>
-                        <input type="text" class="form-control" id="theoryTitle">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="url">URL para uso en parametros  :</label>
-                        <input type="text" class="form-control" id="url">
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-primary">Crear curso</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#modalConfirmacionCerrar">Cerrar</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Actualizar curso</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalEditarCurso">Cerrar</button>
+                </div>
+            </g:form>
         </div>
     </div>
 
@@ -116,60 +155,34 @@
                 <h1>Crear nueva Leccion</h1>
             </div>
 
-            <div class="modal-body">
-                <form>
+            <g:form action="addLessonToCourse" name="addLessonForm">
+                <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Nombre del Curso:</label>
-                        <input type="text" class="form-control">
+                        <label>Nombre de la Lecion:</label>
+                        <input name="name" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label>Texto de descripcion del curso</label>
-                        <textarea name="descript" style="min-width: 100%"></textarea>
+                        <label>URL de la leccion:</label>
+                        <input name="url" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label>Texto de Curso Finalizado</label>
-                        <textarea name="banner" style="min-width: 100%"></textarea>
+                        <label>Texto de la Leccion</label>
+                        <textarea name="body" style="min-width: 100%"></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label>Texto de bienvenida</label>
-                        <textarea name="welcome" style="min-width: 100%"></textarea>
-                    </div>
+                    <input type="hidden" name="courseId" value="${course.id}">
 
-                    <div class="form-group">
-                        <label>Texto de pagina de teoria</label>
-                        <textarea name="theory" style="min-width: 100%"></textarea>
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="theoryButton">Texto del boton de teoria :</label>
-                        <input type="text" class="form-control">
-                    </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Crear leccion</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalCrearLeccion">Cerrar</button>
+                </div>
+            </g:form>
 
-                    <div class="form-group">
-                        <label for="coursePhoto">URL de la foto de pagina de curso :</label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="theoryTitle">Titulo de pagina de teoria :</label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="url">URL para uso en parametros  :</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-primary">Crear curso</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#modalConfirmacionCerrar">Cerrar</button>
-            </div>
         </div>
     </div>
 
@@ -189,7 +202,10 @@
 
             <div class="row text-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Modificar textos de Curso</button>
+                    <button type="button" id="botonModalCrearLeccion" data-toggle="modal"
+                            data-target="#modalCrearLeccion" class="btn btn-primary">Crear nueva Leccion</button>
+                    <button type="button" data-toggle="modal"
+                            data-target="#modalEditarCurso" class="btn btn-primary">Modificar textos de Curso</button>
                     <button type="button" class="btn btn-primary">Cambiar imagen de Lecciones</button>
                     <button type="button" class="btn btn-primary">Cambiar imagen de Cursos</button>
                 </div>
@@ -214,15 +230,17 @@
                             <g:each var="lesson" in="${course.lessons.sort { it.numberLesson }}">
                                 <tr>
                                     <td>${lesson.numberLesson}</td>
+                                    <td class="hidden">${lesson.id}</td>
                                     <td>${lesson.name}</td>
                                     <td>${lesson.url}</td>
                                     <td>
                                         <div class="btn-toolbar">
-                                            <button class="btn btn-primary" data-toggle="modal"
+                                            <button class="btn btn-primary modalEditarLeccion" data-toggle="modal"
                                                     data-target="#modalEditarLeccion">Modificar Leccion</button>
-                                            <button class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#deleteLessonModal">Borrar Leccion
+                                            <button class="btn btn-primary modalQuitarLeccion" data-toggle="modal"
+                                                    data-target="#modalQuitarLeccion">Borrar Leccion
                                             </button>
+                                            <g:link class="btn btn-primary">Ver Archivos</g:link>
                                         </div>
                                     </td>
                                 </tr>
@@ -231,7 +249,7 @@
                         <g:else>
                             <tr>
                                 <td align="center">Este curso no tiene ninguna leccion <a data-toggle="modal"
-                                                                                          data-target="#agregarLeccion">Crea uno</a>
+                                                                                          data-target="#modalCrearLeccion">Crea uno</a>
                                 </td>
                             </tr>
                         </g:else>
@@ -242,5 +260,80 @@
         </div><!--Container-fluid-->
     </div>
 </section>
+<g:javascript>
+    CKEDITOR.replace('body');
+    CKEDITOR.replace('descript');
+    CKEDITOR.replace('banner');
+    CKEDITOR.replace('welcome');
+    CKEDITOR.replace('theory');
+
+    $('#botonModalCrearLeccion').click(function () {
+        $("#addLessonForm").validate({
+            rules: {
+                name: "required",
+                url: "required",
+                body: "required"
+            },
+            messages: {
+                name: "Por favor ingresa un Nombre",
+                url: "Por favor ingresa una URL",
+                body: "Por favor ingresa el contenido de la leccion"
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    })
+
+    $('.modalQuitarLeccion').click(function () {
+        var lessonId = $(this).parent().parent().prev().prev().prev().text()
+        var lessonName = $(this).parent().parent().prev().prev().text()
+        $('#inputRemoveLessonId').val(lessonId)
+        $('#titleRemoveLesson').text("¿Estás seguro de querer borrar la leccion: " + lessonName + "?")
+    })
+
+    $('.modalEditarLeccion').click(function () {
+        var lessonName = $(this).parent().parent().prev().prev().text()
+        var lessonId = $(this).parent().parent().prev().prev().prev().text();
+        var courseId = ${course.id};
+        $('#tituloEditarLeccion').text("Editar Leccion " + lessonName)
+
+        $.post('${createLink(action: 'checkLesson')}', { courseId: courseId, lessonId : lessonId},
+            function(returnedData){
+                $('#nombreModificarLeccion').val(returnedData.lesson.name)
+                $('#urlModificarLeccion').val(returnedData.lesson.url)
+                CKEDITOR.instances['textoModificarLeccion'].setData(returnedData.lesson.body);
+                $('#idLeccion').val(returnedData.lesson.id)
+            }).fail(function(){
+                  console.log("error");
+            });
+    })
+
+    $("#updateCourseForm").validate({
+        rules: {
+            name: "required",
+            url: "required",
+            descript: "required",
+            banner: "required",
+            welcome: "required",
+            theoryButton: "required",
+            theoryTitle: "required",
+            theory: "required"
+        },
+        messages: {
+            name: "Por favor ingresa un Nombre",
+            url: "Por favor ingresa una url",
+            descript: "Por favor ingresa una Descripcion",
+            banner: "Por favor ingresa una Descripcion",
+            welcome: "Por favor ingresa una Descripcion",
+            theoryButton: "Por favor ingresa una Descripcion",
+            theoryTitle: "Por favor ingresa una Descripcion",
+            theory: "Por favor ingresa una Descripcion"
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+</g:javascript>
 </body>
 </html>

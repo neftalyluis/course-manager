@@ -2,7 +2,7 @@ package course.manager
 
 import grails.validation.Validateable
 
-class LessonCommand implements Validateable {
+class CreateLessonCommand implements Validateable {
 
     String name
     String body

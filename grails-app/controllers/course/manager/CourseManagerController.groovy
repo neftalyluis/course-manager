@@ -51,8 +51,22 @@ class CourseManagerController {
         }
     }
 
-    def updateCourse() {
-
+    def updateCourse(UpdateCourseCommand command) {
+        if (command.validate()) {
+            def result = courseService.updateCourse(command)
+            if (result.error) {
+                log.info(result.error)
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'index')
+            } else {
+                log.info("Course: $command.id updated")
+                flash.message = "Se actualizaron los datos del curso"
+                redirect(action: 'checkCourse', params: [id: command.id])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'checkCourse', params: [id: command.id])
+        }
     }
 
 
@@ -91,24 +105,52 @@ class CourseManagerController {
         }
     }
 
-    def addLessonToCourse(LessonCommand command) {
+    def addLessonToCourse(CreateLessonCommand command) {
         def result = courseService.createLesson(command)
         if (!result.error) {
             flash.message = "Curso Creado"
-            redirect(action: 'checkLesson', params: [id: result.lesson.id])
+            redirect(action: 'checkCourse', params: [id: command.courseId])
         } else {
             flash.error = "Ocurrio un error, intente en otro momento"
-            redirect(action: 'index')
+            redirect(action: 'checkCourse', params: [id: command.courseId])
         }
 
     }
-    //fffuck TODO
-    def removeLessonFromCourse() {
 
+    def removeLessonFromCourse() {
+        Long courseId = params.long('courseId')
+        Long lessonId = params.long('lessonId')
+        if (courseId && lessonId) {
+            def lesson = courseService.removeLesson(courseId, lessonId)
+            if (lesson.error) {
+                flash.message = "Leccion Eliminada"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            }
+        } else {
+            response.status = 400
+            render([error: "Bad request"] as JSON)
+        }
     }
 
-    def updateLesson() {
-
+    def updateLesson(UpdateLessonCommand command) {
+        if (command.validate()) {
+            def result = courseService.updateLesson(command)
+            if (result.error) {
+                log.info(result.error)
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'index')
+            } else {
+                log.info("Lesson: $command.id updated")
+                flash.message = "Se actualizaron los datos de la leccion"
+                redirect(action: 'checkCourse', params: [id: command.courseId])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'checkCourse', params: [id: command.courseId])
+        }
     }
 
 }

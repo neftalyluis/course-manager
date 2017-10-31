@@ -154,7 +154,7 @@ class CourseService {
         }
     }
 
-    def createLesson(LessonCommand command) {
+    def createLesson(CreateLessonCommand command) {
         if (command.validate()) {
             def lessonWithSameUrl = Lesson.findByUrl(command.url)
             def course = Course.get(command.courseId)
@@ -170,11 +170,11 @@ class CourseService {
                         body: command.body,
                         url: command.url,
                         course: course,
-                        numberLesson: getQuantityOfLessonsForCourse(command.courseId)
+                        numberLesson: getQuantityOfLessonsForCourse(command.courseId) + 1
                 ).save(flush: true)
 
                 if (newLesson.hasProperty('id')) {
-                    log.info("Course created: ${newLesson}")
+                    log.info("Lesson created: ${newLesson}")
                     return [lesson: newLesson]
                 } else {
                     log.error("Can't save new lesson: ${command.errors}")
@@ -199,7 +199,7 @@ class CourseService {
         def totalOfLessons = Lesson.executeQuery("SELECT COUNT(l) FROM Lesson l WHERE l.course.id = :courseId",
                 [courseId: courseId],
                 [max: 1])
-        return totalOfLessons[0]
+        return totalOfLessons[0] as Long
     }
 
     def getLesson(Long courseId, Long lessonId) {
@@ -221,4 +221,63 @@ class CourseService {
         return lessonFiles
     }
 
+    def getLessonsForCourse(courseId) {
+        def lessons = Lesson.withCriteria {
+            course {
+                eq("id", courseId)
+            }
+        }
+        return lessons
+    }
+
+    def removeLesson(Long courseId, Long lessonId) {
+        def lesson = getLesson(courseId, lessonId)
+        if (lesson) {
+            def dayOfLesson = lesson.numberLesson
+            lesson.delete(flush: true)
+            def lessons = getLessonsForCourse(courseId)
+            lessons.each {
+                if (it.numberLesson > dayOfLesson) {
+                    it.numberLesson--
+                    it.save(flush: true)
+                }
+            }
+            log.info("Lesson removed: $lessonId")
+            return [error: false]
+        } else {
+            log.error("Lesson: $lessonId or Course: $courseId not found")
+            return [error: "Lesson or Course not found"]
+        }
+    }
+
+    def updateCourse(UpdateCourseCommand command) {
+        def course = Course.get(command.id)
+        if (course) {
+            course.name = command.name
+            course.url = command.url
+            course.description = command.descript
+            course.banner = command.banner
+            course.welcome = command.welcome
+            course.theoryButton = command.theoryButton
+            course.theoryTitle = command.theoryTitle
+            course.theory = command.theory
+            course.save(flush: true, failOnError: true)
+            return [course: course]
+        } else {
+            return [error: "No se encontro curso con id: $command.id"]
+        }
+    }
+
+    def updateLesson(UpdateLessonCommand command) {
+        def lesson = Lesson.get(command.id)
+        if (lesson) {
+            lesson.name = command.name
+            lesson.body = command.body
+            lesson.url = command.url
+            lesson.save(flush: true, failOnError: true)
+            return [lesson: lesson]
+        } else {
+            return [error: "No se encontro curso con id: $command.id"]
+        }
+    }
 }
