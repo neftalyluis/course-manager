@@ -5,6 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class CourseService {
 
+    def googleCloudStorageService
+
     def getAllProjectedCourses() {
         def courses = Course.createCriteria().list {
             projections {
@@ -212,6 +214,10 @@ class CourseService {
         return lesson
     }
 
+    def getLesson(Long lessonId) {
+        return Lesson.get(lessonId)
+    }
+
     def getLessonFiles(Long lessonId) {
         def lessonFiles = LessonFile.withCriteria {
             lesson {
@@ -278,6 +284,48 @@ class CourseService {
             return [lesson: lesson]
         } else {
             return [error: "No se encontro curso con id: $command.id"]
+        }
+    }
+
+    def addFileToLesson(Long lessonId, byte[] file, String contentType, String filename) {
+        def lesson = Lesson.get(lessonId)
+        if (lesson) {
+            def bucket = "cursos/${lesson.course.name}/${lesson.name}/${filename}"
+            log.info("Uploading file $filename")
+            def uploadedFile = googleCloudStorageService.replaceObject(bucket, file, contentType)
+            if (uploadedFile) {
+                log.info("Signing file $filename")
+                def signedUrl = googleCloudStorageService.getUrlForObject(bucket)
+                log.info("Saving URL $signedUrl")
+                def newLessonFile = new LessonFile(
+                        lesson: lesson,
+                        fileURL: signedUrl,
+                        bucket: bucket,
+                        name: filename).save(flush: true, failOnError: true)
+                return newLessonFile
+            } else {
+                return [error: "Ocurrio un Error, intenta mas tarde"]
+            }
+        } else {
+            return [error: "No se encontro leccion con id: $lessonId cuando se trata de agregar archivo"]
+        }
+    }
+
+    def removeFileLesson(Long fileLessonId) {
+        def fileLesson = LessonFile.get(fileLessonId)
+        if (fileLesson) {
+            def result = googleCloudStorageService.removeObject(fileLesson.bucket)
+            log.info("Bucket removed $fileLesson.bucket")
+            if (result) {
+                fileLesson.delete(flush: true)
+                log.info("FileLesson entity removed with id $fileLessonId ")
+            } else {
+                log.info("Can't remove LessonFileEntity with id $fileLessonId")
+                return [error: "No se pudo eliminar LessonFile con if $fileLessonId"]
+            }
+        } else {
+            log.info("No fileLessonId Found: $fileLessonId")
+            return [error: "No se encontro Archivo de Leccion con id: $fileLessonId cuando se trata de eliminar archivo"]
         }
     }
 }

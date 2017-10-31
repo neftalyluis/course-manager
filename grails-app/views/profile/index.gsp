@@ -26,7 +26,7 @@
                                          style="border-radius: 100%;"/>
                                 </g:if>
                                 <g:else>
-                                    <img id="thumbProfile" src="#" width="200" height="200"
+                                    <img id="thumbProfile" src="/assets/avatar.png" width="200" height="200"
                                          style="border-radius: 100%;"/>
                                 </g:else>
                             </div>

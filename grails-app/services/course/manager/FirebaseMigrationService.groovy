@@ -90,7 +90,7 @@ class FirebaseMigrationService {
         jsonObject.users.each {
             if (!Person.findByUsername(it.email)) {
                 def personObj = new Person(username: it.email, password: it.salt, accountCreated: new Date()).save(failOnError: true)
-                new Student(name: "Editar", username: it.email, urlAvatar: "Editar", description: "Editar", person: personObj, bucket: "bucket").save(failOnError: true)
+                new Student(name: "Editar", username: it.email, urlAvatar: "", description: "Editar", person: personObj, bucket: "bucket").save(failOnError: true)
                 usersList << personObj
             }
         }

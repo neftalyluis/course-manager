@@ -89,30 +89,31 @@ class CourseManagerController {
 
     }
 
-    def checkFilesForLesson() {
+    def checkFiles() {
         Long lessonId = params.long('lessonId')
         if (lessonId) {
             def lessonFiles = courseService.getLessonFiles(lessonId)
-            if (lessonFiles) {
-                render([lessonFiles: lessonFiles] as JSON)
-            } else {
-                response.status = 404
-                render([error: "Not found"] as JSON)
-            }
+            def lesson = courseService.getLesson(lessonId)
+            [lessonFiles: lessonFiles, lesson: lesson]
         } else {
-            response.status = 400
-            render([error: "Bad request"] as JSON)
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
         }
     }
 
     def addLessonToCourse(CreateLessonCommand command) {
-        def result = courseService.createLesson(command)
-        if (!result.error) {
-            flash.message = "Curso Creado"
-            redirect(action: 'checkCourse', params: [id: command.courseId])
+        if (command.validate()) {
+            def result = courseService.createLesson(command)
+            if (!result.error) {
+                flash.message = "Leccion Creada"
+                redirect(action: 'checkCourse', params: [id: command.courseId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkCourse', params: [id: command.courseId])
+            }
         } else {
             flash.error = "Ocurrio un error, intente en otro momento"
-            redirect(action: 'checkCourse', params: [id: command.courseId])
+            redirect(action: 'index')
         }
 
     }
@@ -150,6 +151,42 @@ class CourseManagerController {
         } else {
             flash.error = "Ocurrio un error, intente en otro momento"
             redirect(action: 'checkCourse', params: [id: command.courseId])
+        }
+    }
+
+    def addFileToLesson() {
+        Long lessonId = params.long('lessonId')
+        def file = request.getFile('file')
+        if (!file?.empty && lessonId) {
+            def lesson = courseService.addFileToLesson(lessonId, file.bytes, file.contentType, file.originalFilename)
+            if (!lesson.hasProperty('error')) {
+                flash.message = "Nueva imagen de perfil subida correctamente"
+                redirect(action: 'checkFiles', params: [lessonId: lessonId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkFiles', params: [lessonId: lessonId])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
+    }
+
+    def removeFileFromLesson() {
+        Long lessonFileId = params.long('lessonFileId')
+        Long lessonId = params.long('lessonId')
+        if (lessonFileId && lessonId) {
+            def lesson = courseService.removeFileLesson(lessonFileId)
+            if (!lesson?.hasProperty('error')) {
+                flash.message = "Archivo Eliminado"
+                redirect(action: 'checkFiles', params: [lessonId: lessonId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkFiles', params: [lessonId: lessonId])
+            }
+        } else {
+            response.status = 400
+            render([error: "Bad request"] as JSON)
         }
     }
 

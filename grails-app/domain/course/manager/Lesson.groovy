@@ -8,6 +8,7 @@ class Lesson {
     String name
     String body
     String headerPhoto = ""
+    String headerPhotoBucket = ""
     String url
     Long numberLesson
 
@@ -15,6 +16,8 @@ class Lesson {
         name blank: false
         body blank: false
         url blank: false
+        headerPhotoBucket nullable: true
+        headerPhoto nullable: true
     }
 
     //Agregamos este mapping para que H2 y chance MySQL no la hagan de a pedo

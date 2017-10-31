@@ -8,7 +8,6 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require /webjars/bootstrap/3.3.7/css/bootstrap.min.css
-*= require /webjars/bootstrap-fileinput/4.4.5/css/fileinput.min.css
 *= require calendar
 *= require creative
 *= requires application

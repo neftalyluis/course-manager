@@ -4,7 +4,7 @@ class Student {
 
     String name
     String username
-    String urlAvatar
+    String urlAvatar = ""
     String bucket
     String description
 
@@ -12,6 +12,6 @@ class Student {
 
     static constraints = {
         username blank: false, unique: true
-        urlAvatar sqlType: "text"
+        urlAvatar sqlType: "text", blank: true, nullable: true
     }
 }

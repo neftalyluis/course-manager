@@ -240,7 +240,8 @@
                                             <button class="btn btn-primary modalQuitarLeccion" data-toggle="modal"
                                                     data-target="#modalQuitarLeccion">Borrar Leccion
                                             </button>
-                                            <g:link class="btn btn-primary">Ver Archivos</g:link>
+                                            <g:link class="btn btn-primary" action="checkFiles"
+                                                    params="[lessonId: lesson.id]">Ver Archivos</g:link>
                                         </div>
                                     </td>
                                 </tr>

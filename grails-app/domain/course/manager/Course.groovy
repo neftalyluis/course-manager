@@ -14,8 +14,10 @@ class Course {
     String theoryButton
     //URL de la foto de pagina de curso, url
     String coursePhoto
+    String coursePhotoBucket
     //URL de la foto de pagina de lecciones, url
     String lessonPhoto
+    String lessonPhotoBucket
     //Texto de pagina de teoria
     String theory
     //Titulo de pagina de teoria
@@ -30,12 +32,15 @@ class Course {
     static constraints = {
 
         name blank: false, unique: true
+
         description blank: false
         banner blank: false, nullable: true
         welcome blank: false
         theoryButton blank: false
         coursePhoto blank: true, nullable: true
+        coursePhotoBucket blank: true, nullable: true
         lessonPhoto blank: true, nullable: true
+        lessonPhotoBucket blank: true, nullable: true
         theory blank: false
         theoryTitle blank: false
         info blank: true, nullable: true
