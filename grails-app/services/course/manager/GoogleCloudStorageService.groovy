@@ -60,7 +60,7 @@ class GoogleCloudStorageService implements InitializingBean {
                 return blob.signUrl(daysDuration, TimeUnit.DAYS).toString()
             } else {
                 log.warn("Can't get URL for Blob: $blobName")
-                return blobName
+                return ""
             }   
         }
     }

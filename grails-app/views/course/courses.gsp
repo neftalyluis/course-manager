@@ -23,13 +23,16 @@
             <div class="col-sm-4">
                 <div>
                     <h3 class="text-center" style="color: #da2d7d;">${course.name}</h3>
-                    <img src="${assetPath(src: '/portfolio/thumbnails/2-2.jpg')}" style="max-width: 100%; height: auto;">
+                    <img src="${course.coursePhoto ?: assetPath(src: '/portfolio/thumbnails/2-2.jpg')}"
+                         style="max-width: 100%; height: auto;">
                     <button class="btn btn-primary"
                             style="margin-left: 120px; margin-top: 20px;"><a href="/cursos/${course.url}/lecciones"
-                            style="color: #fff; text-decoration: none;">Iniciar</a></button>
+                                                                             style="color: #fff; text-decoration: none;">Iniciar</a>
+                    </button>
                 </div>
             </div>
         </g:each>
     </div>
+</div>
 </body>
 </html>

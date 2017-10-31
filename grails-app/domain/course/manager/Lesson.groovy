@@ -7,7 +7,7 @@ class Lesson {
     static belongsTo = [course: Course]
     String name
     String body
-    String headerPhoto
+    String headerPhoto = ""
     String url
     //Orden de la leccion respecto a las otras lecciones
     Lesson afterLesson
@@ -15,7 +15,6 @@ class Lesson {
     static constraints = {
         name blank: false
         body blank: false
-        headerPhoto blank: false
         url blank: false
         afterLesson nullable: true
     }

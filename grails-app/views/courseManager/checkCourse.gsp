@@ -23,17 +23,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <g:form action="removeLessonFromCourse">
-            <input type="hidden" name="idLesson" id="inputRemoveLessonId" value="#">
-            <input type="hidden" name="idCourse" id="inputRemoveLessonIdCourse" value="#">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title text-center" id="titleRemoveLesson"></h3>
-            </div>
+                <input type="hidden" name="idLesson" id="inputRemoveLessonId" value="#">
+                <input type="hidden" name="idCourse" id="inputRemoveLessonIdCourse" value="#">
 
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Si, quiero borrar.</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
-            </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h3 class="modal-title text-center" id="titleRemoveLesson"></h3>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Si, quiero borrar.</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
+                </div>
             </g:form>
         </div>
     </div>
@@ -106,6 +108,74 @@
 
 </div>
 
+<div class="modal fade" id="modalCrearLeccion" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1>Crear nueva Leccion</h1>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nombre del Curso:</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Texto de descripcion del curso</label>
+                        <textarea name="descript" style="min-width: 100%"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Texto de Curso Finalizado</label>
+                        <textarea name="banner" style="min-width: 100%"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Texto de bienvenida</label>
+                        <textarea name="welcome" style="min-width: 100%"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Texto de pagina de teoria</label>
+                        <textarea name="theory" style="min-width: 100%"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theoryButton">Texto del boton de teoria :</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coursePhoto">URL de la foto de pagina de curso :</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theoryTitle">Titulo de pagina de teoria :</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">URL para uso en parametros  :</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary">Crear curso</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#modalConfirmacionCerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 <section>
     <div class="container">
         <div class="container-fluid">
@@ -120,7 +190,8 @@
             <div class="row text-center">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary">Modificar textos de Curso</button>
-                    <button type="button" class="btn btn-primary">Cambiar imagen </button>
+                    <button type="button" class="btn btn-primary">Cambiar imagen de Lecciones</button>
+                    <button type="button" class="btn btn-primary">Cambiar imagen de Cursos</button>
                 </div>
             </div>
 

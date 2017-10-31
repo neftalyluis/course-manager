@@ -1,5 +1,8 @@
 package course.manager
 
+import grails.converters.JSON
+
+
 class CourseManagerController {
 
     def courseService
@@ -11,6 +14,7 @@ class CourseManagerController {
     def checkCourse() {
         def course = courseService.findById(params.long('id'))
         if (course) {
+            courseService.getQuantityOfLessonsForCourse(params.long('id'))
             [course: course]
         } else {
             redirect uri: "/notFound"
@@ -53,11 +57,49 @@ class CourseManagerController {
 
 
     def checkLesson() {
+        Long courseId = params.long('courseId')
+        Long lessonId = params.long('lessonId')
+        if (courseId && lessonId) {
+            def lesson = courseService.getLesson(courseId, lessonId)
+            if (lesson) {
+                response.status = 200
+                render([lesson: lesson] as JSON)
+            } else {
+                response.status = 404
+                render([error: "Not found"] as JSON)
+            }
+        } else {
+            response.status = 400
+            render([error: "Bad request"] as JSON)
+        }
 
     }
 
-    //fffuck TODO
-    def addLessonToCourse() {
+    def checkFilesForLesson() {
+        Long lessonId = params.long('lessonId')
+        if (lessonId) {
+            def lessonFiles = courseService.getLessonFiles(lessonId)
+            if (lessonFiles) {
+                render([lessonFiles: lessonFiles] as JSON)
+            } else {
+                response.status = 404
+                render([error: "Not found"] as JSON)
+            }
+        } else {
+            response.status = 400
+            render([error: "Bad request"] as JSON)
+        }
+    }
+
+    def addLessonToCourse(LessonCommand command) {
+        def result = courseService.createLesson(command)
+        if (!result.error) {
+            flash.message = "Curso Creado"
+            redirect(action: 'checkLesson', params: [id: result.lesson.id])
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
 
     }
     //fffuck TODO

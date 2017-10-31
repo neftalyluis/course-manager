@@ -153,11 +153,72 @@ class CourseService {
 
         }
     }
-    
+
+    def createLesson(LessonCommand command) {
+        if (command.validate()) {
+            def lessonWithSameUrl = Lesson.findByUrl(command.url)
+            def course = Course.get(command.courseId)
+            if (lessonWithSameUrl) {
+
+                log.error("There is another Lesson with the same URL")
+                return [error: "There is another Lesson with the same URL"]
+
+            } else if (course) {
+
+                def newLesson = new Lesson(
+                        name: command.name,
+                        body: command.body,
+                        url: command.url,
+                        course: course,
+                        numberLesson: getQuantityOfLessonsForCourse(command.courseId)
+                ).save(flush: true)
+
+                if (newLesson.hasProperty('id')) {
+                    log.info("Course created: ${newLesson}")
+                    return [lesson: newLesson]
+                } else {
+                    log.error("Can't save new lesson: ${command.errors}")
+                    return [error: "Can't save new lesson: ${command.errors}"]
+                }
+
+            } else {
+                log.error("Course not found")
+                return [error: "Course not found"]
+            }
+        } else {
+            log.error("Error when creating Lesson, command not valid")
+        }
+    }
+
     def removeCourseWithId(Long id) {
         def course = findById(id)
         course.delete(flush: true)
     }
 
+    Long getQuantityOfLessonsForCourse(Long courseId) {
+        def totalOfLessons = Lesson.executeQuery("SELECT COUNT(l) FROM Lesson l WHERE l.course.id = :courseId",
+                [courseId: courseId],
+                [max: 1])
+        return totalOfLessons[0]
+    }
+
+    def getLesson(Long courseId, Long lessonId) {
+        def lesson = Lesson.withCriteria(uniqueResult: true) {
+            course {
+                eq("id", courseId)
+            }
+            eq("id", lessonId)
+        }
+        return lesson
+    }
+
+    def getLessonFiles(Long lessonId) {
+        def lessonFiles = LessonFile.withCriteria {
+            lesson {
+                eq("id", lessonId)
+            }
+        }
+        return lessonFiles
+    }
 
 }
