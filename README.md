@@ -10,3 +10,4 @@ Una bonita aplicacion en Grails 3 que funge como un LMS MUY minimalista
 - [ ] Logica de Landings
 - [ ] Modal cuando termina curso
 - [ ] Shitposting en mails
+- [ ] Deployment a Staging con TravisCI
