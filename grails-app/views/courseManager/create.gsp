@@ -69,10 +69,7 @@
 </section>
 
 <g:javascript>
-    CKEDITOR.replace('descript');
-    CKEDITOR.replace('banner');
-    CKEDITOR.replace('welcome');
-    CKEDITOR.replace('theory');
+    CKEDITOR.replaceAll();
 
     $("#createCourse").validate({
         rules: {

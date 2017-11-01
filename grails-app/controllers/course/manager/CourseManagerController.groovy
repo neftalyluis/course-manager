@@ -123,7 +123,7 @@ class CourseManagerController {
         Long lessonId = params.long('lessonId')
         if (courseId && lessonId) {
             def lesson = courseService.removeLesson(courseId, lessonId)
-            if (lesson.error) {
+            if (!lesson.error) {
                 flash.message = "Leccion Eliminada"
                 redirect(action: 'checkCourse', params: [id: courseId])
             } else {
@@ -160,7 +160,7 @@ class CourseManagerController {
         if (!file?.empty && lessonId) {
             def lesson = courseService.addFileToLesson(lessonId, file.bytes, file.contentType, file.originalFilename)
             if (!lesson.hasProperty('error')) {
-                flash.message = "Nueva imagen de perfil subida correctamente"
+                flash.message = "Nuevo archivo de leccion subido correctamente"
                 redirect(action: 'checkFiles', params: [lessonId: lessonId])
             } else {
                 flash.error = "Ocurrio un error, intente en otro momento"
@@ -187,6 +187,78 @@ class CourseManagerController {
         } else {
             response.status = 400
             render([error: "Bad request"] as JSON)
+        }
+    }
+
+    def updateImageLesson() {
+        Long lessonId = params.long('lessonId')
+        def file = request.getFile('file')
+        if (!file?.empty && lessonId) {
+            def lesson = courseService.addLessonImageToLesson(lessonId, file.bytes, file.contentType, file.originalFilename)
+            if (!lesson.hasProperty('error')) {
+                flash.message = "Nueva imagen de Leccion subida correctamente"
+                redirect(action: 'checkFiles', params: [lessonId: lessonId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkFiles', params: [lessonId: lessonId])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
+    }
+
+    def updateCoursePhoto() {
+        Long courseId = params.long('courseId')
+        def file = request.getFile('file')
+        if (!file?.empty && courseId) {
+            def lesson = courseService.addCoursePhoto(courseId, file.bytes, file.contentType, file.originalFilename)
+            if (!lesson.hasProperty('error')) {
+                flash.message = "Nueva imagen de Pagina de cursos subida correctamente"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
+    }
+
+    def updateLessonsPhoto() {
+        Long courseId = params.long('courseId')
+        def file = request.getFile('file')
+        if (!file?.empty && courseId) {
+            def lesson = courseService.addLessonsPhoto(courseId, file.bytes, file.contentType, file.originalFilename)
+            if (!lesson.hasProperty('error')) {
+                flash.message = "Nueva imagen de lecciones subida correctamente"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
+    }
+
+    def updateTheoryPhoto() {
+        Long courseId = params.long('courseId')
+        def file = request.getFile('file')
+        if (!file?.empty && courseId) {
+            def lesson = courseService.addTheoryPhoto(courseId, file.bytes, file.contentType, file.originalFilename)
+            if (!lesson.hasProperty('error')) {
+                flash.message = "Nueva imagen de pagina de teoria subida correctamente"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkCourse', params: [id: courseId])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
         }
     }
 

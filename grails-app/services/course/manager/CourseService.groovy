@@ -290,7 +290,7 @@ class CourseService {
     def addFileToLesson(Long lessonId, byte[] file, String contentType, String filename) {
         def lesson = Lesson.get(lessonId)
         if (lesson) {
-            def bucket = "cursos/${lesson.course.name}/${lesson.name}/${filename}"
+            def bucket = "cursos/${lesson.course.url}/${lesson.url}/${filename}"
             log.info("Uploading file $filename")
             def uploadedFile = googleCloudStorageService.replaceObject(bucket, file, contentType)
             if (uploadedFile) {
@@ -328,4 +328,101 @@ class CourseService {
             return [error: "No se encontro Archivo de Leccion con id: $fileLessonId cuando se trata de eliminar archivo"]
         }
     }
+
+    def addLessonImageToLesson(Long lessonId, byte[] file, String contentType, String filename) {
+        def lesson = Lesson.get(lessonId)
+        if (lesson) {
+            log.info("Removing bucket for Lesson Photo $lesson.headerPhotoBucket")
+            googleCloudStorageService.removeObject(lesson.headerPhotoBucket)
+            def bucket = "cursos/${lesson.course.url}/${lesson.url}/${filename}"
+            log.info("Uploading file $filename")
+            def uploadedFile = googleCloudStorageService.replaceObject(bucket, file, contentType)
+            if (uploadedFile) {
+                log.info("Signing file $filename")
+                def signedUrl = googleCloudStorageService.getUrlForObject(bucket)
+                log.info("Saving URL $signedUrl")
+                lesson.headerPhoto = signedUrl
+                lesson.headerPhotoBucket = bucket
+                lesson.save(flush: true)
+                return lesson
+            } else {
+                return [error: "Ocurrio un Error, intenta mas tarde"]
+            }
+        } else {
+            return [error: "No se encontro leccion con id: $lessonId cuando se trata de agregar archivo"]
+        }
+    }
+
+    def addCoursePhoto(Long courseId, byte[] file, String contentType, String filename) {
+        def course = Course.get(courseId)
+        if (course) {
+            log.info("Removing bucket for Course Photo $course.coursePhotoBucket")
+            googleCloudStorageService.removeObject(course.coursePhotoBucket)
+            def bucket = "cursos/${course.url}/${filename}"
+            log.info("Uploading file $filename")
+            def uploadedFile = googleCloudStorageService.replaceObject(bucket, file, contentType)
+            if (uploadedFile) {
+                log.info("Signing file $filename")
+                def signedUrl = googleCloudStorageService.getUrlForObject(bucket)
+                log.info("Saving URL $signedUrl")
+                course.coursePhoto = signedUrl
+                course.coursePhotoBucket = bucket
+                course.save(flush: true)
+                return course
+            } else {
+                return [error: "Ocurrio un Error, intenta mas tarde"]
+            }
+        } else {
+            return [error: "No se encontro leccion con id: $courseId cuando se trata de agregar archivo"]
+        }
+    }
+
+    def addLessonsPhoto(Long courseId, byte[] file, String contentType, String filename) {
+        def course = Course.get(courseId)
+        if (course) {
+            log.info("Removing bucket for Course/Lessons Photo $course.lessonPhoto")
+            googleCloudStorageService.removeObject(course.lessonPhotoBucket)
+            def bucket = "cursos/${course.url}/${filename}"
+            log.info("Uploading file $filename")
+            def uploadedFile = googleCloudStorageService.replaceObject(bucket, file, contentType)
+            if (uploadedFile) {
+                log.info("Signing file $filename")
+                def signedUrl = googleCloudStorageService.getUrlForObject(bucket)
+                log.info("Saving URL $signedUrl")
+                course.lessonPhoto = signedUrl
+                course.lessonPhotoBucket = bucket
+                course.save(flush: true)
+                return course
+            } else {
+                return [error: "Ocurrio un Error, intenta mas tarde"]
+            }
+        } else {
+            return [error: "No se encontro leccion con id: $courseId cuando se trata de agregar archivo"]
+        }
+    }
+
+    def addTheoryPhoto(Long courseId, byte[] file, String contentType, String filename) {
+        def course = Course.get(courseId)
+        if (course) {
+            log.info("Removing bucket for Theory Photo $course.theoryPhoto")
+            googleCloudStorageService.removeObject(course.theoryPhotoBucket)
+            def bucket = "cursos/${course.url}/${filename}"
+            log.info("Uploading file $filename")
+            def uploadedFile = googleCloudStorageService.replaceObject(bucket, file, contentType)
+            if (uploadedFile) {
+                log.info("Signing file $filename")
+                def signedUrl = googleCloudStorageService.getUrlForObject(bucket)
+                log.info("Saving URL $signedUrl")
+                course.theoryPhoto = signedUrl
+                course.theoryPhotoBucket = bucket
+                course.save(flush: true)
+                return course
+            } else {
+                return [error: "Ocurrio un Error, intenta mas tarde"]
+            }
+        } else {
+            return [error: "No se encontro leccion con id: $courseId cuando se trata de agregar archivo"]
+        }
+    }
+
 }

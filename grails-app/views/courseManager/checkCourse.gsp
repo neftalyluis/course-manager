@@ -3,12 +3,10 @@
 <head>
     <meta name="layout" content="main"/>
     <script src="https://cdn.ckeditor.com/4.7.2/full-all/ckeditor.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
-<div class="header" style="min-height: 400px; height: 400px;" ng-style="{'background-image':headerImage}">
+<div class="header" style="min-height: 400px; height: 400px;">
     <div class="header-op">
         <div class="header-content">
             <div class="header-content-inner">
@@ -188,8 +186,119 @@
 
 </div>
 
+<div class="modal fade" id="modalCambiarImagenLecciones" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1>Subir nuevo Archivo</h1>
+            </div>
+
+            <g:uploadForm action="updateLessonsPhoto">
+                <div class="modal-body">
+                    <div class="row">
+                        <img class="img-thumbnail" src="${course.lessonPhoto}" style="height:250px;max-width: 100%;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Imagen:</label>
+                        <input type="file" name="file" class="form-control">
+                    </div>
+
+                    <input type="hidden" name="courseId" value="${course.id}">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Subir archivo</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalCambiarImagenLecciones">Cerrar</button>
+                </div>
+            </g:uploadForm>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCambiarImagenCursos" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1>Subir nuevo Archivo</h1>
+            </div>
+
+            <g:uploadForm action="updateCoursePhoto">
+                <div class="modal-body">
+                    <div class="row">
+                        <img class="img-thumbnail" src="${course.coursePhoto}" style="height:250px;max-width: 100%;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Imagen:</label>
+                        <input type="file" name="file" class="form-control">
+                    </div>
+
+                    <input type="hidden" name="courseId" value="${course.id}">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Subir archivo</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalCambiarImagenCursos">Cerrar</button>
+                </div>
+            </g:uploadForm>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCambiarImagenTeoria" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1>Subir nuevo Archivo</h1>
+            </div>
+
+            <g:uploadForm action="updateTheoryPhoto">
+                <div class="modal-body">
+                    <div class="row">
+                        <img class="img-thumbnail" src="${course.theoryPhoto}" style="height:250px;max-width: 100%;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Imagen:</label>
+                        <input type="file" name="file" class="form-control">
+                    </div>
+
+                    <input type="hidden" name="courseId" value="${course.id}">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Subir archivo</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalCambiarImagenTeoria">Cerrar</button>
+                </div>
+            </g:uploadForm>
+
+        </div>
+    </div>
+</div>
 
 <section>
+
+    <div class="container">
+        <g:if test="${flash.error}">
+            <div class="alert alert-danger">${flash.error}</div>
+        </g:if>
+        <g:if test="${flash.message}">
+            <div class="alert alert-success">${flash.message}</div>
+        </g:if>
+    </div>
+
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -206,8 +315,12 @@
                             data-target="#modalCrearLeccion" class="btn btn-primary">Crear nueva Leccion</button>
                     <button type="button" data-toggle="modal"
                             data-target="#modalEditarCurso" class="btn btn-primary">Modificar textos de Curso</button>
-                    <button type="button" class="btn btn-primary">Cambiar imagen de Lecciones</button>
-                    <button type="button" class="btn btn-primary">Cambiar imagen de Cursos</button>
+                    <button type="button" data-toggle="modal"
+                            data-target="#modalCambiarImagenLecciones" class="btn btn-primary">Cambiar imagen de Lecciones</button>
+                    <button type="button" data-toggle="modal"
+                            data-target="#modalCambiarImagenCursos" class="btn btn-primary">Cambiar imagen de Cursos</button>
+                    <button type="button" data-toggle="modal"
+                            data-target="#modalCambiarImagenTeoria" class="btn btn-primary">Cambiar imagen de Teoria</button>
                 </div>
             </div>
 
@@ -262,11 +375,7 @@
     </div>
 </section>
 <g:javascript>
-    CKEDITOR.replace('body');
-    CKEDITOR.replace('descript');
-    CKEDITOR.replace('banner');
-    CKEDITOR.replace('welcome');
-    CKEDITOR.replace('theory');
+    CKEDITOR.replaceAll();
 
     $('#botonModalCrearLeccion').click(function () {
         $("#addLessonForm").validate({

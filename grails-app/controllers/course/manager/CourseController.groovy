@@ -58,8 +58,4 @@ class CourseController {
         redirect(uri: "/cursos/${idCurso}/lecciones/")
     }
 
-    def newLayout() {
-
-    }
-
 }

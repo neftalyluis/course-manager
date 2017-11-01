@@ -87,6 +87,16 @@
     </div>
 </div>
 <section>
+
+    <div class="container">
+        <g:if test="${flash.error}">
+            <div class="alert alert-danger">${flash.error}</div>
+        </g:if>
+        <g:if test="${flash.message}">
+            <div class="alert alert-success">${flash.message}</div>
+        </g:if>
+    </div>
+
     <div class="container">
         <div class="btn-group">
             <button class="btn btn-primary" id="openModalCreate" data-toggle="modal"

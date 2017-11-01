@@ -1,12 +1,7 @@
 package course.manager
 
 import com.google.auth.oauth2.ServiceAccountCredentials
-import com.google.cloud.storage.Blob
-import com.google.cloud.storage.BlobId
-import com.google.cloud.storage.BlobInfo
-import com.google.cloud.storage.Bucket
-import com.google.cloud.storage.Storage
-import com.google.cloud.storage.StorageOptions
+import com.google.cloud.storage.*
 import grails.transaction.Transactional
 import org.springframework.beans.factory.InitializingBean
 
@@ -23,10 +18,10 @@ class GoogleCloudStorageService implements InitializingBean {
     void afterPropertiesSet() throws Exception {
         try {
             storage = StorageOptions.newBuilder()
-            .setProjectId(grailsApplication.config.getRequiredProperty('google.cloud.storage.projectId'))
-            .setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(grailsApplication.config.getRequiredProperty('google.cloud.storage.credentialsFile'))))
-            .build()
-            .getService()
+                    .setProjectId(grailsApplication.config.getRequiredProperty('google.cloud.storage.projectId'))
+                    .setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(grailsApplication.config.getRequiredProperty('google.cloud.storage.credentialsFile'))))
+                    .build()
+                    .getService()
             bucket = grailsApplication.config.getRequiredProperty('google.cloud.storage.bucket')
             ready = true
         } catch (all) {
@@ -51,8 +46,8 @@ class GoogleCloudStorageService implements InitializingBean {
 
     def getUrlForObject(String blobName, Long daysDuration = 3650) {
 
-        if(!ready) {
-            return ""   
+        if (!ready) {
+            return ""
         } else {
             BlobId blobId = BlobId.of(bucket, blobName);
             Blob blob = storage.get(blobId);
@@ -61,7 +56,7 @@ class GoogleCloudStorageService implements InitializingBean {
             } else {
                 log.warn("Can't get URL for Blob: $blobName")
                 return ""
-            }   
+            }
         }
     }
 
@@ -73,7 +68,7 @@ class GoogleCloudStorageService implements InitializingBean {
     }
 
     def removeObject(String objectUrl) {
-        BlobId blobId = BlobId.of(bucket, objectUrl)
+        BlobId blobId = BlobId.of(bucket, objectUrl ?: "")
         boolean deleted = storage.delete(blobId)
         return deleted
     }

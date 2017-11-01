@@ -52,6 +52,40 @@
 
 </div>
 
+<div class="modal fade" id="modalCambiarImagen" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1>Subir nuevo Archivo</h1>
+            </div>
+
+            <g:uploadForm action="updateImageLesson" name="updateImageLessonForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <img class="img-thumbnail" src="${lesson.headerPhoto}" style="height:250px;max-width: 100%;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Imagen:</label>
+                        <input type="file" name="file" class="form-control">
+                    </div>
+
+                    <input type="hidden" name="lessonId" value="${lesson.id}">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Subir archivo</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalCambiarImagen">Cerrar</button>
+                </div>
+            </g:uploadForm>
+
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modalQuitarArchivo" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -75,6 +109,16 @@
 </div>
 
 <section>
+
+    <div class="container">
+        <g:if test="${flash.error}">
+            <div class="alert alert-danger">${flash.error}</div>
+        </g:if>
+        <g:if test="${flash.message}">
+            <div class="alert alert-success">${flash.message}</div>
+        </g:if>
+    </div>
+
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -87,6 +131,10 @@
                 <div class="btn-group">
                     <button type="button" id="botonModalCrearLeccion" data-toggle="modal"
                             data-target="#modalAgregarArchivo" class="btn btn-primary">Agregar nuevo Archivo</button>
+                    <button type="button" data-toggle="modal"
+                            data-target="#modalCambiarImagen"
+                            class="btn btn-primary">Cambiar imagen de Leccion</button>
+
                 </div>
             </div>
 
