@@ -6,6 +6,9 @@ addons:
     organization: "neftalyluis-github"
     token:
       secure: "qsxLR8ECp7gYkfp6cKsBmuCYcDcptaDzLSsGyVf+Jul2dgyD68DCYFQQM2jq7F+AL/8YsT/LvFCJcHvCgzyTMTIEDDbN2fHW4+iFMw3U9i4RLcY/ejEOTsFJ6EsVaquUNCOz+3RiXmo8lvwnVL3/EP2vva2aVriLfeJxCY3GB9P/oCf8N4gkxnoVb3txN+ZAApebK/1FqXZ6YMGlmUOy8Z1Ww1V563ARNFb4hOrZOvOzO/sp/sDC/K5vUskg1hzgnB51iUb2pqN1sMaKt5NDEnFLMZBJgVpJ3AisFoWkh5LfD1LyoH/8Jcz2vazCN7CU3vVhcGk0yyDOfDL0v04A3ydvBHt1N1mz6w9xSXWU6/iTSHZogSfgHsBDdfjY0BTbAfQ6I4j7MrFGHCWnjTf/V3B5fIHXTwjAsuy7PX9mWHwCumbUgF4+7qsFYCkAWFQdrfhT8l8nNMW+vFlBR11zk2hs2mFqOxBe4xCAyazlSgxqErtFv4KkZUB+9EunOqorBGj7OgozvosOX3mmH2WfcCiNY9jLxZXXdK3KluRqvlW13PpT+HdiomDFEZrIsoP3moBfxALUQ1RYlZ6fUah88YT6mEnPnuZhnwjcWCkCOC5atKn2XxTOuFMffmJLy2Cyif6YYsDLaJdQoKD33Kzs4WFG/cO9/itkpEM0b0lr3ko="
+  apt:
+      packages:
+          - sshpass
 jdk:
  - oraclejdk8
 before_script:
@@ -17,6 +20,15 @@ script:
 before_cache:
  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+after_success:
+   - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && export SSHPASS=$DEPLOY_PASS
+   - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && sshpass -e scp -o stricthostkeychecking=no build/libs/course-manager-0.1.war $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+env:
+    global:
+      - secure: "Vgcj5C/ojpIVeEGh5jS1sjx72PGs6r5ES20nNioCSQr5p8v/UPELVgBCYlqGS52KiFBY/C0sPxosS0j95OtmSqG97YkCTeyE/F/4L40yyLt/PmNChXTo/jyr5euj+iDRIpmDZ7D5kR2EKpzyKV9/fOWNXZNRSdHwWVYBe3WOYO71KhPLgrUE5lJRADdtdQl96LEtxnm+6pDXz7Pac8ypMJrfe5Z5ubezUiQrqvKHvOjP8isYaiq3ZrJPnvaOjMeRy//3Zb3ddiFc+RBYyH59b9Bb59DGDVmJo5WWAHSCJ4IVOY88HbwE7FeodkXxsKzEOSRbFV4g7FI94DjIBf9xKWZb2nHYl2mKZrr2NrGLT8lOasp6dQkxwxWdK0wsDEU0lh1RpC22UBV+AMdyc9Pqx8GK8+OMXGNDvJDTPvSDwy566RE2bCduV9W7giDfEvu8cWgZNFUO/oof/3bMXpBSmx4sTkAgALUKkekOinq9GYoUSoMWeiIS1RLFjKb1vsozL1h4ykyKYOuhPsyvQLUSoa+tKyp4dmWV2EgJQhV+A70ZMKdY/fP1mOHASgAGJHKi2xqxyGOrmUaXHiXT6nJFlwi+niiEp6pux5QXxOCoLdrfpJFwhG+IZ+5G38n5EMFEjXWHoXM6ob55nO9d9jm5sbTaAEYKKeelAUBAIsr/DWI="
+      - secure: "Bj3iYb0y7kiFw97orPfKd/151I/zaGixcTzeSG1GGfUEANVMITZvaASogYKO3pQaoJ3mmmgRLlnQw4CMpw5hXP7TAseev6yrhv/QxWPNcIn7JzI006oPAAI65ZvBKZF3qW1Esa1s3alQDvtcQfFhPKDqUT4jxBmbj5CKPLl8kIu4Ox/sO24tJiThBTnDuRUcOlFyttY5ZmCCVE7assxM/PFgm+8+agrAb8aQwnUpPctKiMHkdB7YtF9GaTePNl4TpeQXSaKuN8yL8PqLfDDV3WXnas1eMDxZNScmRzaHsXTTFFCsgK9H4aPgHdI5dz1gYuqGKJ98ubelWXKQ+5Jj9zEVIX5Q2GfiCLenZ9WDALwhgo5QXzhQebsq4ce44ht6wtq9w86MRscC0GVstGNgYT3O6DUD5HyPPIX7hKNWaXkKZ3EcaAqKS3RLfmASgDKo3Fv2vtsEboK19Q2TA+a0Qfet+3+5OtTGHElC0t7TaDbrw6k9VAJoV6wKbnm2BV5UuH1Jan7icrTzMsOr+mCGRIVj4DfQ3Jl2L/IJBqIFhjkc7ldO+bRv+etzxViyl2wdP8awmRIuj7abGNzrePhmCHQoPsf+C2PLofmfY6ldsvyIBhctqeJPy/uWIHSw5LnfuW8Dy/aiSj+ZTmwYkI3cKOHuNYFBKiyNTAk37tNbRDo="
+      - secure: "BycPLGCogYnum6R+U2D9oyDGtHDZBKo9/nU7+h7rJi4ZCC8x/C4WWoteWhYKWfpzKCP1nDCX/QLKstb2+T7A6JjNlJiEyft8mzFNX/viqJ42Sz1B72NKWm5kD68Z18T7Qu6wdBYd1r4mpNnOVz9I13i1mAwiswPkHUDuCs0hKM32Q77V4rmc2YUA6Q6ke1tBC6yF8dY7i0vlDz0X+QKVkgZrOgG+bYoJSXB9/U43+90glJHbAhVNOMhqzVwOcrzh4ZBKvquoI7eXRdYfFjoTvsTVe4/Q+/H+SOpF4cif6UOAvkiaQGUind6JTJi13+HKixq0vhWtRdpkHeZJiSq39ORBHTNEkBpFgdmyWEYxF5+LAmhtlFVA0ujMzDpv7hjPxlraSeFwp+O6i23egsSVE50sLvjlm701c9U5Ug7F1SVAJ25ryJ/he0WHYEjZ9/Qvz+VggKn1LdCdUUvkBQhlPhiXYQVb/tuxZk5oELS2ZII5V3ygVFHo9G3RvgjuPe0zVhiX29dNmA+8klSE8pTza1GWaJa44mxfv65jrjwGUINmLV5CKw6X/r5wi4l0Bwn21oycV7Zi0MlhI2SvI3hmfltMuQBn+Dsss5h34h6R2lHdbNHvqxShGq2mdKu++dMMIA5pYQQ3dYQHnKn6KcDCoK7VyQS4smyDAhFjo82l/Qs="
+      - secure: "AoUpodNM9+1sPc8ZZMD0kWZQO61fsXk1qjcN2PsTO8mhJkzpd2Rzk8sDjzCpV/O0brKSpg4LPxDPdLPwKIVQKDagY5tYh6wuH+eK8TK8h8sFs3/6RO5wgLRnQoDxTqPb0Wx+FXN87JCvPKLi9mvzdnb9IVQU+kmJgKQobces/wPXf+RrPFskcS8jD7MCGQrX3O3qReScMEouDOyU2dOwUN0r1vf7FSMUmQYImZejlRWrNehFUg6jVgLZSzg4gJPLVE9hBCtsJXED0Ge+AvktwyhsTJl6m7LK0EuJ4LHAbM/5AFrp0VSYgynf7CZOHsOiHt+jWURPMZXNfw7eWPR37F5LLUZE8IdY/F4mTL0aNQzsZ8s+7KhnVM4xW6KKCg1ffbu60j7FqxSnLp0Yyy5pFEMnmCT+KkjQn+D5f4Qln8udoLPs3Rj1BG4/DhjuZfLyX5v4FJg+ckon2t1p6UkvaBS2itkqZBOhWWdoszmVM/xyh/oA4QsPwXQT8n9rsvc9DZuTiS33W6OblboYr7UoICErJ1aewQOH58W3TA9fZj8UibfnRz/LHpS/HU68uDEcaPCiZu1Il/f6w59xZUOe+XHb/unk3WIeV42tmc8WYNHINQWNo6I1l2nBuz51PZ1raohGP5vsFhMuOBGE2RuZ9vOtNTMzY7Eei2BHrUJ/MYQ="
 cache:
  directories:
    - '$HOME/.m2/repository'
