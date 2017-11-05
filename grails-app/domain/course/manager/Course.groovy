@@ -2,7 +2,7 @@ package course.manager
 
 class Course {
 
-    static hasMany = [lessons: Lesson, students: Student]
+    static hasMany = [lessons: Lesson, students: Student, courseFiles: CourseFile]
     String name
     //Texto de descripcion del curso
     String description

@@ -24,8 +24,17 @@
 </div>
 
 <section>
+
     <div class="container" style="padding-top: 40px; padding-bottom: 100px;">
         ${raw(course.theory)}
+    </div>
+
+    <div class="container text-center">
+        <div class="list-group">
+            <g:each in="${course.courseFiles}" var="file">
+                <a class="btn btn-primary " download href="${file.fileURL}">${file.name}</a>
+            </g:each>
+        </div>
     </div>
 
     <p class="text-center" style="font-size: 25px;text-align: center; font-family: 'Great Vibes', cursive;">

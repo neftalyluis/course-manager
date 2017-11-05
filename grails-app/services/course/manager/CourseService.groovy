@@ -425,4 +425,46 @@ class CourseService {
         }
     }
 
+    def addFileCourse(Long courseId, byte[] file, String contentType, String filename) {
+        def course = Course.get(courseId)
+        if (course) {
+            def bucket = "cursos/${course.url}/${filename}"
+            log.info("Uploading file $filename")
+            def uploadedFile = googleCloudStorageService.replaceObject(bucket, file, contentType)
+            if (uploadedFile) {
+                log.info("Signing file $filename")
+                def signedUrl = googleCloudStorageService.getUrlForObject(bucket)
+                log.info("Saving URL $signedUrl")
+                def newCourseFile = new CourseFile(
+                        course: course,
+                        fileURL: signedUrl,
+                        bucket: bucket,
+                        name: filename).save(flush: true, failOnError: true)
+                return newCourseFile
+            } else {
+                return [error: "Ocurrio un Error, intenta mas tarde"]
+            }
+        } else {
+            return [error: "No se encontro curso con id: $courseId cuando se trata de agregar archivo"]
+        }
+    }
+
+    def removeFileCourse(Long fileLessonId) {
+        def fileLesson = CourseFile.get(fileLessonId)
+        if (fileLesson) {
+            def result = googleCloudStorageService.removeObject(fileLesson.bucket)
+            log.info("Bucket removed $fileLesson.bucket")
+            if (result) {
+                fileLesson.delete(flush: true)
+                log.info("FileLesson entity removed with id $fileLessonId ")
+            } else {
+                log.info("Can't remove LessonFileEntity with id $fileLessonId")
+                return [error: "No se pudo eliminar CourseFile con id $fileLessonId"]
+            }
+        } else {
+            log.info("No fileLessonId Found: $fileLessonId")
+            return [error: "No se encontro Archivo de curso con id: $fileLessonId cuando se trata de eliminar archivo"]
+        }
+    }
+
 }

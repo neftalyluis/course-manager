@@ -13,7 +13,7 @@
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">Archivos de Lecciones</h1>
+                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">Archivos de Descripciones Generales</h1>
                 <hr>
             </div>
         </div>
@@ -29,14 +29,14 @@
                 <h1>Subir nuevo Archivo</h1>
             </div>
 
-            <g:uploadForm action="addFileToLesson" name="addLessonForm">
+            <g:uploadForm action="addFileToCourse" name="addLessonForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Archivo:</label>
                         <input type="file" name="file" class="form-control">
                     </div>
 
-                    <input type="hidden" name="lessonId" value="${lesson.id}">
+                    <input type="hidden" name="lessonId" value="${course.id}">
 
                 </div>
 
@@ -52,45 +52,11 @@
 
 </div>
 
-<div class="modal fade" id="modalCambiarImagen" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h1>Subir nuevo Archivo</h1>
-            </div>
-
-            <g:uploadForm action="updateImageLesson" name="updateImageLessonForm">
-                <div class="modal-body">
-                    <div class="row">
-                        <img class="img-thumbnail" src="${lesson.headerPhoto}" style="height:250px;max-width: 100%;">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Imagen:</label>
-                        <input type="file" name="file" class="form-control">
-                    </div>
-
-                    <input type="hidden" name="lessonId" value="${lesson.id}">
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Subir archivo</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#modalCambiarImagen">Cerrar</button>
-                </div>
-            </g:uploadForm>
-
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="modalQuitarArchivo" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <g:form action="removeFileFromLesson">
-                <input type="hidden" name="lessonId" value="${lesson.id}">
+            <g:form action="removeFileFromCourse">
+                <input type="hidden" name="lessonId" value="${course.id}">
                 <input type="hidden" name="lessonFileId" id="removeLessonFileId" value="#">
 
                 <div class="modal-header">
@@ -123,7 +89,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-8 col-sm-6 ">
-                    <h1 class="text-left">${lesson.name} <small>Leccion</small></h1>
+                    <h1 class="text-left">${course.name} <small>Curso</small></h1>
                 </div>
             </div>
 
@@ -131,10 +97,6 @@
                 <div class="btn-group">
                     <button type="button" id="botonModalCrearLeccion" data-toggle="modal"
                             data-target="#modalAgregarArchivo" class="btn btn-primary">Agregar nuevo Archivo</button>
-                    <button type="button" data-toggle="modal"
-                            data-target="#modalCambiarImagen"
-                            class="btn btn-primary">Cambiar imagen de Leccion</button>
-
                 </div>
             </div>
 
@@ -152,8 +114,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <g:if test="${lessonFiles}">
-                            <g:each var="file" in="${lessonFiles}">
+                        <g:if test="${course.courseFiles}">
+                            <g:each var="file" in="${course.courseFiles}">
                                 <tr>
                                     <td>${file.name}</td>
                                     <td class="hidden">${file.id}</td>
@@ -173,7 +135,7 @@
                         </g:if>
                         <g:else>
                             <tr>
-                                <td align="center">Esta leccion no tiene ningun archivo <a data-toggle="modal"
+                                <td align="center">Este curso no tiene ningun archivo  para la pagina de recomendaciones <a data-toggle="modal"
                                                                                            data-target="#modalAgregarArchivo">Crea uno</a>
                                 </td>
                             </tr>

@@ -14,7 +14,6 @@ class CourseManagerController {
     def checkCourse() {
         def course = courseService.findById(params.long('id'))
         if (course) {
-            courseService.getQuantityOfLessonsForCourse(params.long('id'))
             [course: course]
         } else {
             redirect uri: "/notFound"
@@ -69,7 +68,6 @@ class CourseManagerController {
         }
     }
 
-
     def checkLesson() {
         Long courseId = params.long('courseId')
         Long lessonId = params.long('lessonId')
@@ -95,6 +93,51 @@ class CourseManagerController {
             def lessonFiles = courseService.getLessonFiles(lessonId)
             def lesson = courseService.getLesson(lessonId)
             [lessonFiles: lessonFiles, lesson: lesson]
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
+    }
+
+    def checkCourseFiles() {
+        def course = courseService.findById(params.long('courseId'))
+        if (course) {
+            [course: course]
+        } else {
+            redirect uri: "/notFound"
+        }
+    }
+
+    def addFileToCourse() {
+        Long lessonId = params.long('lessonId')
+        def file = request.getFile('file')
+        if (!file?.empty && lessonId) {
+            def lesson = courseService.addFileCourse(lessonId, file.bytes, file.contentType, file.originalFilename)
+            if (!lesson.hasProperty('error')) {
+                flash.message = "Nuevo archivo de curso subido correctamente"
+                redirect(action: 'checkCourseFiles', params: [courseId: lessonId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkCourseFiles', params: [courseId: lessonId])
+            }
+        } else {
+            flash.error = "Ocurrio un error, intente en otro momento"
+            redirect(action: 'index')
+        }
+    }
+
+    def removeFileFromCourse() {
+        Long lessonFileId = params.long('lessonFileId')
+        Long lessonId = params.long('lessonId')
+        if (lessonFileId && lessonId) {
+            def lesson = courseService.removeFileCourse(lessonFileId)
+            if (!lesson?.hasProperty('error')) {
+                flash.message = "Archivo Eliminado"
+                redirect(action: 'checkCourseFiles', params: [courseId: lessonId])
+            } else {
+                flash.error = "Ocurrio un error, intente en otro momento"
+                redirect(action: 'checkCourseFiles', params: [courseId: lessonId])
+            }
         } else {
             flash.error = "Ocurrio un error, intente en otro momento"
             redirect(action: 'index')

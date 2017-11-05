@@ -11,7 +11,7 @@
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">CURSOS</h1>
+                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">${course.name}</h1>
                 <hr>
             </div>
         </div>
@@ -321,6 +321,17 @@
                             data-target="#modalCambiarImagenCursos" class="btn btn-primary">Cambiar imagen de Cursos</button>
                     <button type="button" data-toggle="modal"
                             data-target="#modalCambiarImagenTeoria" class="btn btn-primary">Cambiar imagen de Teoria</button>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="btn-group">
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="btn-group">
+                    <g:link action="checkCourseFiles" params="[courseId: course.id]" type="button" class="btn btn-primary">Modificar Archivos de Descripcion General</g:link>
                 </div>
             </div>
 
