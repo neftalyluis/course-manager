@@ -60,5 +60,6 @@ class Course {
         coursePhoto sqlType: "text"
         lessonPhoto sqlType: "text"
         theoryPhoto sqlType: "text"
+        info sqlType: "text"
     }
 }
