@@ -8,6 +8,5 @@
 //= require /webjars/jquery/3.2.1/jquery.min.js
 //= require /webjars/bootstrap/3.3.7/js/bootstrap.min.js
 //= require /webjars/jquery-validation/1.17.0/jquery.validate.min.js
-//= require_tree .
 //= require_self
 

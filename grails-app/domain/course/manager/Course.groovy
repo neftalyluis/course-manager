@@ -53,6 +53,7 @@ class Course {
 
     //Agregamos este mapping para que no la haga de a pedo H2 e incluso MySQL
     static mapping = {
+        banner sqlType: "text"
         welcome sqlType: "text"
         description sqlType: "text"
         theory sqlType: "text"

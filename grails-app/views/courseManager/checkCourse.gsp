@@ -48,7 +48,7 @@
                 <h1 id="tituloEditarLeccion"></h1>
             </div>
 
-            <g:form action="updateLesson" name="addLessonForm">
+            <g:uploadForm action="updateLesson" name="addLessonForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nombre de la Lecion:</label>
@@ -75,7 +75,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#modalEditarLeccion">Cerrar</button>
                 </div>
-            </g:form>
+            </g:uploadForm>
         </div>
     </div>
 
@@ -88,7 +88,7 @@
             <div class="modal-header">
                 <h1>Editar Curso</h1>
             </div>
-            <g:form action="updateCourse" name="updateCourseForm">
+            <g:uploadForm action="updateCourse" name="updateCourseForm">
                 <div class="modal-body">
                     <input type="hidden" name="id" value="${course.id}">
 
@@ -139,7 +139,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#modalEditarCurso">Cerrar</button>
                 </div>
-            </g:form>
+            </g:uploadForm>
         </div>
     </div>
 
@@ -153,7 +153,7 @@
                 <h1>Crear nueva Leccion</h1>
             </div>
 
-            <g:form action="addLessonToCourse" name="addLessonForm">
+            <g:uploadForm action="addLessonToCourse" name="addLessonForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nombre de la Lecion:</label>
@@ -179,7 +179,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#modalCrearLeccion">Cerrar</button>
                 </div>
-            </g:form>
+            </g:uploadForm>
 
         </div>
     </div>
@@ -386,7 +386,11 @@
     </div>
 </section>
 <g:javascript>
-    CKEDITOR.replaceAll();
+
+    CKEDITOR.plugins.addExternal( 'base64image', '/assets/base64image/', 'plugin.js' );
+    CKEDITOR.replaceAll(function( textarea, config ) {
+        config.extraPlugins = 'base64image';
+    });
 
     $('#botonModalCrearLeccion').click(function () {
         $("#addLessonForm").validate({

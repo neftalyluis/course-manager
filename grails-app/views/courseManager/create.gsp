@@ -21,7 +21,7 @@
     <div class="container">
         <h2>Crear nuevo Curso</h2>
 
-        <g:form action="createCourse" name="createCourse">
+        <g:uploadForm action="createCourse" name="createCourse">
 
             <div class="form-group">
                 <label>Nombre del Curso:</label>
@@ -64,12 +64,15 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>
-        </g:form>
+        </g:uploadForm>
     </div>
 </section>
 
 <g:javascript>
-    CKEDITOR.replaceAll();
+    CKEDITOR.plugins.addExternal( 'base64image', '/assets/base64image/', 'plugin.js' );
+    CKEDITOR.replaceAll(function( textarea, config ) {
+        config.extraPlugins = 'base64image';
+    });
 
     $("#createCourse").validate({
         rules: {
