@@ -22,6 +22,16 @@ appender('STDOUT', ConsoleAppender) {
     }
 }
 
+appender('Sentry', io.sentry.logback.SentryAppender) {
+    filter(ch.qos.logback.classic.filter.ThresholdFilter) {
+        level = WARN
+    }
+    filter(ch.qos.logback.classic.filter.ThresholdFilter) {
+        level = ERROR
+    }
+
+}
+
 def targetDir = BuildSettings.TARGET_DIR
 if (Environment.isDevelopmentMode() && targetDir != null) {
     appender("FULL_STACKTRACE", FileAppender) {
@@ -33,4 +43,4 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
     }
     logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false)
 }
-root(INFO, ['STDOUT'])
+root(INFO, ['STDOUT', 'Sentry'])
