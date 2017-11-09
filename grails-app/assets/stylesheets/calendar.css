@@ -105,7 +105,7 @@ li#nextmonth li     {
     margin: 20px 15px;
 }
 .head-h{
-    background: url(../images/ejercicios-calendario.jpg) !important;
+    background: url(../images/ejercicios-calendario.jpg);
     height: 400px !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;

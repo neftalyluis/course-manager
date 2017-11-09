@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div class="header" style="min-height: 400px; height: 400px;background: url(${lesson.headerPhoto ?: "/assets/autoestima.jpg"});">
+<div class="header" style="min-height: 400px; height: 400px;background: url('${lesson.headerPhoto ?: "/assets/autoestima.jpg"}');">
     <div class="header-op">
         <div class="header-content">
             <div class="header-content-inner">

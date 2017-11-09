@@ -11,7 +11,7 @@
 
 <body>
 <div class="h-leccion"
-     style="min-height: 400px; height: 400px; background: url(${course.theoryPhoto ?: "/assets/autoestima.jpg"});">
+     style="min-height: 400px; height: 400px; background: url('${course.theoryPhoto ?: "/assets/autoestima.jpg"}');">
     <div class="header-op op-mob" style="height: 400px">
         <div class="header-content">
             <div class="header-content-inner">

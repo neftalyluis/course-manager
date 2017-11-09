@@ -11,7 +11,7 @@
 
 <body>
 <div class="header head-calendar head-h"
-     style="min-height: 400px; background: url(${course.lessonPhoto ?: "/assets/autoestima.jpg"});">
+     style="min-height: 400px; background: url('${course.lessonPhoto ?: "/assets/autoestima.jpg"}');">
     <div class="header-op ttl-padding" style="height: auto; padding: 173px; max-height: 400px;">
         <a href="/cursos/${course.url}/teoria" class="btn btn-primary btn-xl"
            style="font-size: 18px; background: #da2d7d;">${course.theoryButton}</a>

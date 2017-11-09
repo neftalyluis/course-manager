@@ -227,6 +227,15 @@ class CourseService {
         return lessonFiles
     }
 
+    def getLessonFromLessonFile(Long idLessonFile){
+        def lesson = Lesson.withCriteria(uniqueResult: true) {
+            lessonFiles {
+                eq("id", idLessonFile)
+            }
+        }
+        return lesson
+    }
+
     def getLessonsForCourse(courseId) {
         def lessons = Lesson.withCriteria {
             course {
@@ -311,13 +320,16 @@ class CourseService {
         }
     }
 
+    //Debe de haber un epdo raro aqui, supongo que es con la relacion de Leccion
     def removeFileLesson(Long fileLessonId) {
         def fileLesson = LessonFile.get(fileLessonId)
         if (fileLesson) {
             def result = googleCloudStorageService.removeObject(fileLesson.bucket)
             log.info("Bucket removed $fileLesson.bucket")
             if (result) {
-                fileLesson.delete(flush: true)
+                def lesson = getLessonFromLessonFile(fileLessonId)
+                lesson.removeFromLessonFiles(fileLesson)
+                fileLesson.delete(flush: true, failOnError: true)
                 log.info("FileLesson entity removed with id $fileLessonId ")
             } else {
                 log.info("Can't remove LessonFileEntity with id $fileLessonId")
