@@ -25,10 +25,8 @@
                     <h3 class="text-center" style="color: #da2d7d;">${course.name}</h3>
                     <img src="${course.coursePhoto ?: assetPath(src: '/portfolio/thumbnails/2-2.jpg')}"
                          style="max-width: 100%; height: auto;">
-                    <button class="btn btn-primary"
-                            style="margin-left: 120px; margin-top: 20px;"><a href="/cursos/${course.url}/bienvenida"
-                                                                             style="color: #fff; text-decoration: none;">Iniciar</a>
-                    </button>
+                    <a href="/cursos/${course.url}/bienvenida" style="margin-left: 120px; margin-top: 20px;"
+                        class="btn btn-primary">Iniciar</a>
                 </div>
             </div>
         </g:each>

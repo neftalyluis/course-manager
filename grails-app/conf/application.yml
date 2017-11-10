@@ -154,5 +154,5 @@ google:
     storage:
       credentialsFile: '/Users/macmini-vinco/Downloads/amor-a-mi-a6cb89c37fbc.json'
       projectId: 'amor-a-mi-d48eb'
-      bucket: 'amor-a-mi-d48eb.appspot.com'
+      bucket: 'staging.amor-a-mi-d48eb.appspot.com'
 
