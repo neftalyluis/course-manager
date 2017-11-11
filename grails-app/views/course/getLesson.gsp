@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div class="header" style="min-height: 400px; height: 400px;background: url('${lesson.headerPhoto ?: "/assets/autoestima.jpg"}');">
+<div class="header header-leccion" style="min-height: 400px; height: 400px;background: url('${lesson.headerPhoto ?: "/assets/autoestima.jpg"}');">
     <div class="header-op">
         <div class="header-content">
             <div class="header-content-inner">
@@ -22,9 +22,9 @@
     </div>
 </div>
 
-<div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+<div class="container container-leccion" style="padding-top: 100px; padding-bottom: 100px;">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 leccion-text">
             <p>${raw(lesson.body)}</p>
         </div>
 
@@ -32,7 +32,7 @@
             <div style="margin-top: 70px; padding-left: 15px;">
                 <div class="row exe-buttons" style="padding: 15px;">
                     <p>Número de ejercicios por día:</p>
-                    <div style="border-radius: 100%; width: 30px; height: 30px ; margin-left: 20px;margin-bottom: 20px; background: #da2d7d; color: #fff; padding: 4px 11px; font-weight: bold;">${lesson.lessonFiles.size()}</div>
+                    <div class="ejer-numero-btn" style="border-radius: 100%; width: 30px; height: 30px ; margin-left: 20px;margin-bottom: 20px; background: #da2d7d; color: #fff; padding: 4px 11px; font-weight: bold;">${lesson.lessonFiles.size()}</divc>
                     <a class="btn btn-primary" style="margin: 20px " href="/cursos/${courseUrl}/lecciones/${lesson.url}/marcar">Marcar como completado</a>
                 </div>
 
