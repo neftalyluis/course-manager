@@ -420,3 +420,28 @@ body {
 form .error {
     color: #ff0000;
 }
+
+.yellow-bar{
+  background-color: yellow;
+  margin-top: 100px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.pk-bg{
+  background: #da2d7d;
+  color: #ffffff;
+  text-align: center;
+}
+.ebook-img{
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.logo-ebook{
+  max-width: 80%;
+  margin:20px 10%;
+  height: auto;
+}
