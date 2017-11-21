@@ -48,7 +48,7 @@
         </div>
     </div>
 </section>
-<g:javascript>
+<asset:script type="text/javascript">
 
     function readURL(input) {
 
@@ -66,6 +66,6 @@
     $("#inputPhoto").change(function () {
         readURL(this);
     });
-</g:javascript>
+</asset:script>
 </body>
 </html>

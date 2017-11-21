@@ -31,7 +31,7 @@
 
     <div class="container text-center">
         <div class="list-group">
-            <g:each in="${course.courseFiles}" var="file">
+            <g:each in="${course.courseFiles.sort()}" var="file">
                 <a class="btn btn-primary " download href="${file.fileURL}">${file.name}</a>
             </g:each>
         </div>

@@ -139,7 +139,7 @@
         </table>
     </div>
 </section>
-<g:javascript>
+<asset:script type="text/javascript">
     $(document).ready(function () {
         $('#students').DataTable();
     });
@@ -185,6 +185,6 @@
             }
         });
     });
-</g:javascript>
+</asset:script>
 </body>
 </html>

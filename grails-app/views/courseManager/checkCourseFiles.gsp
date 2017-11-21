@@ -144,7 +144,7 @@
         </div><!--Container-fluid-->
     </div>
 </section>
-<g:javascript>
+<asset:script type="text/javascript">
 
 
     $('.modalQuitarArchivo').click(function () {
@@ -154,6 +154,6 @@
         $('#titleRemoveLessonFile').text("¿Estás seguro de querer borrar el archivo: " + lessonFile + "?")
     })
 
-</g:javascript>
+</asset:script>
 </body>
 </html>

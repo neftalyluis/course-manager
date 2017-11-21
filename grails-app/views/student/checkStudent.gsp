@@ -238,7 +238,7 @@
         </div>
     </div>
 </section>
-<g:javascript>
+<asset:script type="text/javascript">
     $('.modalQuitarCurso').click(function () {
         var courseId = $(this).parent().parent().prev().prev().text()
         var courseName = $(this).parent().parent().prev().text()
@@ -295,6 +295,6 @@
             }
         });    
     })
-</g:javascript>
+</asset:script>
 </body>
 </html>

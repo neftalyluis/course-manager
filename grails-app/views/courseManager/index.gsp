@@ -86,7 +86,7 @@
         </table>
     </div>
 </section>
-<g:javascript>
+<asset:script type="text/javascript">
     $(document).ready(function () {
 
         $('.modalQuitarCurso').click(function () {
@@ -96,6 +96,6 @@
             $('#titleRemoveCourse').text("¿Estás seguro de querer borrar el curso: " + courseName + "?")
         })
     });
-</g:javascript>
+</asset:script>
 </body>
 </html>

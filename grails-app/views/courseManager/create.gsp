@@ -68,7 +68,7 @@
     </div>
 </section>
 
-<g:javascript>
+<asset:script type="text/javascript">
     CKEDITOR.plugins.addExternal( 'base64image', '/assets/base64image/', 'plugin.js' );
     CKEDITOR.replaceAll(function( textarea, config ) {
         config.extraPlugins = 'base64image';
@@ -99,6 +99,6 @@
             form.submit();
         }
     });
-</g:javascript>
+</asset:script>
 </body>
 </html>
