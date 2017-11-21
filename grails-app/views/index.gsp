@@ -231,7 +231,7 @@
 
             <div class="item">
                 <blockquote style="padding: 20px 150px;">
-                    <img src="${assetPath(src: 'jhaky.png')}" class="paola">
+                    <img src="${assetPath(src: 'jhaky.jpg')}" class="paola">
 
                     Buenas noches, excelente coach, vi la página a partir de allí empezó mi cambio, fue un programa que duro 30 días, me siento muy contenta, pues descubrí que puedo mejorar, ahora puedo decir que soy otra, muy segura, muy entusiasta, divertida y me veo hasta más bonita. Agradezco a Pao, por sus enseñanzas y paciencia, esta fue la mejor aventura de conversión en mi vida y también gane un grupo de amigas muy divertidas. Mil gracias Pao desde Ayacucho- Peru.
 
@@ -254,7 +254,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div
+    </div>
 </section>
 
 <section id="contact">
