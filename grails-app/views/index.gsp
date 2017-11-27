@@ -189,15 +189,10 @@
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-    </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item">
-            <img src="http://srcimg.com/400/400" class="round-image">
+            <img src="${assetPath(src: 'leysha.png')}" class="round-image">
             <blockquote>
 
                 Paola muchas gracias por tu atención, por tus consejos excelente programa lo vi como un reto , un reto de 30 días LOGRE encontrarme a mí misma mucho antes de los 30 días encontré ese amor esa paz y tranquilidad que no QUIERO SOLTAR te amo !!muchas gracias!!!
@@ -205,11 +200,11 @@
                 <br>-Leysha, México
             </blockquote>
 
-            <a href="" class="btn btn-primary btn-xl text-center btn-testimonial">Ver más</a>
+            <g:link controller="landings" action="testimony" class="btn btn-primary btn-xl text-center btn-testimonial">Ver más</g:link>
         </div>
 
         <div class="item">
-            <img src="http://srcimg.com/400/400" class="round-image">
+            <img src="${assetPath(src: 'mariela.png')}"  class="round-image">
             <blockquote>
 
                 Muy buena coach Paola apareció en el peor momento de mi vida y me lo cambio para mejor yo me estoy divorciando y ella me alentó a seguir adelante me dio fuerzas y muchas herramientas para afrontar mi vida desde una nueva perspectiva en una palabra fue mi Ángel salvador en medio de una tormenta muchas gracias Paola.
@@ -217,11 +212,11 @@
                 <br>-Mariela, Uruguay
             </blockquote>
 
-            <a href="" class="btn btn-primary btn-xl text-center btn-testimonial">Ver más</a>
+            <g:link controller="landings" action="testimony" class="btn btn-primary btn-xl text-center btn-testimonial">Ver más</g:link>
         </div>
 
         <div class="item active">
-            <img src="http://srcimg.com/400/400" class="round-image">
+            <img src="${assetPath(src: 'jhaky.jpg')}" class="round-image">
             <blockquote >
 
 
@@ -231,7 +226,7 @@
                 <br>-Jhaky, Perú
             </blockquote>
 
-            <a href="" class="btn btn-primary btn-xl text-center btn-testimonial">Ver más</a>
+            <g:link controller="landings" action="testimony" class="btn btn-primary btn-xl text-center btn-testimonial">Ver más</g:link>
 
         </div>
 

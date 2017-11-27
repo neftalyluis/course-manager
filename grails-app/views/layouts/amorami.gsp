@@ -48,17 +48,21 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-
-<g:layoutBody/>
+<img src="/assets/flower.png" class="flor-top">
+<div class="main-content">
+    <h1 class="title-2" style="text-align: center;">Amor a mi 2.0 <sub>by Paola Vega</sub></h1>
+    <g:layoutBody/>
+</div>
 
 <footer style="background-color: #E32A76; color: #fff; padding: 30px;">
     <p>Derechos de autor <i class="fa fa-copyright"></i> 2017 Paola Vega</p>
 </footer>
-<asset:stylesheet src="application.css"/>
+<asset:stylesheet src="amorami2application.css"/>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Parisienne" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 <asset:javascript src="application.js"/>
 <g:layoutHead/>
 <asset:deferredScripts/>

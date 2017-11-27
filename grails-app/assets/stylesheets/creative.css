@@ -535,7 +535,7 @@ body {
 
 .round-image {
     width: 150px;
-    height: auto;
+    height: 150px;
     margin: 10px auto;
     border-radius: 100%;
     padding: 3px;

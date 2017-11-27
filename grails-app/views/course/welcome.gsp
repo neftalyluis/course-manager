@@ -10,14 +10,6 @@
 </head>
 
 <body>
-<header class="not-home">
-    <div class="header-content">
-        <div class="header-content-inner">
-            <h1 id="homeHeading">Mis Programas</h1>
-
-        </div>
-    </div>
-</header>
 <section>
     <div class="container">
         <div class="row">
