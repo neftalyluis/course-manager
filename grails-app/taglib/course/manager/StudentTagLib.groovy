@@ -8,6 +8,6 @@ class StudentTagLib {
 
     def avatar = {
         def student = Student.findByUsername(springSecurityService.currentUser?.username)
-        out << """<img src="${student.urlAvatar?:"/assets/avatar.png"}" style="width: 35px; height: 35px;"/>"""
+        out << """<img src="${student.urlAvatar?:"/assets/avatar.png"}" class="profile-image" style="width: 20px; height: 20px;"/>"""
     }
 }

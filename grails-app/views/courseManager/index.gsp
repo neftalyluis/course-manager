@@ -5,23 +5,20 @@
 </head>
 
 <body>
-<div class="header" style="min-height: 400px; height: 400px;">
-    <div class="header-op">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">CURSOS</h1>
-                <hr>
-            </div>
+<header class="not-home">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Cursos</h1>
         </div>
     </div>
-</div>
+</header>
 
 <div class="modal fade" id="deleteCourse" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <g:form action="remove">
                 <input type="hidden" name="id" id="inputRemoveCourse" value="#">
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 

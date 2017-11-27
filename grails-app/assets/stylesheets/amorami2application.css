@@ -9,8 +9,5 @@
 *
 *= require /webjars/bootstrap/3.3.7/css/bootstrap.min.css
 *= require amorami2
-*= require calendar
-*= require creative
-*= require main
 *= require_self
 */

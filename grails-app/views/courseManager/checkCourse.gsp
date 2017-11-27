@@ -6,17 +6,13 @@
 </head>
 
 <body>
-<div class="header" style="min-height: 400px; height: 400px;">
-    <div class="header-op">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">${course.name}</h1>
-                <hr>
-            </div>
+<header class="not-home">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">${course.name}</h1>
         </div>
     </div>
-</div>
+</header>
 
 <div class="modal fade" id="modalQuitarLeccion" role="dialog">
     <div class="modal-dialog">
@@ -316,11 +312,14 @@
                     <button type="button" data-toggle="modal"
                             data-target="#modalEditarCurso" class="btn btn-primary">Modificar textos de Curso</button>
                     <button type="button" data-toggle="modal"
-                            data-target="#modalCambiarImagenLecciones" class="btn btn-primary">Cambiar imagen de Lecciones</button>
+                            data-target="#modalCambiarImagenLecciones"
+                            class="btn btn-primary">Cambiar imagen de Lecciones</button>
                     <button type="button" data-toggle="modal"
-                            data-target="#modalCambiarImagenCursos" class="btn btn-primary">Cambiar imagen de Cursos</button>
+                            data-target="#modalCambiarImagenCursos"
+                            class="btn btn-primary">Cambiar imagen de Cursos</button>
                     <button type="button" data-toggle="modal"
-                            data-target="#modalCambiarImagenTeoria" class="btn btn-primary">Cambiar imagen de Teoria</button>
+                            data-target="#modalCambiarImagenTeoria"
+                            class="btn btn-primary">Cambiar imagen de Teoria</button>
                 </div>
             </div>
 
@@ -331,7 +330,8 @@
 
             <div class="row text-center">
                 <div class="btn-group">
-                    <g:link action="checkCourseFiles" params="[courseId: course.id]" type="button" class="btn btn-primary">Modificar Archivos de Descripcion General</g:link>
+                    <g:link action="checkCourseFiles" params="[courseId: course.id]" type="button"
+                            class="btn btn-primary">Modificar Archivos de Descripcion General</g:link>
                 </div>
             </div>
 

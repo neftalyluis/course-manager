@@ -150,17 +150,13 @@
     </div>
 </div>
 
-<div class="header" style="min-height: 400px; height: 400px;" ng-style="{'background-image':headerImage}">
-    <div class="header-op">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">CURSOS</h1>
-                <hr>
-            </div>
+<header class="not-home">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Detalle de Estudiante</h1>
         </div>
     </div>
-</div>
+</header>
 <section>
 
     <div class="container">

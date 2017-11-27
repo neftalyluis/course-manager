@@ -7,32 +7,30 @@
 </head>
 
 <body>
-<div class="header" style="min-height: 400px; height: 400px;" ng-style="{'background-image':headerImage}">
-    <div class="header-op">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">CURSOS</h1>
-                <hr>
-            </div>
+<header class="not-home">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Estudiantes</h1>
         </div>
     </div>
-</div>
+</header>
 
 <div class="modal fade" id="removeStudent" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <g:form action="remove">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 id="titleRemoveStudent" class="modal-title text-center">¿Estás seguro de querrer borrar el usuario?</h3>
-                <input id="inputRemoveStudent" type="hidden" name="id" value="#">
-            </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Si, quiero borrar.</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
-            </div>           
+                    <h3 id="titleRemoveStudent"
+                        class="modal-title text-center">¿Estás seguro de querrer borrar el usuario?</h3>
+                    <input id="inputRemoveStudent" type="hidden" name="id" value="#">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Si, quiero borrar.</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero seguir.</button>
+                </div>
             </g:form>
         </div>
     </div>
@@ -73,7 +71,7 @@
                         <label>Descripción</label>
                         <textarea class="form-control" name="description"></textarea>
                     </div>
-                    
+
                 </div>
 
                 <div class="modal-footer">

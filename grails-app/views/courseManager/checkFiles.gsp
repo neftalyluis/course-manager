@@ -5,18 +5,13 @@
 </head>
 
 <body>
-<div class="header" style="min-height: 400px; height: 400px;" ng-style="{'background-image':headerImage}">
-    <div class="header-op">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">Archivos de Lecciones</h1>
-                <hr>
-            </div>
+<header class="not-home">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Archivos de Lecciones</h1>
         </div>
     </div>
-</div>
-
+</header>
 
 <div class="modal fade" id="modalAgregarArchivo" role="dialog">
     <div class="modal-dialog">
@@ -183,7 +178,6 @@
     </div>
 </section>
 <asset:script type="text/javascript">
-
 
     $('.modalQuitarArchivo').click(function () {
         var lessonFileId = $(this).parent().parent().prev().prev().text()

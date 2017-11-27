@@ -10,19 +10,15 @@
 </head>
 
 <body>
-<div class="h-leccion"
-     style="min-height: 400px; height: 400px; background: url('${course.theoryPhoto ?: "/assets/autoestima.jpg"}');">
-    <div class="header-op op-mob" style="height: 400px">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading" class="text-center"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 40px; font-weight: bold;">${course.theoryTitle}</h1>
-                <hr>
-            </div>
+
+<header class="not-home" style="background: url('${course.theoryPhoto ?: "/assets/autoestima.jpg"}');">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">${course.theoryTitle}</h1>
+
         </div>
     </div>
-</div>
-
+</header>
 <section>
 
     <div class="container" style="padding-top: 40px; padding-bottom: 100px;">
@@ -41,6 +37,12 @@
         Con cariño tu coach Paola Vega
         <i class="fa fa-heart" style="color: #da2d7d;"></i>
     </p>
+
+    <div class="container">
+        <div class="row">
+            <a href="/cursos/${course.url}/lecciones" class="pull-right btn btn-primary">Ir a ejercicios</a>
+        </div>
+    </div>
 </section>
 
 </body>

@@ -10,11 +10,20 @@
 </head>
 
 <body>
+<header class="not-home">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Mis Programas</h1>
+
+        </div>
+    </div>
+</header>
 <section>
     <div class="container">
-
-        <div class="carta">
-            ${raw(welcome)}
+        <div class="row">
+            <div class="carta" style="background-image: url(${assetPath(src: 'bienvenida.jpg')});">
+                ${raw(welcome)}
+            </div>
         </div>
 
         <div class="row">

@@ -4,9 +4,11 @@
     <meta name="layout" content="main"/>
     <title>Testimonios</title>
 </head>
+
 <body>
 <div class="container">
     <h1 style="padding: 100px auto; text-align: center; margin-top: 150px;">Testimonios</h1>
+
     <div class="row">
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
@@ -15,6 +17,7 @@
                 <br>  -Maribel, México
             </blockquote>
         </div>
+
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
                 <img src="${assetPath(src: 'griselda.png')}" class="paola">
@@ -23,6 +26,7 @@
             </blockquote>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
@@ -32,6 +36,7 @@
 
             </blockquote>
         </div>
+
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
                 <img src="${assetPath(src: 'nora.png')}" class="paola">
@@ -41,6 +46,7 @@
             </blockquote>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
@@ -48,9 +54,9 @@
                 Una experiencia nueva y satisfactoria, gracias Paola Vega por tu buen desempeño en este trabajo y que me hayas podido ayudar a transformarme y acompañarme en esto. El servicio que das es excelente, espero más puedan beneficiarse de esto en lo que tanto has trabajado
                 <br>-Hindel, México
 
-
             </blockquote>
         </div>
+
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
                 <img src="${assetPath(src: 'nora.png')}" class="paola">
@@ -60,6 +66,7 @@
             </blockquote>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
@@ -67,20 +74,19 @@
                 Excelente coach y maravilloso ser humano. Me ayudó muchísimo a entender cosas que yo por más hacia no veía que estaba mal. Le agradeceré toda la vida.
                 <br>-Asunción, México
 
-
-
             </blockquote>
         </div>
+
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
                 <img src="${assetPath(src: 'lucy.png')}" class="paola">
                 Gracias porque en estas semanas me ha ayudado mucho en mi persona, lo recomiendo en verdad. Gracias!
                 <br>-Lucy, México
 
-
             </blockquote>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
@@ -90,6 +96,7 @@
 
             </blockquote>
         </div>
+
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
                 <img src="${assetPath(src: 'elena.png')}" class="paola">
@@ -99,6 +106,7 @@
             </blockquote>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
@@ -107,6 +115,7 @@
                 <br>-David, México
             </blockquote>
         </div>
+
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
                 <img src="${assetPath(src: 'ana.png')}" class="paola">
@@ -115,6 +124,7 @@
             </blockquote>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
@@ -124,6 +134,7 @@
 
             </blockquote>
         </div>
+
         <div class="col-md-6">
             <blockquote style="padding: 20px;">
                 <img src="${assetPath(src: 'luis.png')}" class="paola">

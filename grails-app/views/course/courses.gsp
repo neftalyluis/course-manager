@@ -5,32 +5,28 @@
 </head>
 
 <body>
-<div style="min-height: 400px; height: 400px; background: url(${assetPath(src: 'boblioteca.jpg')});">
-    <div class="header-op op-mob" style="height: 400px">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading" class="text-center"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">Mis programas</h1>
-                <hr>
-            </div>
+<header class="not-home">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Mis Programas</h1>
+
         </div>
     </div>
-</div>
-
-<div class="container" style="padding-bottom: 100px; padding-top: 100px;">
-    <div class="row">
-        <g:each var="course" in="${courses}">
-            <div class="col-sm-4">
-                <div>
-                    <h3 class="text-center" style="color: #da2d7d;">${course.name}</h3>
+</header>
+<section id="">
+    <div class="container">
+        <div class="row">
+            <g:each var="course" in="${courses}">
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <h3 class="text-center" style="color: #E32A76;">${course.name}</h3>
                     <img src="${course.coursePhoto ?: assetPath(src: '/portfolio/thumbnails/2-2.jpg')}"
-                         style="max-width: 100%; height: auto;">
-                    <a href="/cursos/${course.url}/bienvenida" style="margin-left: 120px; margin-top: 20px;"
-                        class="btn btn-primary">Iniciar</a>
+                         class="img-curso-id">
+                    <a href="/cursos/${course.url}/bienvenida"
+                       class="btn btn-primary course-button btn-xl text-center">Iniciar</a>
                 </div>
-            </div>
-        </g:each>
+            </g:each>
+        </div>
     </div>
-</div>
+</section>
 </body>
 </html>

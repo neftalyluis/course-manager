@@ -10,42 +10,37 @@
 </head>
 
 <body>
-<div class="header header-leccion" style="min-height: 400px; height: 400px;background: url('${lesson.headerPhoto ?: "/assets/autoestima.jpg"}');">
-    <div class="header-op">
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading"
-                    style="margin-top: 150px; color: #fff; font-family: 'Raleway', sans-serif; font-size: 50px; font-weight: bold;">${lesson.name}</h1>
-                <hr>
+
+<header class="not-home" style="background: url('${lesson.headerPhoto ?: "/assets/autoestima.jpg"}');">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">${lesson.name}</h1>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-xs-12">${raw(lesson.body)}</div>
+
+            <div class="col-lg-4 col-xs-12">
+                <a class="btn btn-primary" style="margin-bottom: 20px;"
+                   href="/cursos/${courseUrl}/lecciones/${lesson.url}/marcar">Marcar como completado</a>
+
+                <p>Número de ejercicios por día:</p>
+
+                <div class="exe-number">${lesson.lessonFiles.size()}</div>
+
+
+                <g:each in="${lesson.lessonFiles}" var="file">
+                    <button class="btn btn-primary" style="margin: 20px ; display: block;">
+                        <a download href="${file.fileURL}" style="color: #fff;text-decoration: none;">${file.name}</a>
+                    </button>
+                </g:each>
             </div>
         </div>
     </div>
-</div>
-
-<div class="container container-leccion" style="padding-top: 100px; padding-bottom: 100px;">
-    <div class="row">
-        <div class="col-md-9 leccion-text">
-            <p>${raw(lesson.body)}</p>
-        </div>
-
-        <div class="col-md-12">
-            <div style="margin-top: 70px; padding-left: 15px;">
-                <div class="row exe-buttons" style="padding: 15px;">
-                    <p>Número de ejercicios por día:</p>
-                    <div class="ejer-numero-btn" style="border-radius: 100%; width: 30px; height: 30px ; margin-left: 20px;margin-bottom: 20px; background: #da2d7d; color: #fff; padding: 4px 11px; font-weight: bold;">${lesson.lessonFiles.size()}</divc>
-                    <a class="btn btn-primary" style="margin: 20px " href="/cursos/${courseUrl}/lecciones/${lesson.url}/marcar">Marcar como completado</a>
-                </div>
-
-                <div>
-                    <g:each in="${lesson.lessonFiles}" var="file">
-                        <button class="btn btn-primary" style="margin: 20px ">
-                            <a download href="${file.fileURL}"
-                               style="color: #fff;text-decoration: none;">${file.name}</a>
-                        </button>
-                    </g:each>
-                </div>
-            </div>
-        </div>
-    </div>
+</section>
 </body>
 </html>
