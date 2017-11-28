@@ -28,7 +28,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <blockquote>
                 <img src="${assetPath(src: 'berenice.png')}" class="round-image">
                 Excelente atención, me encanto el coaching de Paola, de mucha ayuda. Me ayudó a aclarar mi mente mucho más rápido de lo que esperaba. Resultados reales. Muchas gracias nuevamente.

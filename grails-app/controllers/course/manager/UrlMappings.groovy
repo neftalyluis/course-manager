@@ -22,7 +22,7 @@ class UrlMappings {
         "/cursos/$idCurso/lecciones/$idLeccion/marcar"(controller: "course", action: "markLesson")
 
         "/ebook-gratis"(controller: "landings", action: "ebook")
-
+        "/testimonios"(controller: "landings", action: "testimony")
 
     }
 }

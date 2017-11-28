@@ -555,7 +555,7 @@ body {
 }
 
 .btn-testimonial {
-    float: right;
+    float: inherit;
     margin: 10px 70px;
 }
 
