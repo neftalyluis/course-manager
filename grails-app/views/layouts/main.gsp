@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Coach Paola Vega - Amor a mi</title>
+    <title>Coach Paola Vega - Yo en amor</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon"/>
@@ -19,7 +19,7 @@
                     data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="/">Amor A Mi</a>
+            <a class="navbar-brand page-scroll" href="/">Yo en amor</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

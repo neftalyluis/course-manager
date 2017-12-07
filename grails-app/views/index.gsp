@@ -8,7 +8,7 @@
 <header>
     <div class="header-content">
         <div class="header-content-inner">
-            <h1 id="homeHeading">Bienvenida al programa <br> AMOR A MI</h1>
+            <h1 id="homeHeading">Bienvenida al programa <br> YO EN AMOR</h1>
             <hr>
             <a href="#about" class="btn btn-primary btn-xl page-scroll">Inicio</a>
         </div>
@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="project-name">
-                                Amor a mi
+                                Yo en amor
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
 
                 <div>
                     <a href="http://coachpaolavega.com/tienda/" class="btn btn-xl btn-primary btn-glow sombra"
-                       style="margin: 20px 30%; background: #da2d7d;">AMOR A MI<br><span
+                       style="margin: 20px 30%; background: #da2d7d;">YO EN AMOR<br><span
                             style="font-size: 12px; color: yellow;">Comprar</span></a>
                 </div>
             </div>
