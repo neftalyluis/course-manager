@@ -51,7 +51,7 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                <a style="text-decoration: none; color: #fff;">Ver más</a>
+                                <a style="text-decoration: none; color: #fff;" href="http://coachpaolavega.com/yo-en-amor/">Ver más</a>
                             </div>
 
                             <div class="project-name">
@@ -123,21 +123,20 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Proximamente
+                                <a style="text-decoration: none; color: #fff;" href="http://coachpaolavega.com/yo-en-amor-2-0/">Ver más</a>
                             </div>
 
                             <div class="project-name">
-                                Supera a tu ex
+                                Yo en amor 2.0
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <a href="" class="btn btn-xl btn-primary btn-glow sombra"
-                       style="margin: 20px 25%; background: #da2d7d;">SUPERA A TU EX<br><span class=""
-                                                                                              style="font-size: 10px;">Próximamente</span>
-                    </a>
+                    <a href="http://coachpaolavega.com/tienda/" class="btn btn-xl btn-primary btn-glow sombra"
+                       style="margin: 20px 20%; background: #da2d7d;">YO EN AMOR 2.0 <br><span
+                            style="font-size: 12px; color: yellow;">Comprar</span></a>
                 </div>
             </div>
         </div>
