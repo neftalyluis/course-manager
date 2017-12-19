@@ -75,19 +75,19 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                <a style="text-decoration: none; color: #fff;">Ver más</a>
+                                <a href="http://coachpaolavega.com/2018-en-amor" style="text-decoration: none; color: #fff;">Ver más</a>
                             </div>
 
                             <div class="project-name">
-                                Atrae al amor de tu vida
+                                2018 en amor
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <a href="http://coachpaolavega.com/tienda/" class="btn btn-xl btn-primary btn-glow sombra"
-                       style="margin: 20px 10%; background: #da2d7d;">ATRAE AL AMOR DE TU VIDA<br><span
+                    <a href="http://coachpaolavega.com/producto/atrae-al-amor-de-tu-vida/" class="btn btn-xl btn-primary btn-glow sombra"
+                       style="margin: 20px 10%; background: #da2d7d;">2018 EN AMOR<br><span
                             style="font-size: 12px; color: yellow;">Comprar</span></a>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 </div>
 
                 <div>
-                    <a href="http://coachpaolavega.com/tienda/" class="btn btn-xl btn-primary btn-glow sombra"
+                    <a href="http://coachpaolavega.com/producto/sesion-de-coaching" class="btn btn-xl btn-primary btn-glow sombra"
                        style="margin: 20px 20%; background: #da2d7d;">SESIÓN DE COACHING<br><span
                             style="font-size: 12px; color: yellow;">Comprar</span></a>
                 </div>
@@ -203,10 +203,9 @@
 <aside class="bg-dark">
     <div class="container text-center">
         <div class="call-to-action">
-            <h2>Introduce el código 'AMOR' <br> para obtener una clase gratuita para el programa "Atrae al amor de tu vida"
-            </h2>
-            <a href="http://coachpaolavega.com/clase-gratuita-para-atraer-al-amor-de-tu-vida"
-               class="btn btn-default btn-xl sr-button" style="color: #da2d7d;">Obtener clase GRATIS</a>
+            <h2>Ver serie gratuita para encontrar el amor en este 2018</h2>
+            <a href="https://seriegratuita2018enamor.gr8.com/thank_you.html"
+               class="btn btn-default btn-xl sr-button" style="color: #da2d7d;">Ver Serie</a>
         </div>
     </div>
 </aside>
