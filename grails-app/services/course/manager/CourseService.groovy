@@ -479,4 +479,8 @@ class CourseService {
         }
     }
 
+    def getLessonWithURL(String urlLesson){
+        return Lesson.findByUrl(urlLesson)
+    }
+
 }

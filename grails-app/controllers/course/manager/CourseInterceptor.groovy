@@ -8,9 +8,10 @@ class CourseInterceptor {
 
     SpringSecurityService springSecurityService
     CourseService courseService
+    int order = HIGHEST_PRECEDENCE
 
     CourseInterceptor() {
-        match(controller: "course").excludes(action: "info").excludes(action: "courses").excludes(action: "newLayout")
+        match(controller: "course").excludes(action: "info").excludes(action: "courses")
     }
 
     boolean before() {
