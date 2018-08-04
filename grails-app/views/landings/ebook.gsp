@@ -12,7 +12,7 @@
 
         <h2 class="text-center" style="text-transform: uppercase;"><span
                 style="color: #da2d7d;">tips para que un hombre se comprometa contigo</span><span
-                style="color: blue;">¡100% gratis!</span></h2>
+                style="color: blue;"> ¡100% gratis!</span></h2>
     </div>
 </div>
 <g:if test="${withEmail}">
@@ -37,7 +37,7 @@
                     <div class="col-xs-4"></div>
                     <div class="col-xs-4">
                         <a download
-                           href="https://firebasestorage.googleapis.com/v0/b/amor-a-mi-d48eb.appspot.com/o/ebooks%2FEBOOK%20DESCARGABLE%20PARA%20HACER%20QUE%20UN%20HOMBRE%20SE%20COMPROMETA%20CONTIGO%20Coach%20Paola%20Vega%2028%20de%20octubre%20%20(1).pdf?alt=media&token=71e6daba-4413-4373-94db-4eb31ca5083c"
+                           href="https://firebasestorage.googleapis.com/v0/b/amor-a-mi-d48eb.appspot.com/o/ebooks%2Febook-18.pdf?alt=media&token=c7a2e82d-9269-46a2-b72b-800edefa7aba"
                            class="btn btn-primary">Descargar <br>Ebook</a>
                     </div>
                     <div class="col-xs-4"></div>
@@ -45,16 +45,16 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center" style="color: #da2d7d;">Gracias por descargar mi ebook <b
-                                style="text-transform: uppercase;">Tips para que un hombre se comprometa contigo</b> Si de verdad quieres lograr tener una relación sana y duradera lo antes posible, te recomiendo conozcas mis programas y servicios en <a
-                                href="https://amorami.soy" style="color: blue;">amorami.soy</a></p>
+                        <p class="text-center" style="color: #da2d7d;">Gracias por descargar mi ebook
+                            <b style="text-transform: uppercase;">Tips para que un hombre se comprometa contigo</b>
+                            Si de verdad quieres lograr tener una relación sana y duradera lo antes posible, te recomiendo conozcas mis programas y servicios enviame un mail a coachpaolavega@gmail.com con tu numero de telefono y pais, para conocer tu historia en particular y explicarte como te puedo ayudar
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <img src="/assets/logo.jpg" class="logo-ebook center-block">
-                <h4 class="text-center" style="color: blue;">20% de descuento en proceso de coaching personalizado</h4>
 
                 <p class="text-center"
                    style="color: #da2d7d;">Una vez que conozcas como puedes hacer que un hombre se comprometa contigo, tal vez deseas avanzar rápido hacia una relación de pareja con ayuda personalizada.<br>Si esto es lo que deseas, descubre como:

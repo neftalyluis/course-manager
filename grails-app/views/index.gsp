@@ -18,7 +18,7 @@
 <aside class="bg-dark">
     <div class="container text-center">
         <div class="call-to-action">
-            <img src="${assetPath(src: 'coach.jpg')}" class="round-image">
+            <img src="${assetPath(src: 'conoceme.jpg')}" class="round-image">
 
             <h2>
                 <quote><i
@@ -46,12 +46,13 @@
         <div class="row no-gutter popup-gallery">
             <div class="col-lg-3 col-sm-6">
                 <div class="portfolio-box cursor">
-                    <img src="${assetPath(src: 'portfolio/thumbnails/2-2.jpg')}" class="img-responsive" alt="">
+                    <img src="${assetPath(src: 'yo-en-amor.png')}" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                <a style="text-decoration: none; color: #fff;" href="http://coachpaolavega.com/yo-en-amor/">Ver más</a>
+                                <a style="text-decoration: none; color: #fff;"
+                                   href="http://coachpaolavega.com/yo-en-amor/">Ver más</a>
                             </div>
 
                             <div class="project-name">
@@ -75,7 +76,8 @@
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                <a href="http://coachpaolavega.com/2018-en-amor" style="text-decoration: none; color: #fff;">Ver más</a>
+                                <a href="http://coachpaolavega.com/2018-en-amor"
+                                   style="text-decoration: none; color: #fff;">Ver más</a>
                             </div>
 
                             <div class="project-name">
@@ -86,7 +88,8 @@
                 </div>
 
                 <div>
-                    <a href="http://coachpaolavega.com/producto/atrae-al-amor-de-tu-vida/" class="btn btn-xl btn-primary btn-glow sombra"
+                    <a href="http://coachpaolavega.com/producto/atrae-al-amor-de-tu-vida/"
+                       class="btn btn-xl btn-primary btn-glow sombra"
                        style="margin: 20px 10%; background: #da2d7d;">2018 EN AMOR<br><span
                             style="font-size: 12px; color: yellow;">Comprar</span></a>
                 </div>
@@ -110,7 +113,8 @@
                 </div>
 
                 <div>
-                    <a href="http://coachpaolavega.com/producto/sesion-de-coaching" class="btn btn-xl btn-primary btn-glow sombra"
+                    <a href="http://coachpaolavega.com/producto/sesion-de-coaching"
+                       class="btn btn-xl btn-primary btn-glow sombra"
                        style="margin: 20px 20%; background: #da2d7d;">SESIÓN DE COACHING<br><span
                             style="font-size: 12px; color: yellow;">Comprar</span></a>
                 </div>
@@ -118,12 +122,13 @@
 
             <div class="col-lg-3 col-sm-6">
                 <div class="portfolio-box pointer">
-                    <img src="${assetPath(src: 'portfolio/thumbnails/4-4.jpg')}" class="img-responsive" alt="">
+                    <img src="${assetPath(src: 'yo-en-amor-2.jpg')}" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                <a style="text-decoration: none; color: #fff;" href="http://coachpaolavega.com/yo-en-amor-2-0/">Ver más</a>
+                                <a style="text-decoration: none; color: #fff;"
+                                   href="http://coachpaolavega.com/yo-en-amor-2-0/">Ver más</a>
                             </div>
 
                             <div class="project-name">
