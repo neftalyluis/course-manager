@@ -1,28 +1,23 @@
 language: groovy
 sudo: false
-install: true
 jdk:
 - oraclejdk8
 before_install:
 - curl -s "https://get.sdkman.io" | bash
 - source "${HOME}"/.sdkman/bin/sdkman-init.sh
 - sdk install infrastructor 0.2.1
-- echo "y" | sdk install infrastructor 0.2.1
-- sdk default infrastructor 0.2.1
 - sdk install grails 3.2.11
-- echo "y" | sdk install grails 3.2.11
-- sdk default grails 3.2.11
 script:
 - grails test-app
 - grails prod war
-before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 deploy:
   provider: script
   script: infrastructor run -f deploy.groovy
   on:
     branch: master
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
   - '$HOME/.m2/repository'
