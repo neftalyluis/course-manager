@@ -11,6 +11,7 @@ script:
 - grails test-app
 - grails prod war
 deploy:
+  skip_cleanup: true
   provider: script
   script: infrastructor run -f deploy.groovy
   on:
