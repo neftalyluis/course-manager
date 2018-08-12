@@ -17,11 +17,11 @@ inlineInventory {
         info "Stopping service"
         shell "systemctl stop course-manager"
         info "Copying WAR file"
-        shell "cp course-manager-${version}.war /var/course-manager/"
+        shell "cp course-manager-${version}.war /var/course-manager/course-manager-0.1.war"
         info "Starting service"
         shell "systemctl start course-manager"
         info "Healthcheck of service"
-        retry count: 10, delay: 5000, actions: {
+        retry count: 50, delay: 5000, actions: {
             def response = httpGet url: "http://$node.host/"
             assert response.code == 200
         }
