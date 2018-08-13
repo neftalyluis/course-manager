@@ -9,6 +9,15 @@
     <link rel="icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon"/>
     <script src="https://cdn.logrocket.io/LogRocket.min.js" crossorigin="anonymous"></script>
     <script>window.LogRocket && window.LogRocket.init('coach-paola-vega/amor-a-mi');</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110000480-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-110000480-1');
+    </script>
 </head>
 
 <body id="page-top">
