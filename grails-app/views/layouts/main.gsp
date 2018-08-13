@@ -7,7 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon"/>
-
+    <script src="https://cdn.logrocket.io/LogRocket.min.js" crossorigin="anonymous"></script>
+    <script>window.LogRocket && window.LogRocket.init('coach-paola-vega/amor-a-mi');</script>
 </head>
 
 <body id="page-top">
