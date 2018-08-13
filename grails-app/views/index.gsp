@@ -298,5 +298,50 @@
     </div>
 </section>
 
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <g:form name="createStudent" controller="landings" action="ebook">
+                <div class="modal-body">
+
+                    <p>Logra la relación de pareja que deseas con el ebook</p>
+
+                    <h4>TIPS PARA QUE UN HOMBRE SE COMPROMETA CONTIGO</h4>
+
+                    <p>En este ebook aprenderás:</p>
+
+                    <ul class="list-group">
+                      <li class="list-group-item">Cómo detectar si un hombre está listo para el compromiso.</li>
+                      <li class="list-group-item">Cómo saber si tú verdaderamente estás lista para el compromiso.</li>
+                      <li class="list-group-item">Los mejores TIPS para que un hombre se quiera comprometer contigo cuando estas soltera, o en una relación de pareja.</li>
+                    </ul>
+
+                    <p>Estás a punto de descubrir los secretos para que se comprometan contigo con éxito. ¡100% GRATIS!</p>
+
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Descargar Ebook</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            data-target="#modalConfirmacionCerrar">Cerrar</button>
+                </div>
+            </g:form>
+        </div>
+
+    </div>
+</div>
+<g:javascript>
+    setTimeout(function () {
+        $("#myModal").modal("show");
+    }, 5000);
+</g:javascript>
 </body>
 </html>
