@@ -45,6 +45,7 @@
                 <sec:ifAllGranted roles='ROLE_ADMIN'>
                     <li><g:link class="page-scroll" controller="courseManager">Gestionar Cursos</g:link></li>
                     <li><g:link class="page-scroll" controller="student">Gestionar Usuarios</g:link></li>
+                    <li><g:link class="page-scroll" controller="leads">Ver Leads</g:link></li>
                 </sec:ifAllGranted>
                 <sec:ifLoggedIn>
                     <li><g:link class="page-scroll" controller="logout">Cerrar Sesion</g:link></li>

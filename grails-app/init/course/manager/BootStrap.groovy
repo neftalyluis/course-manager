@@ -75,7 +75,7 @@ class BootStrap {
                 new Requestmap(url: url, configAttribute: 'ROLE_STUDENT').save(failOnError: true)
             }
 
-            for (String url in ['/courseManager/**', '/firebaseMigration/**', '/student/**', '/dbconsole/**']) {
+            for (String url in ['/courseManager/**', '/firebaseMigration/**', '/student/**', '/dbconsole/**', '/leads/**']) {
                 new Requestmap(url: url, configAttribute: 'ROLE_ADMIN').save(failOnError: true)
             }
 
