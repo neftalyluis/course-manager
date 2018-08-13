@@ -18,7 +18,7 @@
 <aside class="bg-dark">
     <div class="container text-center">
         <div class="call-to-action">
-            <img src="${assetPath(src: 'conoceme.jpg')}" class="round-image">
+            <img src="${assetPath(src: 'paola.jpeg')}" class="round-image">
 
             <h2>
                 <quote><i
