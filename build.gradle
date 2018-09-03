@@ -45,7 +45,7 @@ dependencies {
     compile 'org.webjars:jquery-validation:1.17.0'
     compile 'com.google.cloud:google-cloud-storage:1.6.0'
     compile 'mysql:mysql-connector-java:5.1.44'
-    compile 'io.sentry:sentry-logback:1.6.1'
+    compile 'io.sentry:sentry-logback:1.7.5'
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.1"

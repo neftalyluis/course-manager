@@ -10,7 +10,12 @@ class LessonInterceptor {
     CourseService courseService
 
     LessonInterceptor() {
-        match(controller: "course").excludes(action: "info").excludes(action: "courses").excludes(action: "lessons").excludes(action: "theory").excludes(action: "welcome")
+        match(controller: "course")
+                .excludes(action: "info")
+                .excludes(action: "courses")
+                .excludes(action: "lessons")
+                .excludes(action: "theory")
+                .excludes(action: "welcome")
     }
 
     boolean before() {
@@ -24,7 +29,9 @@ class LessonInterceptor {
         if (courseService.getLessonWithURL(lesson)) {
             return true
         } else {
-            log.error("El usuario ${username} trató de ingresar a la URL ${request.forwardURI}")
+            def forward = request.forwardURI
+            def referrer = request.getHeader('referer')
+            log.error("El usuario ${username} trató de ingresar a la URL $forward desde $referrer")
             view = "info"
         }
     }
