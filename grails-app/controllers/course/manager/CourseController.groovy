@@ -40,6 +40,11 @@ class CourseController {
         def username = springSecurityService.currentUser?.username
         def course = courseService.getCourse(username, idCurso)
 
+        if(!course.welcome) {
+            redirect action: 'lessons', controller: 'person', idCurso: idCurso
+            return
+        }
+
         [welcome: course.welcome, course: idCurso, layout: course.newLayout]
     }
 
