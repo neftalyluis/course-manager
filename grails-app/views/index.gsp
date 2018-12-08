@@ -338,10 +338,5 @@
 
     </div>
 </div>
-<g:javascript>
-    setTimeout(function () {
-        $("#myModal").modal("show");
-    }, 5000);
-</g:javascript>
 </body>
 </html>
