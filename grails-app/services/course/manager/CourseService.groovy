@@ -129,14 +129,14 @@ class CourseService {
 
 
     def createCourse(CreateCourseCommand command) {
-        def courseWithSameUrl = Course.findByUrl(command.url)
+        def courseWithSameUrl = Course.findByUrl(Slugifier.generate(command.url))
         if (courseWithSameUrl) {
             log.error("There is another course with the same URL")
             return [error: "There is another course with the same URL"]
         } else {
             def newCourse = new Course(
                     name: command.name,
-                    url: command.url,
+                    url: Slugifier.generate(command.url),
                     description: command.descript,
                     banner: command.banner,
                     welcome: command.welcome,
@@ -158,7 +158,7 @@ class CourseService {
 
     def createLesson(CreateLessonCommand command) {
         if (command.validate()) {
-            def lessonWithSameUrl = Lesson.findByUrl(command.url)
+            def lessonWithSameUrl = Lesson.findByUrl(Slugifier.generate(command.url))
             def course = Course.get(command.courseId)
             if (lessonWithSameUrl) {
 
@@ -170,7 +170,7 @@ class CourseService {
                 def newLesson = new Lesson(
                         name: command.name,
                         body: command.body,
-                        url: command.url,
+                        url: Slugifier.generate(command.url),
                         course: course,
                         numberLesson: getQuantityOfLessonsForCourse(command.courseId) + 1
                 ).save(flush: true)
@@ -269,7 +269,7 @@ class CourseService {
         def course = Course.get(command.id)
         if (course) {
             course.name = command.name
-            course.url = command.url
+            course.url = Slugifier.generate(command.url)
             course.description = command.descript
             course.banner = command.banner
             course.welcome = command.welcome
@@ -288,7 +288,7 @@ class CourseService {
         if (lesson) {
             lesson.name = command.name
             lesson.body = command.body
-            lesson.url = command.url
+            lesson.url = Slugifier.generate(command.url)
             lesson.save(flush: true, failOnError: true)
             return [lesson: lesson]
         } else {
